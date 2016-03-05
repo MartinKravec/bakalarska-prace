@@ -1,0 +1,91 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist{entry}{none}
+    \entry{survey}{article}{}
+      \name{labelname}{3}{}{%
+        {{hash=5958757648bd941cb9727e1d897aaed6}{Khonji}{K\bibinitperiod}{Mahmoud}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=b368a781e1a2d1b1c4fb70ba74caa632}{Iraqi}{I\bibinitperiod}{Youssef}{Y\bibinitperiod}{}{}{}{}}%
+        {{hash=754ef483cc118651dbbe70d1a2879764}{Jones}{J\bibinitperiod}{Andrew}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{3}{}{%
+        {{hash=5958757648bd941cb9727e1d897aaed6}{Khonji}{K\bibinitperiod}{Mahmoud}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=b368a781e1a2d1b1c4fb70ba74caa632}{Iraqi}{I\bibinitperiod}{Youssef}{Y\bibinitperiod}{}{}{}{}}%
+        {{hash=754ef483cc118651dbbe70d1a2879764}{Jones}{J\bibinitperiod}{Andrew}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{1328dc7d9b95d63bb39fd4d50b435544}
+      \strng{fullhash}{1328dc7d9b95d63bb39fd4d50b435544}
+      \field{sortinit}{0}
+      \field{labeltitle}{Phishing Detection: A Literature Survey}
+      \field{issn}{1553-877X}
+      \field{journaltitle}{Communications Surveys Tutorials, IEEE}
+      \field{month}{Fourth}
+      \field{number}{4}
+      \field{title}{Phishing Detection: A Literature Survey}
+      \field{volume}{15}
+      \field{year}{2013}
+      \field{pages}{2091\bibrangedash 2121}
+      \verb{url}
+      \verb http://dx.doi.org/10.1109/SURV.2013.032213.00009
+      \endverb
+    \endentry
+    \entry{empiricalAnalysis}{inproceedings}{}
+      \name{labelname}{6}{}{%
+        {{hash=87957adb5440ad67af766121c710a646}{Sheng}{S\bibinitperiod}{Steve.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=416a8ba7d5830f2b7cbf70db57b978f1}{Wardman}{W\bibinitperiod}{Brad.}{B\bibinitperiod}{}{}{}{}}%
+        {{hash=ca13c2fec872461c061ad6f21160ee04}{Warner}{W\bibinitperiod}{Garry.}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=db40e5c5a46f0149b6e9fa90120e8729}{Cranor}{C\bibinitperiod}{Lorrie\bibnamedelima F.}{L\bibinitperiod\bibinitdelim F\bibinitperiod}{}{}{}{}}%
+        {{hash=0a4da858979600985e15a1565d440b2b}{Hong}{H\bibinitperiod}{Jason}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=1a2b64d368bd941fe555f53dcc459fe9}{Zhang}{Z\bibinitperiod}{Chengshan}{C\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{6}{}{%
+        {{hash=87957adb5440ad67af766121c710a646}{Sheng}{S\bibinitperiod}{Steve.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=416a8ba7d5830f2b7cbf70db57b978f1}{Wardman}{W\bibinitperiod}{Brad.}{B\bibinitperiod}{}{}{}{}}%
+        {{hash=ca13c2fec872461c061ad6f21160ee04}{Warner}{W\bibinitperiod}{Garry.}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=db40e5c5a46f0149b6e9fa90120e8729}{Cranor}{C\bibinitperiod}{Lorrie\bibnamedelima F.}{L\bibinitperiod\bibinitdelim F\bibinitperiod}{}{}{}{}}%
+        {{hash=0a4da858979600985e15a1565d440b2b}{Hong}{H\bibinitperiod}{Jason}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=1a2b64d368bd941fe555f53dcc459fe9}{Zhang}{Z\bibinitperiod}{Chengshan}{C\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{2}{%
+        {Carnegie Mellon University, Engineering}%
+        {Public Policy}%
+      }
+      \strng{namehash}{ac350c2adb22a6745d254856905fa820}
+      \strng{fullhash}{0b2b4ed2d8d073a9ddfaadcd8a6af0f8}
+      \field{sortinit}{0}
+      \field{labeltitle}{An empirical analysis of phishing blacklists.}
+      \field{booktitle}{6th Conference on Email and Anti-Spam, CEAS 2009}
+      \field{number}{6th Conference on Email and Anti-Spam, CEAS 2009}
+      \field{title}{An empirical analysis of phishing blacklists.}
+      \field{year}{2009}
+      \verb{url}
+      \verb http://ceas.cc/2009/papers/ceas2009-paper-32.pdf
+      \endverb
+    \endentry
+  \endsortlist
+  \missing{whole-collection}
+  \missing{inbook-full}
+  \missing{manual-full}
+  \missing{booklet-full}
+  \missing{incollection-full}
+  \missing{manual-minimal}
+\endrefsection
+\endinput
+
