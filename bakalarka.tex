@@ -52,11 +52,17 @@
 }
 
 \thesislong{abstract}{ % ANNOTATION!
-    neco neco neco neco neco neco 
+    Cílem této práce je zejména provést studii proveditelnosti, která určí, zda je možná migrace
+z~knihovního systému Aleph na open source integrovaný knihovní systém Koha. Součástí studie
+proveditelnosti bude jak finanční plán, tak i hodnocení efektivity a udržitelnosti projektu,
+definice možných rizik a navržené způsoby jejich řízení a minimalizace.
 }
 
 \thesislong{abstractEn}{ % EN ANNOTATION!
-    something something something something something something 
+    Cílem této práce je zejména provést studii proveditelnosti, která určí, zda je možná migrace
+z~knihovního systému Aleph na open source integrovaný knihovní systém Koha. Součástí studie
+proveditelnosti bude jak finanční plán, tak i hodnocení efektivity a udržitelnosti projektu,
+definice možných rizik a navržené způsoby jejich řízení a minimalizace.
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -129,7 +135,16 @@
 \chapter{Uvod}
 
 Bakalářská diplomová práce se bude zabývat studií proveditelnosti implementace 
-open source integrovaného knihovního systému Koha v~knihovnách Masarykovy univerzity. 
+open source integrovaného knihovního systému Koha v~knihovnách Masarykovy univerzity. V~praci bude probirano několik udhlu pohledu na celkovou problematiku a to v~kontextu studie proveditelnosti. [Studie proveditelmnosti]. V~praci tedy rozebereme nejdriv teoretickou cast knihovnich systemu, co by měli umet a jaky je jejich cil jako produktu softwarovych firem, to znamena probereme technicke zastreseni projektu. Cely projekt bude resen i jako harmonogram realizace spolu s~financni a ekonomickou analyzou. V~ramci studie byl provaden nekolikamesicni vyzkum ve vybranych knihovnach masarykovy university, na kterem je zalozeno cele hodnoceni efektivity a udrzitelnosti projektu, v~kterem nebude chybet analuza a rizeni pripadnych rizik, které sebou projekt  migrace nese. Cely vystup je také dostupny v~anglictine, jelikoz je to tema s~globalnim dopadem, které muze pomoct i jinych krajinach, které resi stejny, nebo podobny poblem.
+
+\chapter{Teoreticka cast }
+
+\section{Výchozí stav, zdůvodnění realizace projektu a analýza jeho potřebnosti}
+
+Obsahuje stručný popis stávající situace (problémy a nedostatky), kterou má projekt
+řešit, poptávku po realizaci projekt/analýzu a definici přínosu/potřebnosti projektu,
+jmenuje cílové skupiny, na které bude mít projekt vliv
+
 Aktuálnost problematiky tkví v~tom, že společnost Ex Libris, která vyvíjí knihovní 
 systém Aleph, přestává tomuto produktu poskytovat podporu a zároveň vytváří produkt jiný, 
 jenž však funguje výhradně v~cloudu. 
@@ -140,14 +155,11 @@ Další důvod podporující migraci je fakt, že knihovny platí milionové č�
 podporu stávajícího systému, což je oproti open source systémům markantní rozdíl, 
 který lze investovat do smysluplnějších  věcí spojených s~cíli knihoven, 
 jakožto vzdělávacími, informačními a kulturními institucemi. 
-
-\chapter{Teoreticka cast }
-
-\section{Výchozí stav, zdůvodnění realizace projektu a analýza jeho potřebnosti}
-
-Obsahuje stručný popis stávající situace (problémy a nedostatky), kterou má projekt
-řešit, poptávku po realizaci projekt/analýzu a definici přínosu/potřebnosti projektu,
-jmenuje cílové skupiny, na které bude mít projekt vliv
+Mezi cilove skupiny tohoto projektu migrace ale nepatri jenom systemovy knihovnici, spravci a vedeni knihovny ale také zamestnanci který potrebuji splnit / poskytnout informacni sluzby pomoci práce s~klientem knihovniho systemu, a v~neposlednim pripade i uzivatele knihoven, kterym se musí dostat kvalitni sluzby, poskytovane danou instituci. 
+Tato práce tedy pojednava o~problematice v~ramci kontextu kazde cilove skupiny. 
+...
+Nejcastejsim problemem v~knihovnich procesech byva lidsky faktor, který zasahuje do systemu. Prikladem mohou byt nespokojeni uzivatele knihoven se sluzbama a personalem knihovny, nebo změna legislativy v~ramci knihovniho zákona ci standardu místo zmeny v~knihovnim systemu. Pro zmenu v~knihovnim systemu ale chybi lide s~patricnym vzdelanim. Dukazem je fakt, ze několik instanci systemu obsluhuje ve skutcnosti jedna osoba která se systemem umi pracovat a také fakt, ze ostatní pracovnici hledaji ruzne zpusoby typu excel, sesit, papir, aby nahradili funkcionalitu Alephu, který neumi po letech obsluhovat. 
+Zdalo by se, ze by v~tomto pripade pomohlo skoleni v~ramce práce s~neintuitivnim a ne prácve uzivatelsky privetivym systemem, avsak opak je pravdou, jelikoz i lidi, kteří prosli skolenimi systém stejne neovladaji ani v~kontextu svého vlastniho okruhu práce. 
 
 \section{Popis projektu a jeho etap}
 
@@ -158,6 +170,51 @@ jaká je kapacita (velikost) projektu a jaká je jeho lokalizace, jakými etapam
 prochází a čím jsou specifické, jak řešeno variantní zpracování v~rámci studie a jaká
 jsou ostatní významná specifika projektu. Nezbytné legislativní změny, včetně
 harmonogramu přijetí a očekávané účinnosti
+
+Pr pohledu na cilove skupiny, problemy knihoven, zapisky z~vyzkumu a povinnosti, které musí knihovny, hlavne Masarykovy univerzity resit, je potreba vyresit zejména:
+napojeni systemu na externi technologie a sluzby 
+- Shibboleth
+- Ekonomicky system(akvizicni modul)
+- personalni systém
+- INET
+- protokol na vymenu dat (OAI-PMH)
+- NCIP jako nahrada za Aleph Restful Api
+- selfchecky
+discovery sluzby
+obalky knihoven (Z39.50)
+OPAC (VuFind)
+SUPO
+IS MU
+Centrální portál knihoven
+
+API 
+Dokumentaci systemu
+praci se systemem
+KIC
+
+verejnou cast knihovniho systemu, v~tomto pripade OPAC, který je vlastne vstupni branou uzivatele, která musí byt uzivatelsky privetiva.. a něco, a něco, a něco [Ux Design for Libraries]
+
+\section{Požadavky na knihovní systémem Masarykovy Univerzity}
+\textbf{Velký počet knihovnich jednotek, uzivatelu, pobocek podpobocek}\newline
+
+V~teto chvily je potreba , aby nový systém zvladl cca 2 miliony knihovnich jednotek, cca 50 000 aktualne registrovanych  uzivatelu.
+
+Toto kriterium by nemelo byt problemem, jelikoz knihovna v~Turecku a nekde ma x knihovnich jedntek a Y registrvovanych uzivatelu. 
+Rozdeleni na pobocky a podpobocky je taky mozne, takto ..\newline\newline
+
+\textbf{Otevrenost systemu}\newline
+System musí byt dostatecne otevren na to, aby mohl byt napojen na další systemy vyuzivane v~ramci masarykovy univerzity, tj. Personální, ekonomický, studijní.
+Studijni..
+Ekonomicky..
+personalni..
+Celkove fakt, ze Koha je open source systém dava pripadnemu napojovani na další systemy velke moznosti, jelikoz je mozne do kodu zasahovat a prizpusobovat si tak knihovni systém svým potřebám, aniž by knihovna musela žádat výrobce o~novou funkcionalitu.
+V~pripade, ze jina knihovna jiz tento krok podstoupila, je mozne v~ramci komunity tento kod  implementovat i do forku te dane knihovny, tudiz není potreba  znovuvynalezat kolo, nebo nesmyslne platit za jiz zaplacenou věc.
+
+\section{Problémy a jejich řešení}
+Ux
+mobilni OPAC
+pristupnost
+podpora vufindu, finsko, cpk, open source..
 
 \chapter{Prakticka cast}
 
