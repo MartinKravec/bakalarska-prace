@@ -3,6 +3,8 @@
 %% UČO: 428724
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% @TODO: Odsazeni
+
 \documentclass[
 	12pt, oneside, printed, final, 
 	table,   %% Causes the coloring of tables. Replace with `notable` to restore plain tables.
@@ -22,6 +24,7 @@
 \usepackage{setspace}
 \usepackage{lastpage}
 \usepackage{anyfontsize}
+\usepackage{graphicx}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% THESIS SETUP %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -48,21 +51,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% THANKS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \thesislong{thanks}{
-    Chtěl bych poděkovat Michalovi Denárovi za to, že mi ukázal, jak krásně by mohlo fungovat české knihovnictví, a také Petře Žabičkové za to, že mi ukázala, jak je na tom české knihovnictví ve skutečnosti.
+    Chtěl bych poděkovat vedoucímu práce Mgr. Michalovi Denárovi za to, že mi ukázal, jak krásně by mohlo fungovat české knihovnictví, a také Mgr. Petře Žabičkové v~roli konzultantky za to, že mi ukázala, jak je na tom české knihovnictví ve skutečnosti. Dále bych rád poděkoval RNDr. Michalovi Růžičkovi, který se chopil role konzultanta a poskytl nedocenitelné informace. A~v~neposlední řadě si zaslouží můj vděk také zaměstnanci univerzitních knihoven MU, kteří jako respondenti ochotně spolupracovali při provádění rozhovorů a stínování v~rámci mého průzkumu mapování knihovních procesů v~knihovnách Masarykovy univerzity.
 }
 
 \thesislong{abstract}{ % ANNOTATION!
-    Cílem této práce je zejména provést studii proveditelnosti, která určí, zda je možná migrace
-z~knihovního systému Aleph na open source integrovaný knihovní systém Koha. Součástí studie
-proveditelnosti bude jak finanční plán, tak i hodnocení efektivity a udržitelnosti projektu,
-definice možných rizik a navržené způsoby jejich řízení a minimalizace.
+    Cílem této práce je zejména provést studii proveditelnosti, která určí, zda je možná migrace z~knihovního systému Aleph na open source integrovaný knihovní systém Koha v~knihovnách Masarykovy univerzity. Celá studie je založena na šestiměsíčním průzkumu týkajícího se mapování knihovních procesů ve vybraných knihovnách univerzity, a to formou rozhovorů a stínování. Průzkum byl také prováděn i v~síti 900 knihoven v~Turecku. Studie v~úvodu rozebírá analýzu trhu, na kterou pak navazuje finanční analýza propojená s~řízením a minimalizací rizik. Součástí studie proveditelnosti je také evaluace efektivity a udržitelnosti projektu založena na SWOT analýze. Práce také pojednává o~projektovém managementu a řízení lidských zdrojů a podrobněji rozebírá technické a technologické řešení projektu, přičemž objasňuje aspekty vývoje open source softwaru. 
 }
 
 \thesislong{abstractEn}{ % EN ANNOTATION!
-    Cílem této práce je zejména provést studii proveditelnosti, která určí, zda je možná migrace
-z~knihovního systému Aleph na open source integrovaný knihovní systém Koha. Součástí studie
-proveditelnosti bude jak finanční plán, tak i hodnocení efektivity a udržitelnosti projektu,
-definice možných rizik a navržené způsoby jejich řízení a minimalizace.
+    Cílem této práce je zejména provést studii proveditelnosti, která určí, zda je možná migrace z~knihovního systému Aleph na open source integrovaný knihovní systém Koha v~knihovnách Masarykovy univerzity. Celá studie je založena na šestiměsíčním průzkumu týkajícího se mapování knihovních procesů ve vybraných knihovnách univerzity, a to formou rozhovorů a stínování. Průzkum byl také prováděn i v~síti 900 knihoven v~Turecku. Studie v~úvodu rozebírá analýzu trhu, na kterou pak navazuje finanční analýza propojená s~řízením a minimalizací rizik. Součástí studie proveditelnosti je také evaluace efektivity a udržitelnosti projektu založena na SWOT analýze. Práce také pojednává o~projektovém managementu a řízení lidských zdrojů a podrobněji rozebírá technické a technologické řešení projektu, přičemž objasňuje aspekty vývoje open source softwaru. 
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -84,6 +81,13 @@ definice možných rizik a navržené způsoby jejich řízení a minimalizace.
 \newcommand{\citepages}[2]{[\cite[#1]{#2}]}
 
 \newcommand{\citesource}[1]{[\cite{#1}]}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% NEW FORMATING COMMANDS %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\bold}[1]{\textbf{#1}}
+\newcommand{\italic}[1]{\textit{#1}}
+%\newcommand{\citation}[1]{„\italic{#1}"} % @TODO proc nefunguje?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INDEX %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -110,7 +114,7 @@ definice možných rizik a navržené způsoby jejich řízení a minimalizace.
   \thesis@blocks@titlePage
     \thesis@blocks@frontMatter
       {\Large{Bibliografický záznam}}\newline\newline
-        KRAVEC, Martin. \textit{\thesis@title}. Brno: Masarykova univerzita, Filosofická fakulta, 2016. \pageref{LastPage} s. Vedoucí diplomové práce Mgr. Michal Denár.
+        KRAVEC, Martin. \italic{\thesis@title}. Brno: Masarykova univerzita, Filosofická fakulta, 2016. \pageref{LastPage} s. Vedoucí diplomové práce Mgr. Michal Denár.
 	  \newline\newline
       {\Large{Anotace}}\newline\newline
         \thesis@abstract\newline\newline
@@ -128,196 +132,148 @@ definice možných rizik a navržené způsoby jejich řízení a minimalizace.
     \thesis@blocks@lot
     \thesis@blocks@lof}
 \makeatother
+
+% Je potreba dotahnout tikz.
+%\thesis@require{tikz}
+%\thesis@require{geometry}
+%\geometry{top=15mm,bottom=10mm,left=15mm,right=15mm,includeheadfoot}
   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}{\fontsize{12}{18}
 
 \chapter{Uvod}
 
-Bakalářská diplomová práce se bude zabývat studií proveditelnosti implementace 
-open source integrovaného knihovního systému Koha v~knihovnách Masarykovy univerzity. V~praci bude probirano několik udhlu pohledu na celkovou problematiku a to v~kontextu studie proveditelnosti. [Studie proveditelmnosti]. V~praci tedy rozebereme nejdriv teoretickou cast knihovnich systemu, co by měli umet a jaky je jejich cil jako produktu softwarovych firem, to znamena probereme technicke zastreseni projektu. Cely projekt bude resen i jako harmonogram realizace spolu s~financni a ekonomickou analyzou. V~ramci studie byl provaden nekolikamesicni vyzkum ve vybranych knihovnach masarykovy university, na kterem je zalozeno cele hodnoceni efektivity a udrzitelnosti projektu, v~kterem nebude chybet analuza a rizeni pripadnych rizik, které sebou projekt  migrace nese. Cely vystup je také dostupny v~anglictine, jelikoz je to tema s~globalnim dopadem, které muze pomoct i jinych krajinach, které resi stejny, nebo podobny poblem.
+Tato bakalářská diplomová práce se bude zabývat studií proveditelnosti implementace open source integrovaného knihovního systému Koha v~knihovnách Masarykovy univerzity. V~práci bude probíráno několik úhlů pohledu na celkovou problematiku, a to v~kontextu studie proveditelnosti.  V~práci tedy rozebereme nejdřív teoretickou část knihovních systémů, co by měly umět a jaký je jejich cíl jako produktu softwarových firem, to znamená, že probereme technické zastřešení projektu a vysvětlíme veškeré pojmy s~tím spojené. Teoretická část dále vysvětlí oblast projektového managmentu a přiblíží problematiku migrací na nový knihovní systém. Celý projekt bude řešen jako harmonogram realizace spolu s~finanční a ekonomickou analýzou. V~rámci studie byl prováděn několikaměsíční průzkum v~knihovnách Masarykovy univerzity a průzkum v~síti 900 knihoven v~Turecku. Při průzkumu byla realizována také SWOT analýza, na které je pak založeno celé hodnocení efektivity a udržitelnosti projektu, ve kterém nebude chybět analýza a řízení případných rizik, které s~sebou projekt migrace nese. V~plánu je také zkrácený výstup v~angličtině ve formě článku, jelikož je to téma s~globálním dopadem, které může pomoci i institucím v~zahraničí, které řeší stejný nebo podobný problém.
 
-\chapter{Teoreticka cast }
+\chapter{Teoretická část}
 
-\section{Výchozí stav, zdůvodnění realizace projektu a analýza jeho potřebnosti}
+\section{Projektové řízení jako takové}
 
-Obsahuje stručný popis stávající situace (problémy a nedostatky), kterou má projekt
-řešit, poptávku po realizaci projekt/analýzu a definici přínosu/potřebnosti projektu,
-jmenuje cílové skupiny, na které bude mít projekt vliv
+\subsection{Projekt}
 
-Aktuálnost problematiky tkví v~tom, že společnost Ex Libris, která vyvíjí knihovní 
-systém Aleph, přestává tomuto produktu poskytovat podporu a zároveň vytváří produkt jiný, 
-jenž však funguje výhradně v~cloudu. 
-Mimo fakt, že data již nebudou ukládána lokálně, to znamená, že knihovny budou mít 
-menší možnosti úprav a rozšíření své instance systému. Tyto problémy by pak měla 
-vyřešit právě migrace na knihovní systém Koha. 
-Další důvod podporující migraci je fakt, že knihovny platí milionové částky za 
-podporu stávajícího systému, což je oproti open source systémům markantní rozdíl, 
-který lze investovat do smysluplnějších  věcí spojených s~cíli knihoven, 
-jakožto vzdělávacími, informačními a kulturními institucemi. 
-Mezi cilove skupiny tohoto projektu migrace ale nepatri jenom systemovy knihovnici, spravci a vedeni knihovny ale také zamestnanci který potrebuji splnit / poskytnout informacni sluzby pomoci práce s~klientem knihovniho systemu, a v~neposlednim pripade i uzivatele knihoven, kterym se musí dostat kvalitni sluzby, poskytovane danou instituci. 
-Tato práce tedy pojednava o~problematice v~ramci kontextu kazde cilove skupiny. 
-...
-Nejcastejsim problemem v~knihovnich procesech byva lidsky faktor, který zasahuje do systemu. Prikladem mohou byt nespokojeni uzivatele knihoven se sluzbama a personalem knihovny, nebo změna legislativy v~ramci knihovniho zákona ci standardu místo zmeny v~knihovnim systemu. Pro zmenu v~knihovnim systemu ale chybi lide s~patricnym vzdelanim. Dukazem je fakt, ze několik instanci systemu obsluhuje ve skutcnosti jedna osoba která se systemem umi pracovat a také fakt, ze ostatní pracovnici hledaji ruzne zpusoby typu excel, sesit, papir, aby nahradili funkcionalitu Alephu, který neumi po letech obsluhovat. 
-Zdalo by se, ze by v~tomto pripade pomohlo skoleni v~ramce práce s~neintuitivnim a ne prácve uzivatelsky privetivym systemem, avsak opak je pravdou, jelikoz i lidi, kteří prosli skolenimi systém stejne neovladaji ani v~kontextu svého vlastniho okruhu práce. 
+Projektové řízení neboli projektový management se zabývá řízením projektů. Jeho cíle lze rozdělit na 3 části: 
+\bigskip
+\begin{itemize}
+\item splnění požadavků
+\item časový plán
+\item rozpočtové náklady
+\end{itemize}
 
-\section{Popis projektu a jeho etap}
+Tomuto rozdělení se také říká trojimperativ\citepages{5}{rosenau_2000}. O~každém projektu lze prohlásit, že je jedinečný, jelikož je prováděn jen jednou, pracují na něm jiní lidé a je časově ohraničen. Projekt je realizován pomocí lidských a materiálních zdrojů. To znamená, že projektový manager vlastně řídí lidi tak, aby byly efektivně využity materiální zdroje\citepages{28}{rehacek_2013}. Následující obrázek 1.1 znázorňuje kvalitu provedení v~kontextu trojimperativu.% @TODO label na obrazek
 
-Obsahuje popis hlavních aktivit projektu a jeho etap. Jsou zde zodpovězeny základní
-otázky, jaký smysl a zaměření projektu, jaké služby budou díky projektu poskytovány
-a jaký problém řeší, kdo je investorem (resp. vlastníkem či provozovatelem) projektu,
-jaká je kapacita (velikost) projektu a jaká je jeho lokalizace, jakými etapami projekt
-prochází a čím jsou specifické, jak řešeno variantní zpracování v~rámci studie a jaká
-jsou ostatní významná specifika projektu. Nezbytné legislativní změny, včetně
-harmonogramu přijetí a očekávané účinnosti
+\begin{figure}[H]
+\centering
+%egraphics[width=0.95\textwidth,frame]{Resources/Trojimperativ} % @TODO obrazek
+\caption{Důsledky trojimperativu.}
+\end{figure}
 
-Pr pohledu na cilove skupiny, problemy knihoven, zapisky z~vyzkumu a povinnosti, které musí knihovny, hlavne Masarykovy univerzity resit, je potreba vyresit zejména:
-napojeni systemu na externi technologie a sluzby 
-- Shibboleth
-- Ekonomicky system(akvizicni modul)
-- personalni systém
-- INET
-- protokol na vymenu dat (OAI-PMH)
-- NCIP jako nahrada za Aleph Restful Api
-- selfchecky
-discovery sluzby
-obalky knihoven (Z39.50)
-OPAC (VuFind)
-SUPO
-IS MU
-Centrální portál knihoven
+Projekt může být charakterizován jako hmotný či nehmotný projekt v~závislosti na konečném produktu. V~případě hmotného projektu by šlo například o~hardware, u~nehmotného o~software. Produkt je tedy konečným výstupem každého projektu.
+V~případě, kdy je zákazník mimo organizaci, která projekt realizuje, jsou projekty realizovány na základě uzavřených smluv, výsledný produkt je tedy posuzován na základě požadavků zákazníka. Je-li zákazníkem stejná organizace, není potřeba uzavírat smlouvy. V~tom případě je ale výstup projektu posuzován podle času dokončení a návratnosti investice\citepages{10-12}{rosenau_2000}.  V~projektovém řízení se zákazník jako objednatel projektu označuje jako zadavatel projektu. Způsob provedení projektu také závisí na konkurenci. Situace, kdy je produkt na trhu jediný svého druhu, je úplně jiná, než u~produktu, kterých je v~oboru mnoho.\citepages{12}{rosenau_2000}
+Projektovému řízení se také říká “řízení projektů” nebo “řízení programu” v~závislosti na velikosti projektu. Obecně platí, že programy jsou větší než projekty a projekty větší než úkoly.\citepages{12}{rosenau_2000}
+Úspěšnost projektu je závislá na kompetencích managera (nebo leadera) projektu\citepages{1}{Muller2010437}%@TODO pridat strany
+, které lze rozdělit na: 
+\bigskip
+\begin{enumerate}
+\item Managerské kompetence
+\begin{itemize}
+\item Efektivní řízení zdrojů
+\item Podporování komunikace v~týmu
+\item Zmocnění (leader dává svým přímým podřízeným autonomii při řešení problémů, čímž přispívá k~rozvoji jejich \item vlastní zodpovědnosti)
+\item Rozvoj (leader nabádá ostatní, aby si brali stále náročnější úkoly a sám investuje svůj čas a úsilí do rozvoje jejich kompetencí)
+\item Odhodlání (leader ukazuje své neochvějné odhodlání při dosahování cílů a realizaci projektu)
+\end{itemize}
+\item Intelektuální kompetence
+\begin{itemize}
+\item Kritické myšlení (sběr relevantních informací z~různých zdrojů a hledání výhodných a nevýhodných řešení)
+\item Vize a představivost (leader má jasnou vizi o~budoucnosti projektu)
+\item Strategická perspektiva (leader si je vědom problémů a jejich důsledků, nachází příležitosti a hrozby)
+\end{itemize}
+\item Emocionální kompetence
+\begin{itemize}
+\item Sebepoznání (leader je schopen ovládat své pocity)
+\item Emocionální odolnost (leader je schopen udržovat stálý výkon ve všech situacích)
+\item Intuitivnost
+\item Motivace (leader musí svými činy působit motivačně)
+\item Svědomitost (leader ukazuje svoji angažovanost k~projektu a sám povzbuzuje ostatní členy pracovní skupiny)
+\end{itemize}
+\end{enumerate}
 
-API 
-Dokumentaci systemu
-praci se systemem
-KIC
+\subsection{Proces řízení projektu}
+Řízení projektu sestává z~procesu pěti managerských činností, a to\citepages{22-23}{rehacek_2013}:
+\bigskip
+\begin{itemize}
+\item Definování projektových cílů
+\item Plánování splnění cílů, tedy trojimperativu
+\item Efektivní vedení lidských zdrojů (podřízení, dodavatelé)
+\item Monitorování - sledování odchylek od plánu či stavů jednotlivých fází projektu
+\item Ukončení - finalizace ve smyslu kontroly, zda produkt odpovídá definicím zadavatele, dokončení prací (například dokumentace)
+\end{itemize}
 
-verejnou cast knihovniho systemu, v~tomto pripade OPAC, který je vlastne vstupni branou uzivatele, která musí byt uzivatelsky privetiva.. a něco, a něco, a něco [Ux Design for Libraries]
+Vzájemné závislosti v~procesu řízení projektu znázorňuje obrázek 1.2. % @TODO label na obrazek
+Celému cyklu však předchází tzv. předprojektová fáze, do které patří zejména studie proveditelnosti, o~které pojednává další kapitola.
 
-\section{Požadavky na knihovní systémem Masarykovy Univerzity}
-\textbf{Velký počet knihovnich jednotek, uzivatelu, pobocek podpobocek}\newline
+\begin{figure}[H]
+\centering
+%egraphics[width=0.95\textwidth,frame]{Resources/project-management} % @TODO obrazek
+\caption{Vzájemné závislosti v~procesu řízení projektu.}
+\end{figure}
 
-V~teto chvily je potreba , aby nový systém zvladl cca 2 miliony knihovnich jednotek, cca 50 000 aktualne registrovanych  uzivatelu.
+\section{Studie proveditelnosti obecně}
 
-Toto kriterium by nemelo byt problemem, jelikoz knihovna v~Turecku a nekde ma x knihovnich jedntek a Y registrvovanych uzivatelu. 
-Rozdeleni na pobocky a podpobocky je taky mozne, takto ..\newline\newline
+Hlavním účelem studie proveditelnosti (feasibility study) je zhodnotit možné varianty, které mohou nastat při provádění projektu, a posoudit realizovatelnost a následnou životaschopnost zvoleného řešení. Studie proveditelnosti zpřesňuje vlastnosti projektu a to hlavně specifikaci cíle, potřebné finanční, materiální a lidské zdroje, časový harmonogram, přínosy a rizika spojená s~realizací projektu. Jelikož studie pojednává o~finančních, technických, managerských i ekonomických aspektech projektu, nazývá se také studií ekonomicko-technickou\citepages{19}{fotr_1995}.
+Vyhodnocení studie tedy vyúsťuje do rozhodnutí o~zamítnutí či přijetí projektu a případně jeho následné realizaci.
+\citepages{19-20}{fotr_1995} 
 
-\textbf{Otevrenost systemu}\newline
-System musí byt dostatecne otevren na to, aby mohl byt napojen na další systemy vyuzivane v~ramci masarykovy univerzity, tj. Personální, ekonomický, studijní.
-Studijni..
-Ekonomicky..
-personalni..
-Celkove fakt, ze Koha je open source systém dava pripadnemu napojovani na další systemy velke moznosti, jelikoz je mozne do kodu zasahovat a prizpusobovat si tak knihovni systém svým potřebám, aniž by knihovna musela žádat výrobce o~novou funkcionalitu.
-V~pripade, ze jina knihovna jiz tento krok podstoupila, je mozne v~ramci komunity tento kod  implementovat i do forku te dane knihovny, tudiz není potreba  znovuvynalezat kolo, nebo nesmyslne platit za jiz zaplacenou věc.
+\bigskip
 
-\section{Problémy a jejich řešení}
-Ux
-mobilni OPAC
-pristupnost
-podpora vufindu, finsko, cpk, open source..
+„\italic{Významné je, aby studie co nejlépe popisovala, variantně řešila, optimalizovala a hodnotila investiční projekt se všemi z~něj vyplývajícími specifiky.}“\citepages{8}{Sieber2004} 
 
-\chapter{Prakticka cast}
+\bigskip
 
-\section{Management projektu a projektový tým}
+Celková osnova studie proveditelnosti by měla vypadat přibližně takto:\citepages{8-14}{Sieber2004} 
+\bigskip
+\begin{enumerate}
+\item \bold{Obsah} - struktura kapitol
+\item \bold{Úvodní informace} - účel zpracování studie proveditelnosti
+\item \bold{Stručné vyhodnocení projektu} - závěry studie v~rozsahu 1-2 stran, zhodnocení finanční efektivity projektu
+\item \bold{Stručný popis podstaty projektu a jeho etap} - komplexně pojednává o~hlavních rysech projektu (název, smysl, zaměření projektu, výsledný produkt a problémy, které produkt řeší, lokalizace a etapy projektu)
+\item \bold{Analýzy trhu, odhad poptávky, marketingová strategie a marketingový mix} - marketingové aspekty (potřeby finálních uživatelů produktu, konkurenceschopnost produktu)
+\item \bold{Management projektu a řízení lidských zdrojů} - plánování, organizace a management procesů a lidských zdrojů projektu 
+\item \bold{Technické a technologické řešení projektu} - výhody a nevýhody zvolených technologií, materiálové a energetické toky, technická rizika, náklady na údržbu, správu a provoz.
+\item \bold{Dopad projektu na životní prostředí} - kladné i negativní vlivy jednotlivých etap realizace projektu
+\item \bold{Zajištění dlouhodobého majetku} - výše investičních nákladů, struktura dlouhodobého majetku
+\item \bold{Řízení pracovního kapitálu (oběžný majetek)} - velikost a struktura oběžného majetku
+\item \bold{Finanční plán a analýza projektu} - celkové zobecnění předchozích bodů
+\item \bold{Hodnocení efektivity a udržitelnosti projektu} - evaluace projektu na základě zadaných kritérií, finanční toky a doba návratnost investic
+\item \bold{Řízení rizik (citlivostní analýza)} - výčet zdrojů rizik projektu, opatření
+\item \bold{Harmonogram projektu} - časový harmonogram jednotlivých etap projektu. Začátky a konce jednotlivých činností
+\item \bold{Podrobné závěrečné hodnocení projektu} - komplexní vyjádření k~realizovatelnosti projektu
+\end{enumerate}
 
-Popisuje způsob řízení projektu z~hlediska lidských zdrojů a projektový tým;,
-popis/seznam pracovníků zapojených do projektu, jejich zapojení a pozici v~projektu
-(specializaci). Dále zahrnuje veškeré plánování, organizování, řízení a kontrolu všech
-procesů a organizačních jednotek, nezbytných pro realizaci aktivit projektu.
+Vyhodnocení finanční rentability projektu vybranými ukazateli se provádí tak, že se nejdřív určí jednorázové náklady na investice, odhadnou se budoucí výnosy z~investice, následně se určí náklady na kapitál a nakonec se vypočítá současná hodnota očekávaných výnosů. Na to se pak různě aplikují metody ekonomického hodnocení investice.\citepages{17-18}{Podesvova2010thesis}
 
-\section{Technické a technologické řešení projektu}
+\section{Open source jako systém}
+Open source systém lze chápat ve dvou rovinách, a to z~pohledu teorie systémů jako systém, který je založen na otevřeném svobodném kódu a slouží pro využívání, zpracování a zprostředkování informací, a také z~pohledu systematičnosti vývoje, kam patří správa verzí, bug trackery, financování, licencování, vytváření balíčků či spolupráce s~komunitou.\citepages{40}{cejpek_2005}
 
-Shrnuje veškeré podstatné technické a technologické aspekty projektu, jako je
-zvolená technologie, technické parametry jednotlivých zařízení, výhody a nevýhody
-těchto předpokládaných řešení, vyplývající technická rizika, potřebné energetické a
-materiálové toky, údaje o~životnostech jednotlivých zařízení, potřebné údržbě a
-nákladnosti oprav, změny v~provozní náročnosti vlivem opotřebení apod.,
-Navrhované metriky (i se zdroji),
-Funkční dekompozice
-Datová architektura
-Procesní architektura
-Vymezení služeb poskytovaných systémem
-Vymezení zdrojů dat, způsoby iniciálního naplnění systému
-Provozní parametry pilotního a ostrého provozu
+\subsection{Open source software}
 
-\section{Způsob zajištění projektu}
+Pojem „open source software” bývá častokrát nesprávně zaměňován s~pojmem „free software”, je proto důležité vymezit si rozdíly v~těchto pojmech. 
 
-Kritéria výběru varianty, jejich popis a zdůvodnění, vyhodnocení variant po
-organizační, procesní i technologické stránce, stručný popis nejvhodnější varianty,
-stručné zdůvodnění výběru varianty
+\bold{Open source software} (OSS) je software, jehož zdrojový kód může být kýmkoliv upravován nebo vylepšován. Open source licence totiž povoluje legální přístup, možnost modifikace či další distribuce tohoto softwaru. Nemalá část komerčního softwaru vychází právě z~open source projektů.
 
-\section{ Zajištění investičního (dlouhodobého) majetku}
+\bold{Free software} je software poskytovaný zdarma, což však neznamená, že má uživatel licenci k~přístupu, modifikaci či k~další distribuci tohoto softwaru. Je definován spíše v~kontextu svobody než ceny. 
 
-vymezení struktury dlouhodobého majetku, určení výše investičních nákladů,
-problematika servisních podmínek a případného znovupořízení, amortizační schéma
-apod.
-Doložení úpravy vlastnických vztahů dle řídící dokumentace IOP (požadavků
-stanovených výzvou a Příručkou pro žadatele a příjemce).
+Opakem free softwaru je software, jehož zdrojový kód může být modifikován pouze jeho autorem či organizací, která ho vydala. Tomu se říká \bold{closed source software} neboli \bold{proprietární software} (od slova „property”, což znamená, že zdrojový kód softwaru je majetkem svých autorů a jenom oni mohou legálně kopírovat či modifikovat tento software). Příkladem takového softwaru je například Microsoft Office.% @TODO add citation
+% McLean, A. (2015). Open-source software. Canadian Journal of Nursing Informatics, 10(3) Retrieved from http://ezproxy.techlib.cz/login?url=http://search.proquest.com/docview/1753599175?accountid=119841
 
-\section{Harmonogram realizace projektu včetně rozpočtového harmonogramu}
-
-časový plán jednotlivých činností a fází projektu, který by měl být zpracován do
-podoby harmonogramu. Mělo by z~něj být patrné, kde jednotlivé činnosti začínají a
-kdy končí (pokud končí), které činnosti na které navazují a jaké se vzájemně
-překrývají.
-
-\section{Finanční a ekonomická analýza }
-
-finanční plán investiční etapy
-- plán průběhu provozních, investičních nákladů a výnosů
-finanční plán provozní etapy
-- plán průběhu provozních, investičních nákladů a výnosů
-plánované stavy majetku
-plán průběhu cash-flow – výdajů a příjmů
-vyhodnocení finanční analýzy
-Ekonomická analýza
-cost benefit analýza (CBA)
-- vymezení všech zainteresovaných subjektu a jejich členění
-- popis investiční a nulové varianty
-- popis ocenitelných nákladu a přínosů
-- popis nákladů a přínosů nezahrnovaných do CBA
-- výpočet hodnoty přínosů a nákladů
-- výpočet kriteriálních ukazatelů
-- provedení citlivostní analýzy
-- celkový ekonomický peněžní tok
-vyhodnocení ekonomické analýzy
-- interpretace výsledku a rozhodnutí o~přijatelnosti investice,
-financovatelnosti a udržitelnosti
-
-\section{Hodnocení efektivity a udržitelnosti projektu}
-
-vyhodnocení projektu pomocí kriteriálních ukazatelů kalkulovaných z~finančních toků
-(resp. nákladů, výnosů) jako např. NPV, IRR, Doba návratnosti, Index rentability a
-finanční analýza projektu. U~projektů, které negenerují příjmy a nelze u~nich vypočítat
-ukazatele finanční analýzy, musí být podrobně zdůvodněno, kdo bude zabezpečovat 
-provoz investice a z~jakých zdrojů budou kryty provozní náklady po ukončení
-realizace projektu.
-
-\section{Analýza a řízení rizik}
-
-identifikace rizik - vymezení největších zdrojů rizika v~projektu (hlavních rizik
-v~oblasti organizační, procesní, technologické, implementační, informační atd.),
-popis možných následků při realizaci rizika
-- odhad pravděpodobnosti realizace rizik na základe historických dat nebo ze
-simulačních modelů, ohodnocení rizik na základě jejich následků a pravděpodobnosti
-jejich realizace, návrh opatření na jejich snížení nebo eliminaci – organizační,
-procesní, technologické a další opatření
-- náklady spojené s~těmito opatřeními
-
-\section{ Vliv projektu na životní prostředí vliv a vliv projektu na rovné příležitost}
-
-Koha ma mene Kodu nez Aleph, setri zivotni prostredi.
-
-\chapter{Zhodnocení projektu na základě výsledků studie.}
-
- zahrnuje popis zásadních závěrů, které vyplývají ze zpracované studie
-proveditelnosti. V~tabulce uveďte zásadní ukazatele a jejich hodnoty spočtené
-z~výsledných hotovostních toků resp. nákladů a výnosů obsažených ve finálním
-finančním plánu, jakož i výsledky citlivostní analýzy. Ve stručné a shrnující podobě je
-zde uvedeno zhodnocení finanční efektivity projektu, jeho realizovatelnost z~hlediska
-všech prvků Studie proveditelnosti a výsledky analýzy rizik. 
-
-\chapter{Zaver}
+Všeobecně lze OSS licence rozdělit do tří kategorií a to:\citepages{9-10}{6226510}
+\begin{itemize}
+\item restriktivní neboli \bold{copyleft} licence (omezující)
+\item středně restriktivní neboli \bold{copycenter} licence
+\item \bold{permisivní} licence (tolerantní, shovívavé)
+\end{itemize}
+Teoreticky však existuje nekonečné množství těchto licencí, jelikož si autoři open source softwaru mohou vybrat jakoukoliv licenci nebo si vytvořit licenci vlastní.
+Na základě výše řečeného lze tvrdit, že open source software je podmnožinou free softwaru, avšak free software nemusí být open source.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% TABLE OF CONTENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
