@@ -28,6 +28,7 @@
 \usepackage{lastpage}
 \usepackage{anyfontsize}
 \usepackage{graphicx}
+\usepackage{float}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% THESIS SETUP %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -51,8 +52,8 @@
     TeXtitleEn      = Studie proveditelnosti implementace open source integrovaného knihovního systému Koha v~knihovnách Masarykovy univerzity
 }
 
-\hyphenpenalty=50
-\exhyphenpenalty=50
+%\hyphenpenalty=50
+%\exhyphenpenalty=50
 %\usepackage[none]{hyphenat}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% THANKS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -263,7 +264,7 @@ Open source systém lze chápat ve dvou rovinách, a to z~pohledu teorie systém
 
 Pojem „open source software“ bývá častokrát nesprávně zaměňován s~pojmem „free software“, je proto důležité vymezit si rozdíly v~těchto pojmech. 
 
-\bold{Open source software} (OSS) je software, jehož zdrojový kód může být kýmkoliv upravován nebo vylepšován. Open source licence totiž povoluje legální přístup, možnost modifikace či další distribuce tohoto softwaru. Nemalá část komerčního softwaru vychází právě z~open source projektů.
+\bold{Open source software} (OSS) je software, jehož zdrojový kód může být kýmkoliv upravován nebo vylepšován. Open source licence totiž povoluje legální přístup, možnost modifikace či další distribuce tohoto softwaru. Nemalá část komerčního softwaru vychází právě z~open source projektů (Red Hat Enterprise Linux, Zend Server, StarOffice nebo různá herní jádra).
 
 \bold{Free software} je software poskytovaný zdarma, což však neznamená, že má uživatel licenci k~přístupu, modifikaci či k~další distribuci tohoto softwaru. Je definován spíše v~kontextu svobody než ceny. 
 
@@ -303,7 +304,7 @@ Migrací se rozumí proces, při kterém dochází k~přesunu aplikací integrov
 Důvody k~migraci mohou být různé:\citepages{152}{bilal_2014} % @TODO doplnit jeste M. Bartošek. Aleph: nový knihovní systém pro MU. Zpravodaj ÚVT MU. ISSN 1212-0901, 2002, roč. XIII, č. 2, s. 6-10., http://ics.muni.cz/bulletin/clanky_tisk/263.pdf
 \mezera
 \begin{itemize}
-\item stávající knihovní systém je tradičního charakteru ve smyslu jeho uživatelského rozhraní a funkcí; knihovna se snaží modernizovat, vylepšit uživatelské rozhraní jak po stránce architektury, tak po stránce přívětivosti, chce nabídnout uživatelům discovery služby, které jsou založené na robustních modulech, které lze snadno přizpůsobit
+\item stávající knihovní systém je tradičního charakteru ve smyslu jeho uživatelského rozhraní a funkcí; knihovna se snaží modernizovat, vylepšit uživatelské rozhraní jak po stránce architektury, tak po stránce přívětivosti, chce nabídnout uživatelům discovery služby, které jsou založené na snadno přizpůsobitelných robustních modulech
 \item dodavatel nebo podpora systému je neuspokojivá
 \item závislost na dodavateli (vendor lock-in)
 \item systém nebo jeho moduly (neprůhledný finanční model) jsou drahé, návratnost investic je neuspokojivá
@@ -322,7 +323,7 @@ Důvody k~migraci mohou být různé:\citepages{152}{bilal_2014} % @TODO doplnit
 Opakem nedostatečné funkcionality bývá jako další důvod k~migraci také příliš komplikovaný systém či personál, který s~ním reálně neumí zacházet. Hlavním důvodem pro výběr open source systému bývá hlavně cena z~hlediska TCO\footnote{Total Cost of Ownership (TCO) - metoda hodnocení nákladových variant, která vyjadřuje kompletní náklady na investici a její provoz.}. Volba konkrétního open source systému je pak ovlivněna jeho funkcionalitou.
 
 \subsection{Proces migrace}
-Úspěšnost migrace závisí na mnoha faktorech. Na začátku je nutné pochopit celý migrační proces a rozplánovat ho na několik etap, kde se mezi první etapy řadí čištění dat. Je nutné pochopit datová schémata záznamů (a procesy extrakce dat) ve všech modulech stávajícího systému, aby bylo možné určit, jak by mohly být tato schémata převedena do nového ILS. Je potřeba vědět, v~jakých formátech či stavech se extrahovaná data nacházejí, a také mít spolehlivou komunikaci s~poskytovatelem či podporou systému. Při extrakci dat musí být jasné, jak lze data interpretovat, což znamená napsat extrakční skripty tak, aby skutečně odpovídali nové datové struktuře ILS.\citepages{43-48}{krbiwFHfrnvG2ZXf} Při splnění těchto bodů se přechází k~samotné migraci dat. Tuto migraci je vhodné provádět opakovaně s~různým množstvím dat a importovaná data okamžitě testovat na nějakých tomu určených testovacích stránkách. Po samotném převodu dat je na místě realizace několika testovacích strategií.\cite{32-35, 61-72}{Denar2015thesis} Celkový proces migrace si vyžaduje i svůj „člověkočas“, na který je potřeba být připraven.
+Úspěšnost migrace závisí na mnoha faktorech. Na začátku je nutné pochopit celý migrační proces a rozplánovat ho na několik etap, kde se mezi první etapy řadí čištění dat. Je nutné pochopit datová schémata záznamů (a procesy extrakce dat) ve všech modulech stávajícího systému, aby bylo možné určit, jak by mohly být tato schémata převedena do nového ILS. Je potřeba vědět, v~jakých formátech či stavech se extrahovaná data nacházejí, a také mít spolehlivou komunikaci s~poskytovatelem či podporou systému. Při extrakci dat musí být jasné, jak lze data interpretovat, což znamená napsat extrakční skripty tak, aby skutečně odpovídaly nové datové struktuře ILS.\citepages{43-48}{krbiwFHfrnvG2ZXf} Při splnění těchto bodů se přechází k~samotné migraci dat. Tuto migraci je vhodné provádět opakovaně s~různým množstvím dat a importovaná data okamžitě testovat na nějakých tomu určených testovacích stránkách. Po samotném převodu dat je na místě realizace několika testovacích strategií.\cite{32-35, 61-72}{Denar2015thesis} Celkový proces migrace si vyžaduje i svůj „člověkočas“, na který je potřeba být připraven.
 
 Celkový proces migrace vyžaduje svůj čas jak na přípravu, tak na realizaci. V~přípravě nesmí chybět seznam problémů, kterými procházely jiné instituce, které podobnou migrací provedly. Také je vhodné mít případnou záložní „roll back“ strategii v~případě neúspěšného pokusu migrace.
 
@@ -362,7 +363,7 @@ Aktuálnost problematiky tkví v~tom, že společnost Ex Libris, která vyvíjí
 
 Mimo fakt, že data již nebudou ukládána lokálně, tj. data již nebudou uložena na strojích patřících provozovateli\footnote{Možné politické a autorsko-právní problémy.}, ale v~cloudu (navíc pravděpodobně mimo jurisdikci EU)\citepages{16-17}{breeding_2012}, to znamená, že knihovny a další instituce využívající knihovních systémů (televize, archivy) budou mít menší možnosti úprav a rozšíření své instance systému. Tyto problémy by mohla vyřešit právě migrace na open source knihovní systém. Jedním z~kandidátů je open source integrovaný knihovní systém Koha, který tato studie proveditelnosti rozebírá. 
 
-Dalším kandidátem, uváží-li se velikost knihoven MU a open source systémy, které prošli několikaletým vývojem, by byl systém Evergreen. Ten je však orientován na anglosaský svět, což může přinášet různé problémy způsobené omezenou podporou pro abecedy s~diakritikou. Jelikož nedisponují balíčky, je problematický i proces aktualizací%\footnote{Installing the Evergreen server - http://evergreen-ils.org/documentation/install/}.
+Dalším kandidátem, uváží-li se velikost knihoven MU a open source systémy, které prošly několikaletým vývojem, by byl systém Evergreen. Ten je však orientován na anglosaský svět, což může přinášet různé problémy způsobené omezenou podporou pro abecedy s~diakritikou. Jelikož nedisponují balíčky, je problematický i proces aktualizací%\footnote{Installing the Evergreen server - http://evergreen-ils.org/documentation/install/}.
  Systém nebyl vybrán pro studii také pro nedostupnost technické podpory v~ČR a relativně náročnou instalaci %\footnote{Installing the Evergreen server - http://evergreen-ils.org/documentation/install/}
   systému. Systém kromě toho nepodporuje stahování autoritních záznamů protokolem Z39.50.% @TODO ocitovat Otevřené knihovní systémy v českých knihovnách, http://itlib.cvtisr.sk/buxus/docs/10_Otevrene%20knihovni.pdf
  Navíc má Evergreen desktopového klienta, což činí správu náročnější.\footnote{Evergreen klient - https://evergreen-ils.org/egdownloads/}
@@ -370,9 +371,9 @@ Dalším kandidátem, uváží-li se velikost knihoven MU a open source systémy
  \citace{Z~přehledů uživatelů obou systémů je vidět, že existuje velká řada konsorcií, které daly přednost systému Koha před Evergreenem, také akademické a speciální knihovny používají systém Koha častěji než Evergreen.}
  \mezera% @TODO pridat citaci na ŽABIČKOVÁ, Petra. Nejrozšířenější open source knihovní systémy a jejich použitelnost. Duha [online]. 2014, roč. 28, č. 1 [cit. 2016-04-17]. Dostupný z WWW: <http://duha.mzk.cz/clanky/nejrozsirenejsi-open-source-knihovni-systemy-jejich-pouzitelnost>. ISSN 1804-4255.
 
-Další důvod podporující migraci na open source je fakt, že knihovny platí nezanedbatelné částky za podporu stávajícího systému, což je oproti open source systémům markantní rozdíl, který lze investovat do smysluplnějších projektů spojených s~cíli knihoven jakožto vzdělávacími, informačními a kulturními institucemi. Investovat do open source projektů je dnes běžnou praxí i v~komerční sféře, jelikož si firmy začali uvědomovat benefity, které díky těmto projektům čerpají od komunity zpátky. \citepages{129-132}{Fogel2012}
+Další důvod podporující migraci na open source je fakt, že knihovny platí nezanedbatelné částky za podporu stávajícího systému, což je oproti open source systémům markantní rozdíl, který lze investovat do smysluplnějších projektů spojených s~cíli knihoven jakožto vzdělávacími, informačními a kulturními institucemi. Investovat do open source projektů je dnes běžnou praxí i v~komerční sféře, jelikož si firmy začaly uvědomovat benefity, které díky těmto projektům čerpají od komunity zpátky. \citepages{129-132}{Fogel2012}
 
-Mezi cílové skupiny tohoto projektu migrace ale nepatří jenom systémoví knihovníci, správci a vedení knihovny, ale také zaměstnanci, kteří potřebují splnit/poskytnout informační služby pomocí práce s~klientem knihovního systému, a v~neposlední řadě i uživatelé knihoven, kterým se musí dostat kvalitní služby poskytované danou institucí nehledě na uživatelovi handicapy.
+Mezi cílové skupiny tohoto projektu migrace ale nepatří jenom systémoví knihovníci, správci a vedení knihovny, ale také zaměstnanci, kteří potřebují splnit/poskytnout informační služby pomocí práce s~klientem knihovního systému, a v~neposlední řadě i uživatelé knihoven, kterým se musí dostat kvalitní služby poskytované danou institucí nehledě na handicap uživatele.
 
 Tato práce tedy pojednává o~problematice v~rámci kontextu každé z~výše zmíněných cílových skupin. Projekt v~této studii proveditelnosti lze do jisté míry využít i v~dalších institucích v~zahraničí, které se zabývají migrací na jiný open source knihovní systém, avšak konkrétní „case study“ je lokalizován na knihovny Masarykovy univerzity, podléhající zákonům platným v~České republice, a to konkrétně knihovnímu zákonu č. 257/2001 Sb. o~knihovnách a podmínkách provozování veřejných knihovnických a informačních služeb, na který navazuje vyhláška č. 88/2002 Sb., zákon č. 106/1999 Sb., o~svobodném přístupu k~informacím, zákon č. 101/2000 Sb., o~ochraně osobních údajů a o~změně některých zákonu a v~neposlední řadě i autorský zákon č. 121/2000 Sb.
 
@@ -692,7 +693,7 @@ Celková realizace projektu vyžaduje svůj čas a je potřeba na to vyčlenit l
 \section{Analýza trhu}
 Momentálně se Masarykova univerzita skládá z~devíti univerzitních knihoven, které sestávají z~vyše 110 dílčích knihoven. Dohromady spravují cca 2 000 000 knihovních jednotek a obsluhují cca 50 000 uživatelů. MU nemá žádnou ústřední knihovnu.
 
-Při provádění průzkumu v~knihovnách MU vzešlo několik potřeb a požadavků. Tyto požadavky jsou jak hlavní kritéria, které musí nový systém splňovat, tak i potřeby, které je potřeba splnit v~rámci kvalitního designu služeb pro uživatele. K~těmto požadavkům na systém se řadí i obecné požadavky na knihovní systém, definované v~kapitole 1.4.3 Obecné požadavky na knihovní systém. % @TODO pridat label na kapitolu
+Při provádění průzkumu v~knihovnách MU vzešlo několik potřeb a požadavků. Tyto požadavky jsou jak hlavní kritéria, která musí nový systém splňovat, tak i potřeby, které je potřeba splnit v~rámci kvalitního designu služeb pro uživatele. K~těmto požadavkům na systém se řadí i obecné požadavky na knihovní systém, definované v~kapitole 1.4.3 Obecné požadavky na knihovní systém. % @TODO pridat label na kapitolu
 
 \subsection{Potřeby a požadavky akvizice}
 
@@ -706,7 +707,7 @@ Při provádění průzkumu v~knihovnách MU vzešlo několik potřeb a požadav
 
 \begin{itemize}
 \item ILS musí podporovat protokol na výměnu dat OAI-PMH\footnote{The Open Archives Initiative Protocol for Metadata Harvesting.}
-\item provázání s~NKP - stahování národních autorit ČR pomocí FTP nebo OAI-PMH
+\item provázání s~Národní knihovnou - stahování národních autorit ČR pomocí FTP nebo OAI-PMH
 \item podpora ILS v~katalogizaci elektronických zdrojů (momentálně v~Alephu katalogizují jako knihy)
 \item možnost hromadných úprav
 \item stahování záznamů Z39.50\footnote{Mezinárodní standard definující protokol pro hledání a výměnu dat mezi dvěma stroji.}
@@ -726,7 +727,7 @@ Při provádění průzkumu v~knihovnách MU vzešlo několik potřeb a požadav
 \item podpora více výpůjčních protokolů
 \item notifikační systém (email, SMS)
 \item možnost propojit ILS se selfchecky
-\item dohledávat uživatele (propojit Informační systém IS MU, INET MU (ekonomicko-správní informační systém Masarykovy univerzity a databáze/databázi uživatelů v~novém systému)
+\item dohledávat uživatele (propojit Informační systém IS MU, ekonomicko-správní informační systém Masarykovy univerzity INET MU a databáze/databázi uživatelů v~novém systému)
 \end{itemize}
 
 \subsection{Potřeby a požadavky uživatelů}
@@ -737,7 +738,7 @@ Při provádění průzkumu v~knihovnách MU vzešlo několik potřeb a požadav
 \item možnost platit pokuty, dobíjet kredit, propojení se systémem SUPO (systém úhrad pohledávek za osobami)
 \item možnost COD (Copy on Demand) služeb v~OPACu
 \item možnost opravovat překlepy ve vyhledávacích dotazech a nabízet alternativy
-\item sjednotit uživatelské rozhraní pro vyhledávání (momentálně Aleph OPAC, Discovery service a někde uvažují o~vývoji vlastního OPAC)
+\item sjednotit uživatelské rozhraní pro vyhledávání (momentálně Aleph OPAC, Discovery service a někde uvažují o~vývoji vlastního OPACu)
 \end{itemize}
 
 \subsection{Systémové požadavky}
@@ -750,7 +751,7 @@ Při provádění průzkumu v~knihovnách MU vzešlo několik potřeb a požadav
 \item robustnost a vysoka provozní spolehlivost systému
 \item flexibilita systému, členění systému do složitějších hierarchických struktur
 \item otevřenost systému
-\item podpora velkého počet knihovních jednotek, uživatelů, poboček, podpoboček
+\item podpora velkého počtu knihovních jednotek, uživatelů, poboček, podpoboček
 \end{itemize}
 
 Momentálně lze definovat vztahy jednotlivých systému takto:
@@ -769,7 +770,7 @@ Momentálně lze definovat vztahy jednotlivých systému takto:
 
 
 \subsection{Současné problémy}
-Při provádění průzkumu bylo zjištěno několik nedostatků neboli problémů, se kterými se personál knihoven musel potýkat. Jedná se o~nejaktuálnější verzy, tedy ke dni psaní této práce to byl Aleph verze 22. V~drtivě většině byl problém nalézt cestu k~cíli v~rámci architektury systému. Byly to většinou problémy uživatelského rozhraní, kdy jim například při provádění některých hromadných akcí vyhodil systém chybu 45krát, nastal-li 45krát problém. Toto okno bylo potřeba 45krát zavřít. Další problém byl zjistit půjčovanost dokumentu v~rámci jedné knihovny.
+Při provádění průzkumu bylo zjištěno několik nedostatků neboli problémů, se kterými se personál knihoven musel potýkat. Jedná se o~nejaktuálnější verzi, tedy ke dni psaní této práce to byl Aleph verze 22. V~drtivě většině byl problém nalézt cestu k~cíli v~rámci architektury systému. Byly to většinou problémy uživatelského rozhraní, kdy jim například při provádění některých hromadných akcí vyhodil systém chybu 45krát, nastal-li 45krát problém. Toto okno bylo potřeba 45krát zavřít. Další problém byl zjistit půjčovanost dokumentu v~rámci jedné knihovny.
 
 Následující výčet reprezentuje vlastní aplikace, které jsou založeny na API Alephu nebo využívají SQL dotazy na databáze Alephu. Tyto aplikace vznikly buď chybějící funkčností v~Alephu, nadbytečným množstvím informací poskytnutých systémem (informační přetížení, redundantní informace) nebo nepřesnou interpretací, kterou si knihovny musely ke svým účelům upravit.
 
@@ -779,18 +780,18 @@ Aplikace knihovnicko-informačního centra ústavu výpočetní techniky Masaryk
 Aplikace pro knihovníky:
 
 \begin{itemize}
-\item \bold{Souhlas} – Real-time ověření udělení elektronického souhlasu s~provozními řády knihoven MU v~systému INET, kde je to primárně ukládáno, tzn. s~obejitím případných zpoždění/chyb synchronizace při přenosu do knihovního systému
+\item \bold{Souhlas} – Real-time ověření udělení elektronického souhlasu s~provozními řády knihoven MU v~systému INET, kde jsou primárně ukládány, tzn. s~obejitím případných zpoždění/chyb synchronizace při přenosu do knihovního systému
 \item \bold{Průkazka} (starší a nová verze) – Aplikace pro registraci externích čtenářů a vydání čipové karty externího čtenáře. Průvodce celým procesem pro knihovníky, protože to integruje interakci s~externím systémem, kde je pro externisty (tj. lidi „z ulice“ bez jiného vztahu k~MU) potřeba založit účet v~univerzitním systému správy identit, aby se byli schopni přihlásit na počítače v~knihovně a do svého konta v~Aleph OPACu.
 \item \bold{Signatury} – aplikace konvertující textový seznam čárových kódů knih na PDF s~barevnými štítky se signaturami (stahují se z~databáze k~daným čárovým kódům, barví se dle nějakých pravidel) k~vytištění a nalepení na knihy
 \item \bold{Sbírky} – aplikace pro konfiguraci sbírek, tj. kategorií, do kterých se dají jednotky řadit. Generuje se z~konfiguračního souboru Alephu na serveru, pokud knihovník udělá změnu, vygenerují se z~toho na serveru nové konfigurační soubory, kterými se původní konfigurace přepíší a provedou se další akce, aby se aktivovala.
 \item \bold{Závazek / seznam výpůjček} – Přehled závazků (případně včetně historie výpůjček) a stavu registrací osoby napříč všemi knihovnami MU, aby se dalo zjistit, jestli nemá čtenář jinde blokace apod.
 \item \bold{Report} – Aplikace na e-mailování různých informací. Uvnitř nakonfigurováno cca 20 různých přehledových sestav (např. seznam dlužníků, záznamy bez jednotek, různé typy chyb v~bibliografických záznamech apod.), které si může každý pracovník naklikat s~parametry, které ho zajímají (dlužníci v~konkrétní knihovně s~dluhem větším než 500 Kč apod.) a případně si je nechat i v~pravidelných intervalech s~těmito parametry nechat posílat na svou e-mailovou adresu.
-\item \bold{Items} – Konvertor textové seznamu čárových kódů -> Čárový kód, název, sbírka, signatura, rok, poznámka, poznámka OPAC, interní poznámka, materiál
+\item \bold{Items} – Konvertor textového seznamu čárových kódů -> Čárový kód, název, sbírka, signatura, rok, poznámka, poznámka OPAC, interní poznámka, materiál
 \item \bold{Záznamy} – Pro zadané sysno vygeneruje HTML výpis záznamu a la zobrazení v~knihovním klientu.
-\item \bold{Katalogizace} – Přehlad úprav záznamů katalogizátory (pro rozsah datumů)
+\item \bold{Katalogizace} – Přehled úprav záznamů katalogizátory (pro rozsah datumů)
 \item \bold{Půjčování} – Kdo co kdy půjčoval pro rozsah datumů
 \item \bold{Seznam} – Tisk přírůstkového / úbytkového seznamu pro vybranou knihovnu a rozsah čárových kódů nebo datumů
-\item \bold{Evidence} – Už se prakticky nepoužívá, vnitřní evidence půjčování několika interně půjčeních knih v~rámci ÚVT
+\item \bold{Evidence} – Už se prakticky nepoužívá, vnitřní evidence půjčování několika interně půjčených knih v~rámci ÚVT
 \item \bold{Eprace} – Již nepoužívaná jednoúčelová aplikace. Dříve se používalo pro evidenci zpracování diplomových prací, když se digitalizovali pro elektronickou evidenci. Teď už se přijímají přímo elektronicky.
 \item \bold{Toplist} – Seznam nejčastěji půjčovaných knih s~možností volby knihovny, rozsahu datumů, počtu příček a volitelným filtrem dle sbírky, do které jednotky patří
 \item \bold{Dlužníci} – Report o~dlužnících (s~možností filtrace dle knihovny, datumů a minimální dlužné částky) ve formátu přímo vložitelném do ekonomického systému Magion
@@ -812,7 +813,7 @@ Systémové nástroje:
 
 \begin{itemize}
 \item náhled dat z~databáze
-\item odkazy na stažení instalační soubory knihovního klienta (aby je měl správce k~dispozici v~aktuální verzi, když se v~knihovně reinstaluje nějaký počítač) a TeamView klienta, když je někomu potřeba vzdáleně pomoci přímo na jeho počítači
+\item odkazy na stažení instalačních souborů knihovního klienta (aby je měl správce k~dispozici v~aktuální verzi, když se v~knihovně reinstaluje nějaký počítač) a TeamView klienta, když je někomu potřeba vzdáleně pomoci přímo na jeho počítači
 \end{itemize}
 
 \subsubsection{Aplikace Fakulty sociálních studií}
@@ -877,7 +878,11 @@ Potřeby a požadavky MU zpracované v~této kapitole je možné rozpracovat det
 
 Modul cirkulací je v~Koha velmi přívětivý a flexibilní. Uživatele nebo výpůjčku lze dohledat načtením čárového kódu nebo zadáním názvu či kódu jednotky, v~případě uživatele zadáním jména. Výstupem této akce jsou nejdůležitější údaje o~hledaném, například datum vypůjčení dané jednotky, datum pro vrácení jednotky, možnost prodloužit jednu nebo více výpůjček, místo půjčení, typ jednotky a podobně. U~vracení stačí načíst čárové kódy, promíjet upomínky nebo vracet knihy z~biblioboxů.
 
-% @TODO add image - Výpůjčky čtenáře v systému Koha
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{resources/vypujcky}
+    \caption{Výpůjčky čtenáře v~systému Koha}
+\end{figure}
 
 Koha umí uživatele předem notifikovat pomocí emailu nebo SMS, kde správa šablon různých zpráv je samozřejmostí. Těmto notifikacím lze různě nastavovat například periodicitu a další vlastnosti.
 
@@ -922,7 +927,7 @@ Tato služba přímo v~Koha ani ve VuFindu neexistuje, avšak je natolik triviá
 
 
 \subsubsection{Obálky knih}
-Nejen obálky knih, ale i naskenované obsahy a indexy lze zpřístupnit ve VuFindu pomocí API ObálekKnih\footnote{API ObálkyKnih.cz - https://obalkyknih.cz/doc/Dokumentace\_API\_OKCZ\_3.1.pdf.} ve verzi 3. Příklad implementace ve VuFindu lze vidět na Centrálním portálu knihoven, respektive v~repozitáři\footnote{Implementace ObálekKnih v~CPK https://github.com/moravianlibrary/VuFind-2.x/tree/master/themes/obalkyknih-api-v3-bootstrap3} na Gthubu.
+Nejen obálky knih, ale i naskenované obsahy a indexy lze zpřístupnit ve VuFindu pomocí API ObálekKnih\footnote{API ObálkyKnih.cz - https://obalkyknih.cz/doc/Dokumentace\_API\_OKCZ\_3.1.pdf.} ve verzi 3. Příklad implementace ve VuFindu lze vidět na Centrálním portálu knihoven, respektive v~repozitáři\footnote{Implementace ObálekKnih v~CPK https://github.com/moravianlibrary/VuFind-2.x/tree/master/themes/obalkyknih-api-v3-bootstrap3} na Githubu.
 
 \subsubsection{Automatická oprava překlepů a nabídka alternativ při neúspěšném hledání}
 Tuto funkcionalitu lze zapnout vyhledávací komponentou \code{spellcheck}.
@@ -1019,7 +1024,7 @@ Následující externí aplikace knihoven lze řešit přímo knihovním systém
 
 Katalogizační modul Kohy samozřejmě podporuje správu digitálních informačních artefaktů a má i možnost vytvářet nové multimediální materiály. Modul disponuje přehledným katalogizačním editorem, který lze snadno editovat. Záznamy lze dotahovat přes Z39.50/SRU\footnote{Search/Retrieve via URL.}. 
 
-Je možné vytvářet vlastní MARC šablony pro různé typy dokumentů. Položky, které se často opakují či dlouhé seznamy možností je možné definovat do tzv. ověřených hodnot. Tyto ověřené hodnoty se pak zobrazí v~šabloně v~podobě roletek, ze kterých je možné vybírat.
+Je možné vytvářet vlastní MARC šablony pro různé typy dokumentů. Položky, které se často opakují, či dlouhé seznamy možností je možné definovat do tzv. ověřených hodnot. Tyto ověřené hodnoty se pak zobrazí v~šabloně v~podobě roletek, ze kterých je možné vybírat.
 
 Národní autority se v~Koha dotahují přes Z39.50 (v~knihovnách MU pomocí FTP\footnote{File Transfer Protocol - protokol pro transport dat.
 .}). OAI harvester je pro Kohu ve fázi implementace.
@@ -1054,7 +1059,7 @@ Výběr autoritních hesel je pro Kohu samozřejmostí. Možnost dohledat autori
 % @TODO add image Výsledky vyhledávání autorit v Koha
 
 \subsection{Potřeby a požadavky akvizice}
-Modul akvizice disponuje běžnými funkcemi, které jsou pro procesy akvizice v~knihovnách potřeba, to znamená, že Koha dokáže vytvářet dodavatele, aplikovat slevy, rozlišovat ceny s~DPH a bez DPH a podobně. Tyto údaje tedy pomáhají při příjmu objednávky, kdy lze jednoduše zkontrolovat fakturu. Objednávku lze vyvářet jednoduše, a to vytvořením jednoho nebo více košíku, kde se pro každého dodavatele navolí jednotlivé položky objednávky. Záznamy těchto položek lze doplnit buď z~vlastní databáze, nebo dotáhnout přes Z39.50 například z~Česká národní bibliografie nebo Souborného katalogu.
+Modul akvizice disponuje běžnými funkcemi, které jsou pro procesy akvizice v~knihovnách potřeba, to znamená, že Koha dokáže vytvářet dodavatele, aplikovat slevy, rozlišovat ceny s~DPH a bez DPH a podobně. Tyto údaje tedy pomáhají při příjmu objednávky, kdy lze jednoduše zkontrolovat fakturu. Objednávku lze vyvářet jednoduše, a to vytvořením jednoho nebo více košíků, kde se pro každého dodavatele navolí jednotlivé položky objednávky. Záznamy těchto položek lze doplnit buď z~vlastní databáze, nebo dotáhnout přes Z39.50 například z~České národní bibliografie nebo Souborného katalogu.
 
 Jedním z~požadavků bylo, aby nový systém uměl evidovat adresy dodavatelů, IČ a DIČ, což pro Kohu není problém.
 
@@ -1072,7 +1077,7 @@ Při řešení finanční otázky projektu je potřeba myslet zejména na to, ž
 Ve chvílích, kdy bude potřeba psát nové funkce či upravovat ty stávající, je vhodné je konzultovat s~komunitou. To z~toho důvodu, že bude-li mít o~funkcionalitu zájem více institucí, mohou se náklady rozdělit mezi zájemce v~komunitě, a to jak finanční,  tak i ty lidské.
 
 \section{Hodnocení efektivity a udržitelnosti projektu}
-Celé hodnocení efektivity a udržitelnosti projektu ve velké míře závisí na tom, jak se případný objednatel (v~tomto případě MU) postaví k~výsledkům SWOT analýzy a jak využije silné stránky a jak se vypořádá se slabými stránkami projektu. Následující SWOT analýza byla prováděná v~průběhu 6 měsíců a probíhala současně s~průzkumem mapování knihovních procesů v~MU. Hlavním předmětem analýzy byla migrace na open source systém Koha. Analýza byla prováděna jako instalace nové Kohy, vytvoření instancí a následného zjišťování externí podpory, rozhovorů s~knihovníky a systémovými knihovníky MU, Ústavem výpočetní techniky a knihovnami, které migrací prošly bud samostatně nebo s~využitím externí komerční podpory. Analýza je zpracována ke dni 07. 03. 2015 a její životnost se odhaduje na 5 let (v~případě její další revize).
+Celé hodnocení efektivity a udržitelnosti projektu ve velké míře závisí na tom, jak se případný objednatel (v~tomto případě MU) postaví k~výsledkům SWOT analýzy a jak využije silné stránky a jak se vypořádá se slabými stránkami projektu. Následující SWOT analýza byla prováděná v~průběhu 6 měsíců a probíhala současně s~průzkumem mapování knihovních procesů v~MU. Hlavním předmětem analýzy byla migrace na open source systém Koha. Analýza byla prováděna jako instalace nové Kohy, vytvoření instancí a následného dohledávání externí podpory, rozhovorů s~knihovníky a systémovými knihovníky MU, Ústavem výpočetní techniky a knihovnami, které migrací prošly bud samostatně nebo s~využitím externí komerční podpory. Analýza je zpracována ke dni 07. 03. 2015 a její životnost se odhaduje na 5 let (v~případě její další revize).
 
 \begin{table}
     \centering
@@ -1126,13 +1131,13 @@ Může nastat situace, kdy se změní směřování ústavu a open source již n
 
 Další riziko představuje fakt, že problémy, které MU měla při stávajícím systému, přetrvají i po migraci na Kohu. V~tom případě problém nebyl knihovní systém, ale špatná komunikace, nastavení nebo procesy.
 
-Rizikem může být i to, že nový systém přinese mnoho změn, které se v~tak konzervativním prostředí, jako je knihovnictví, těžko uplatňují. V~tomto případě je dobré vymyslet plán zaškolení a dalšího vzdělávání, minimálně co se nového systému týká.
+Rizikem může být i to, že nový systém přinese mnoho změn, které se v~tak konzervativním prostředí, jako je knihovnictví, těžko uplatňují. V~tomto případě je dobré věnovat náležitou pozornost plánu přechodu a školení. To by se nemělo týkat jen nového systému jako takového, ale i procesům v~knihovně.
 
 Může nastat situace, kdy se prodlouží podpora Alephu. Tím se ale nevyřeší problémy, které stávající systém má. Zruší-li se podpora Alephu, MU na něm stále může fungovat, avšak je potřeba myslet i na Aleph klienta, který již nebude optimalizován na nové verze operačních systémů, tudíž se stane nepoužitelným.
 
 Finanční riziko zase představuje neušetření financí (alespoň na začátku) při migraci na open source. Důvodem může být využití ušetřených prostředků na mzdách pracovníků, kteří budou nový systém upravovat a nastavovat. 
 
-Riziko může také nastat v~době, kdy budou knihovníci muset vývojářům a systémovým knihovníkům definovat, jak má která služba fungovat nebo jak se mají data interpretovat. Může se stát, že to ve skutečnosti nebudou vědět. Je proto potřeba pečlivě vybrat pracovní skupinu s~nejvyšší odborností.
+Riziko může také nastat v~době, kdy budou knihovníci muset vývojářům a systémovým knihovníkům definovat, jak má která služba fungovat nebo jak se mají data interpretovat. Může se stát, že to ve skutečnosti nebudou vědět. Je proto potřeba pečlivě vybrat pracovní skupinu s~co nejvyšší možnou odborností a praktickou zkušeností.
 
 Další riziko je zhroucení projektu ve formě nevedených zaměstnanců. Nebudou-li zaměstnanci řízení, celý projekt se může časově i finančně protáhnout nebo se dokonce zhroutit.
 
