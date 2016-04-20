@@ -18,6 +18,7 @@
 \usepackage[czech]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+%\usepackage[utf8x]{inputenc}
 \usepackage[plainpages=false,pdfpagelabels,unicode]{hyperref}
 \usepackage{bold-extra}
 \usepackage{setspace}
@@ -26,6 +27,7 @@
 \usepackage{graphicx}
 \usepackage{graphics}
 \usepackage{float}
+\usepackage{pdfpages}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% THESIS SETUP %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -49,10 +51,13 @@
     TeXtitleEn    = Studie proveditelnosti implementace open source integrovaného knihovního systému Koha v~knihovnách Masarykovy univerzity
 }
 
+
 %\hyphenpenalty=50
 %\exhyphenpenalty=50
 
 %\usepackage[none]{hyphenat}
+
+\setlength{\emergencystretch}{4pt} % remove text line overflow, partly
 
 \thesislong{thanks}{ % THANKS
     Chtěl bych poděkovat vedoucímu práce Mgr. Michalovi Denárovi za to, že mi ukázal, jak krásně by mohlo fungovat české knihovnictví, a také Mgr. Petře Žabičkové v~roli konzultantky za to, že mi ukázala, jak je na tom české knihovnictví ve skutečnosti. Dále bych rád poděkoval RNDr. Michalovi Růžičkovi, který se chopil role konzultanta a poskytl nedocenitelné informace. A~v~neposlední řadě si zaslouží můj vděk také zaměstnanci univerzitních knihoven MU, kteří jako respondenti ochotně spolupracovali při provádění rozhovorů a stínování v~rámci mého průzkumu mapování knihovních procesů v~knihovnách Masarykovy univerzity.
@@ -112,11 +117,35 @@
   informační systém Masarykovy univerzity.}
 \makeatother
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% UVODNI LIST %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter\thesis@load
+  \makeatletter\def\thesis@blocks@preTitlePage{%
+    \begin{center}%
+      \thesis@titlePage@LARGE\thesis@@{universityName}\\%
+      \thesis@titlePage@Large\thesis@@{facultyName}\\%
+      \thesis@titlePage@large\thesis@department\\%
+      \thesis@field%
+      \vskip 2.8in%
+      {\thesis@titlePage@Huge\bf\thesis@@{typeName}}\\[3.3in]%
+      {\thesis@titlePage@Large\bf\thesis@@{semester}} \hfill {\thesis@titlePage@Large\bf\thesis@author}
+    \end{center}%
+  }
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% SEZNAM ZDROJU %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\makeatletter\thesis@load
+%  \makeatletter\def\thesis@blocks@lobibliography{%
+%    \printbibliography[title={Seznam literatury},heading=bibintoc]
+%  }
+%\makeatother
+
 %%%%%%%%%%%%%%%%%%%%% DOCUMENT STRUCTURE %%%%%%%%%%%%%%%%%%%%
 
 \makeatletter
   \def\thesis@blocks@preamble{
-    %\thesis@blocks@titlePage
+    \thesis@blocks@preTitlePage
     \thesis@blocks@coverMatter
     \thesis@blocks@cover
     \thesis@blocks@titlePage
@@ -137,6 +166,7 @@
   \thesis@blocks@clear
 	\tableofcontents}
   \def\thesis@blocks@postamble{
+%    \thesis@blocks@lobibliography
     \thesis@blocks@lot
     \thesis@blocks@lof}
 \makeatother
@@ -328,7 +358,7 @@ Důvody k~migraci mohou být různé: \citepages{152}{bilal_2014} \citepages{6-1
 Opakem nedostatečné funkcionality bývá jako další důvod k~migraci také příliš komplikovaný systém či personál, který s~ním reálně neumí zacházet. Hlavním důvodem pro výběr open source systému bývá hlavně cena z~hlediska TCO\footnote{Total Cost of Ownership (TCO) - metoda hodnocení nákladových variant, která vyjadřuje kompletní náklady na investici a její provoz.}. Volba konkrétního open source systému je pak ovlivněna jeho funkcionalitou.
 
 \subsection{Proces migrace}
-Úspěšnost migrace závisí na mnoha faktorech. Na začátku je nutné pochopit celý migrační proces a rozplánovat ho na několik etap, kde se mezi první etapy řadí čištění dat. Je nutné pochopit datová schémata záznamů (a procesy extrakce dat) ve všech modulech stávajícího systému, aby bylo možné určit, jak by mohly být tato schémata převedena do nového ILS. Je potřeba vědět, v~jakých formátech či stavech se extrahovaná data nacházejí, a také mít spolehlivou komunikaci s~poskytovatelem či podporou systému. Při extrakci dat musí být jasné, jak lze data interpretovat, což znamená napsat extrakční skripty tak, aby skutečně odpovídaly nové datové struktuře ILS. \citepages{43-48}{krbiwFHfrnvG2ZXf} Při splnění těchto bodů se přechází k~samotné migraci dat. Tuto migraci je vhodné provádět opakovaně s~různým množstvím dat a importovaná data okamžitě testovat na nějakých tomu určených testovacích stránkách. Po samotném převodu dat je na místě realizace několika testovacích strategií. \cite{32-35, 61-72}{Denar2015thesis} Celkový proces migrace si vyžaduje i svůj „člověkočas“, na který je potřeba být připraven. Čím větší je knihovna, která bude systém používat, tím víc uzpůsobení bude muset řešit. Nicméně, to stejné by bylo potřeba řešit i v případě proprietárního systému. Naopak menší knihovny mohou spíše než přizpůsobovat systém svým specifickým potřebám, přizpůsobovat knihovní procesy a harmonizovat je tak se systémem.
+Úspěšnost migrace závisí na mnoha faktorech. Na začátku je nutné pochopit celý migrační proces a rozplánovat ho na několik etap, kde se mezi první etapy řadí čištění dat. Je nutné pochopit datová schémata záznamů (a procesy extrakce dat) ve všech modulech stávajícího systému, aby bylo možné určit, jak by mohly být tato schémata převedena do nového ILS. Je potřeba vědět, v~jakých formátech či stavech se extrahovaná data nacházejí, a také mít spolehlivou komunikaci s~poskytovatelem či podporou systému. Při extrakci dat musí být jasné, jak lze data interpretovat, což znamená napsat extrakční skripty tak, aby skutečně odpovídaly nové datové struktuře ILS. \citepages{43-48}{krbiwFHfrnvG2ZXf} Při splnění těchto bodů se přechází k~samotné migraci dat. Tuto migraci je vhodné provádět opakovaně s~různým množstvím dat a importovaná data okamžitě testovat na nějakých tomu určených testovacích stránkách. Po samotném převodu dat je na místě realizace několika testovacích strategií. \cite{32-35, 61-72}{Denar2015thesis} Celkový proces migrace si vyžaduje i svůj „člověkočas“, na který je potřeba být připraven. Čím větší je knihovna, která bude systém používat, tím víc uzpůsobení bude muset řešit. Nicméně, to stejné by bylo potřeba řešit i v~případě proprietárního systému. Naopak menší knihovny mohou spíše než přizpůsobovat systém svým specifickým potřebám, přizpůsobovat knihovní procesy a harmonizovat je tak se systémem.
 
 Celkový proces migrace vyžaduje svůj čas jak na přípravu, tak na realizaci. V~přípravě nesmí chybět seznam problémů, kterými procházely jiné instituce, které podobnou migrací provedly. Také je vhodné mít případnou záložní „roll back“ strategii v~případě neúspěšného pokusu migrace.
 
@@ -363,7 +393,7 @@ Celý knihovní systém by měl interně podporovat správu digitálních inform
 
 \subsection{O~projektu}
 
-Aktuálnost problematiky tkví v tom, že knihovní systém Aleph, který vyvíjí společnosti Ex Libris, se za poslední roky nijak zásadně nevyvíjí a přestává tak stačit uspokojovat požadavky knihoven. Existuje cesta migrace k novému produktu stejné společnosti, ten však funguje výhradně v cloudu\footnote{Cloud je jistá metafora pro Internet, která znamená ukládání a zpřístupňování dat a programů na Internet místo na lokálním stroji.}. Jelikož knihovny Masarykovy univerzity používají jako knihovní systém právě Aleph, je potřeba situaci zhodnotit z~různých pohledů.
+Aktuálnost problematiky tkví v~tom, že knihovní systém Aleph, který vyvíjí společnosti Ex Libris, se za poslední roky nijak zásadně nevyvíjí a přestává tak stačit uspokojovat požadavky knihoven. Existuje cesta migrace k~novému produktu stejné společnosti, ten však funguje výhradně v~cloudu\footnote{Cloud je jistá metafora pro Internet, která znamená ukládání a zpřístupňování dat a programů na Internet místo na lokálním stroji.}. Jelikož knihovny Masarykovy univerzity používají jako knihovní systém právě Aleph, je potřeba situaci zhodnotit z~různých pohledů.
 
 Mimo fakt, že data již nebudou ukládána lokálně, tj. data již nebudou uložena na strojích patřících provozovateli\footnote{Možné politické a autorsko-právní problémy.}, ale v~cloudu (navíc pravděpodobně mimo jurisdikci EU) \citepages{16-17}{breeding_2012}, to znamená, že knihovny a další instituce využívající knihovních systémů (televize, archivy) budou mít menší možnosti úprav a rozšíření své instance systému. Tyto problémy by mohla vyřešit právě migrace na open source knihovní systém. Jedním z~kandidátů je open source integrovaný knihovní systém Koha, který tato studie proveditelnosti rozebírá. 
 
@@ -695,7 +725,7 @@ Celková realizace projektu vyžaduje svůj čas a je potřeba na to vyčlenit l
 \end{table}
 
 \section{Analýza trhu}
-Momentálně se Masarykova univerzita skládá z~devíti univerzitních knihoven, které sestávají z více než 110 dílčích knihoven. Dohromady spravují cca 2 000 000 knihovních jednotek a obsluhují cca 50 000 uživatelů. MU nemá žádnou ústřední knihovnu.
+Momentálně se Masarykova univerzita skládá z~devíti univerzitních knihoven, které sestávají z~více než 110 dílčích knihoven. Dohromady spravují cca 2 000 000 knihovních jednotek a obsluhují cca 50 000 uživatelů. MU nemá žádnou ústřední knihovnu.
 
 Při provádění průzkumu v~knihovnách MU vzešlo několik potřeb a požadavků. Tyto požadavky jsou jak hlavní kritéria, která musí nový systém splňovat, tak i potřeby, které je potřeba splnit v~rámci kvalitního designu služeb pro uživatele. K~těmto požadavkům na systém se řadí i obecné požadavky na knihovní systém, definované v~kapitole \ref{sec:obecne_pozadavky_na_knihovni_system} Obecné požadavky na knihovní systém.
 
@@ -892,7 +922,7 @@ Modul cirkulací je v~Koha velmi přívětivý a flexibilní. Uživatele nebo v�
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{resources/vypujcky_left}
-    \caption{Výpůjčky čtenáře v systému Koha}
+    \caption{Výpůjčky čtenáře v~systému Koha}
     \label{vypujcky}
 \end{figure}
 
@@ -1057,7 +1087,7 @@ Záznamy lze editovat také hromadně pomocí nástroje „Hromadné úpravy jed
 \begin{figure}
     \centering
     \includegraphics[width=1.0\textwidth]{resources/hromadne_upravy}
-    \caption{Hromadné úpravy záznamů v systému Koha}
+    \caption{Hromadné úpravy záznamů v~systému Koha}
     \label{fig:hromadne_upravy}
 \end{figure}
 
@@ -1081,7 +1111,7 @@ Výběr autoritních hesel je pro Kohu samozřejmostí. Možnost dohledat autori
 \begin{figure}
     \centering
     \includegraphics[width=1.0\textwidth]{resources/vysledky_vyhledavani_autorit}
-    \caption{Výsledky vyhledávání autorit v Koha}
+    \caption{Výsledky vyhledávání autorit v~Koha}
     \label{fig:vysledky_vyhledavani_autorit}
 \end{figure}
 
@@ -1095,7 +1125,7 @@ V~systému Koha je také možné dohledat, kolik knih bylo koupeno a z~jakých z
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{resources/objednavka_left}
-    \caption{Příklad objednávky v systému Koha}
+    \caption{Příklad objednávky v~systému Koha}
     \label{fig:objednavka}
 \end{figure}
 
@@ -1162,11 +1192,11 @@ Může nastat situace, kdy se změní směřování ústavu a open source již n
 
 Další riziko představuje fakt, že problémy, které MU měla při stávajícím systému, přetrvají i po migraci na Kohu. V~tom případě problém nebyl knihovní systém, ale špatná komunikace, nastavení nebo procesy.
 
-Rizikem může být i to, že nový systém přinese mnoho změn, které se v~tak konzervativním prostředí, jako je knihovnictví, těžko uplatňují. V tomto případě je dobré věnovat náležitou pozornost plánu přechodu a školení. To by se nemělo týkat jen nového systému jako takového, ale i procesům v knihovně.
+Rizikem může být i to, že nový systém přinese mnoho změn, které se v~tak konzervativním prostředí, jako je knihovnictví, těžko uplatňují. V~tomto případě je dobré věnovat náležitou pozornost plánu přechodu a školení. To by se nemělo týkat jen nového systému jako takového, ale i procesům v~knihovně.
 
 Finanční riziko zase představuje neušetření financí (alespoň na začátku) při migraci na open source. Důvodem může být využití ušetřených prostředků na mzdách pracovníků, kteří budou nový systém upravovat a nastavovat. 
 
-Riziko může také nastat v~době, kdy budou knihovníci muset vývojářům a systémovým knihovníkům definovat, jak má která služba fungovat nebo jak se mají data interpretovat. Může se stát, že to ve skutečnosti nebudou vědět. Je proto potřeba pečlivě vybrat pracovní skupinu s co nejvyšší možnou odborností a praktickou zkušeností.
+Riziko může také nastat v~době, kdy budou knihovníci muset vývojářům a systémovým knihovníkům definovat, jak má která služba fungovat nebo jak se mají data interpretovat. Může se stát, že to ve skutečnosti nebudou vědět. Je proto potřeba pečlivě vybrat pracovní skupinu s~co nejvyšší možnou odborností a praktickou zkušeností.
 
 Další riziko je zhroucení projektu ve formě nevedených zaměstnanců. Nebudou-li zaměstnanci řízení, celý projekt se může časově i finančně protáhnout nebo se dokonce zhroutit.
 
@@ -1199,6 +1229,12 @@ Sledovat dění v~české Koha komunitě lze také na facebookových stránkách
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \printbibliography[title={Seznam literatury},heading=bibintoc]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROJEKT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\appendix
+
+\includepdf[pages={-}]{projekt.pdf}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% END OP CONTENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
