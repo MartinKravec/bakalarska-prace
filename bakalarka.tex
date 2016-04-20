@@ -3,10 +3,6 @@
 %% UČO: 428724
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% @TODO pridat uvodni list
-
-% @TODO pridat projekt
-
 \documentclass[
 	11pt, oneside, printed, final, 
 	%microtype,
@@ -28,6 +24,7 @@
 \usepackage{lastpage}
 \usepackage{anyfontsize}
 \usepackage{graphicx}
+\usepackage{graphics}
 \usepackage{float}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% THESIS SETUP %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -42,22 +39,22 @@
     gender        = m,
     advisor       = Mgr. Michal Denár,
     date			  = 2016/03/12,
-    keywords	  	  = {open source, Koha, Aleph, knihovní system},
-	TeXkeywords	  = {open source, Koha, Aleph, library system},
-	%keywords	En    = {open source, Koha, Aleph, library system},
-	TeXkeywordsEn = {open source, Koha, Aleph, library system},
+    keywords	  	  = {open source, Koha, Aleph, knihovní system, migrace},
+	TeXkeywords	  = {open source, Koha, Aleph, knihovní system, migrace},
+	%keywords	En    = {open source, Koha, Aleph, library system, migration}, % throws error
+	TeXkeywordsEn = {open source, Koha, Aleph, library system, migration},
     title         = Studie proveditelnosti implementace open source integrovaného knihovního systému Koha v~knihovnách Masarykovy univerzity,
     titleEn		  = Feasibility study for the implementation of open source integrated library system Koha in libraries of Masaryk University,
     TeXtitle      = Studie proveditelnosti implementace open source integrovaného knihovního systému Koha v~knihovnách Masarykovy univerzity,
-    TeXtitleEn      = Studie proveditelnosti implementace open source integrovaného knihovního systému Koha v~knihovnách Masarykovy univerzity
+    TeXtitleEn    = Studie proveditelnosti implementace open source integrovaného knihovního systému Koha v~knihovnách Masarykovy univerzity
 }
 
 %\hyphenpenalty=50
 %\exhyphenpenalty=50
-%\usepackage[none]{hyphenat}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% THANKS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\thesislong{thanks}{
+%\usepackage[none]{hyphenat}
+
+\thesislong{thanks}{ % THANKS
     Chtěl bych poděkovat vedoucímu práce Mgr. Michalovi Denárovi za to, že mi ukázal, jak krásně by mohlo fungovat české knihovnictví, a také Mgr. Petře Žabičkové v~roli konzultantky za to, že mi ukázala, jak je na tom české knihovnictví ve skutečnosti. Dále bych rád poděkoval RNDr. Michalovi Růžičkovi, který se chopil role konzultanta a poskytl nedocenitelné informace. A~v~neposlední řadě si zaslouží můj vděk také zaměstnanci univerzitních knihoven MU, kteří jako respondenti ochotně spolupracovali při provádění rozhovorů a stínování v~rámci mého průzkumu mapování knihovních procesů v~knihovnách Masarykovy univerzity.
 }
 
@@ -66,7 +63,7 @@
 }
 
 \thesislong{abstractEn}{ % EN ANNOTATION!
-    Cílem této práce je zejména provést studii proveditelnosti, která určí, zda je možná migrace z~knihovního systému Aleph na open source integrovaný knihovní systém Koha v~knihovnách Masarykovy univerzity. Celá studie je založena na šestiměsíčním průzkumu týkajícího se mapování knihovních procesů ve vybraných knihovnách univerzity, a to formou rozhovorů a stínování. Průzkum byl také prováděn i v~síti 900 knihoven v~Turecku. Studie v~úvodu rozebírá analýzu trhu, na kterou pak navazuje finanční analýza propojená s~řízením a minimalizací rizik. Součástí studie proveditelnosti je také evaluace efektivity a udržitelnosti projektu založena na SWOT analýze. Práce také pojednává o~projektovém managementu a řízení lidských zdrojů a podrobněji rozebírá technické a technologické řešení projektu, přičemž objasňuje aspekty vývoje open source softwaru. 
+    The aim of this thesis is to perform a feasibility study to determine whether it is possible to migrate from the Aleph system to the open source integrated library system Koha in libraries of Masaryk University. The entire study is based on a six month survey regarding the mapping of library processes in selected libraries of the university via  interviews and shadowing. The survey was also conducted in the network of 900 libraries in Turkey. In introduction, the study discusses market analysis, which is then followed by financial analysis connected with risk management. Part of the feasibility study is also the evaluation of the effectiveness and sustainability of the project based on the SWOT analysis. The work also deals with project management and human resource management and analyzes the technical and technological solutions of the project, while clarifying aspects of the development of open source software.
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -75,7 +72,7 @@
 \usepackage[
 	backend 		= biber,
   	sortlocale	= cs_CZ,
-  	style		= iso-authortitle,
+  	style		= iso-authoryear,
   	%style		= iso-numeric,
   	%citestyle=numeric-comp
   	bibencoding = UTF8,
@@ -95,7 +92,7 @@
 
 \newcommand{\bold}[1]{\textbf{#1}}
 \newcommand{\italic}[1]{\textit{#1}}
-\newcommand{\citace}[1]{„\textit{#1}“} % @TODO proc nefunguje?
+\newcommand{\citace}[1]{„\textit{#1}“} % @FIXME proc nefunguje?
 \newcommand{\mezera}{\bigskip}
 \newcommand{\code}[1]{\texttt{#1}}
 
@@ -152,7 +149,7 @@ Tato bakalářská diplomová práce se bude zabývat studií proveditelnosti im
 
 \chapter{Teoretická část}
 
-\section{Projektové řízení jako takové}
+\section{Projektové řízení jako takové} \label{sec:projektove_rizeni_jako_takove}
 
 \subsection{Projekt}
 
@@ -164,18 +161,26 @@ Projektové řízení neboli projektový management se zabývá řízením proje
 \item rozpočtové náklady
 \end{itemize}
 
-Tomuto rozdělení se také říká trojimperativ\citepages{5}{rosenau_2000}. O~každém projektu lze prohlásit, že je jedinečný, jelikož je prováděn jen jednou, pracují na něm jiní lidé a je časově ohraničen. Projekt je realizován pomocí lidských a materiálních zdrojů. To znamená, že projektový manager vlastně řídí lidi tak, aby byly efektivně využity materiální zdroje\citepages{28}{rehacek_2013}. Následující obrázek 1.1 znázorňuje kvalitu provedení v~kontextu trojimperativu.% @TODO label na obrazek
+Tomuto rozdělení se také říká trojimperativ \citepages{5}{rosenau_2000}. O~každém projektu lze prohlásit, že je jedinečný, jelikož je prováděn jen jednou, pracují na něm jiní lidé a je časově ohraničen. Projekt je realizován pomocí lidských a materiálních zdrojů. To znamená, že projektový manager vlastně řídí lidi tak, aby byly efektivně využity materiální zdroje \citepages{28}{rehacek_2013}. Následující obrázek \ref{fig:trojimperativ} znázorňuje kvalitu provedení v~kontextu trojimperativu.
 
-\begin{figure}[H]
-\centering
-%egraphics[width=0.95\textwidth,frame]{Resources/Trojimperativ} % @TODO obrazek
-\caption{Důsledky trojimperativu.}
+\begin{figure}
+    \centering
+	\def\svgwidth{1.0\textwidth}
+    \input{trojimperativ.pdf_tex}
+	\caption{Důsledky trojimperativu.}
 \end{figure}
 
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=2.0\textwidth]{resources/trojimperativ}
+%    \caption{Důsledky trojimperativu.}
+%    \label{fig:trojimperativ}
+%\end{figure}
+
 Projekt může být charakterizován jako hmotný či nehmotný projekt v~závislosti na konečném produktu. V~případě hmotného projektu by šlo například o~hardware, u~nehmotného o~software. Produkt je tedy konečným výstupem každého projektu.
-V~případě, kdy je zákazník mimo organizaci, která projekt realizuje, jsou projekty realizovány na základě uzavřených smluv, výsledný produkt je tedy posuzován na základě požadavků zákazníka. Je-li zákazníkem stejná organizace, není potřeba uzavírat smlouvy. V~tom případě je ale výstup projektu posuzován podle času dokončení a návratnosti investice\citepages{10-12}{rosenau_2000}.  V~projektovém řízení se zákazník jako objednatel projektu označuje jako zadavatel projektu. Způsob provedení projektu také závisí na konkurenci. Situace, kdy je produkt na trhu jediný svého druhu, je úplně jiná, než u~produktu, kterých je v~oboru mnoho.\citepages{12}{rosenau_2000}
-Projektovému řízení se také říká „řízení projektů“ nebo „řízení programu“ v~závislosti na velikosti projektu. Obecně platí, že programy jsou větší než projekty a projekty větší než úkoly.\citepages{12}{rosenau_2000}
-Úspěšnost projektu je závislá na kompetencích managera (nebo leadera) projektu\citepages{1}{Muller2010437}%@TODO pridat strany
+V~případě, kdy je zákazník mimo organizaci, která projekt realizuje, jsou projekty realizovány na základě uzavřených smluv, výsledný produkt je tedy posuzován na základě požadavků zákazníka. Je-li zákazníkem stejná organizace, není potřeba uzavírat smlouvy. V~tom případě je ale výstup projektu posuzován podle času dokončení a návratnosti investice \citepages{10-12}{rosenau_2000}.  V~projektovém řízení se zákazník jako objednatel projektu označuje jako zadavatel projektu. Způsob provedení projektu také závisí na konkurenci. Situace, kdy je produkt na trhu jediný svého druhu, je úplně jiná, než u~produktu, kterých je v~oboru mnoho. \citepages{12}{rosenau_2000}
+Projektovému řízení se také říká „řízení projektů“ nebo „řízení programu“ v~závislosti na velikosti projektu. Obecně platí, že programy jsou větší než projekty a projekty větší než úkoly. \citepages{12}{rosenau_2000}
+Úspěšnost projektu je závislá na kompetencích managera (nebo leadera) projektu \citepages{437–448}{Muller2010437}
 , které lze rozdělit na: 
 \mezera
 \begin{enumerate}
@@ -204,7 +209,7 @@ Projektovému řízení se také říká „řízení projektů“ nebo „říz
 \end{enumerate}
 
 \subsection{Proces řízení projektu}
-Řízení projektu sestává z~procesu pěti managerských činností, a to\citepages{22-23}{rehacek_2013}:
+Řízení projektu sestává z~procesu pěti managerských činností, a to \citepages{22-23}{rehacek_2013}:
 \mezera
 \begin{itemize}
 \item Definování projektových cílů
@@ -214,28 +219,28 @@ Projektovému řízení se také říká „řízení projektů“ nebo „říz
 \item Ukončení - finalizace ve smyslu kontroly, zda produkt odpovídá definicím zadavatele, dokončení prací (například dokumentace)
 \end{itemize}
 
-Vzájemné závislosti v~procesu řízení projektu znázorňuje obrázek 1.2. % @TODO label na obrazek
+Vzájemné závislosti v~procesu řízení projektu znázorňuje obrázek \ref{fig:proces_rizeni_projektu}
 Celému cyklu však předchází tzv. předprojektová fáze, do které patří zejména studie proveditelnosti, o~které pojednává další kapitola.
 
-\begin{figure}[H]
-\centering
-%egraphics[width=0.95\textwidth,frame]{Resources/project-management} % @TODO obrazek
-\caption{Vzájemné závislosti v~procesu řízení projektu.}
+\begin{figure}
+    \centering
+	\def\svgwidth{2.0\textwidth}
+    \input{proces_rizeni_projektu.pdf_tex}
+	\caption{Vzájemné závislosti v~procesu řízení projektu.}
+	\label{fig:proces_rizeni_projektu}
 \end{figure}
 
-\section{Studie proveditelnosti obecně}
+\section{Studie proveditelnosti obecně} \label{sec:studie_proveditelnosti}
 
-Hlavním účelem studie proveditelnosti (feasibility study) je zhodnotit možné varianty, které mohou nastat při provádění projektu, a posoudit realizovatelnost a následnou životaschopnost zvoleného řešení. Studie proveditelnosti zpřesňuje vlastnosti projektu a to hlavně specifikaci cíle, potřebné finanční, materiální a lidské zdroje, časový harmonogram, přínosy a rizika spojená s~realizací projektu. Jelikož studie pojednává o~finančních, technických, managerských i ekonomických aspektech projektu, nazývá se také studií ekonomicko-technickou\citepages{19}{fotr_1995}.
-Vyhodnocení studie tedy vyúsťuje do rozhodnutí o~zamítnutí či přijetí projektu a případně jeho následné realizaci.
-\citepages{19-20}{fotr_1995} 
+Hlavním účelem studie proveditelnosti (feasibility study) je zhodnotit možné varianty, které mohou nastat při provádění projektu, a posoudit realizovatelnost a následnou životaschopnost zvoleného řešení. Studie proveditelnosti zpřesňuje vlastnosti projektu a to hlavně specifikaci cíle, potřebné finanční, materiální a lidské zdroje, časový harmonogram, přínosy a rizika spojená s~realizací projektu. Jelikož studie pojednává o~finančních, technických, managerských i ekonomických aspektech projektu, nazývá se také studií ekonomicko-technickou \citepages{19}{fotr_1995}. Vyhodnocení studie tedy vyúsťuje do rozhodnutí o~zamítnutí či přijetí projektu a případně jeho následné realizaci. \citepages{19-20}{fotr_1995} 
 
 \mezera
 
-\citace{Významné je, aby studie co nejlépe popisovala, variantně řešila, optimalizovala a hodnotila investiční projekt se všemi z~něj vyplývajícími specifiky.}\citepages{8}{Sieber2004} 
+\citace{Významné je, aby studie co nejlépe popisovala, variantně řešila, optimalizovala a hodnotila investiční projekt se všemi z~něj vyplývajícími specifiky.} \citepages{8}{Sieber2004} 
 
 \mezera
 
-Celková osnova studie proveditelnosti by měla vypadat přibližně takto:\citepages{8-14}{Sieber2004} 
+Celková osnova studie proveditelnosti by měla vypadat přibližně takto: \citepages{8-14}{Sieber2004} 
 \mezera
 \begin{enumerate}
 \item \bold{Obsah} - struktura kapitol
@@ -255,10 +260,10 @@ Celková osnova studie proveditelnosti by měla vypadat přibližně takto:\cite
 \item \bold{Podrobné závěrečné hodnocení projektu} - komplexní vyjádření k~realizovatelnosti projektu
 \end{enumerate}
 
-Vyhodnocení finanční rentability projektu vybranými ukazateli se provádí tak, že se nejdřív určí jednorázové náklady na investice, odhadnou se budoucí výnosy z~investice, následně se určí náklady na kapitál a nakonec se vypočítá současná hodnota očekávaných výnosů. Na to se pak různě aplikují metody ekonomického hodnocení investice.\citepages{17-18}{Podesvova2010thesis}
+Vyhodnocení finanční rentability projektu vybranými ukazateli se provádí tak, že se nejdřív určí jednorázové náklady na investice, odhadnou se budoucí výnosy z~investice, následně se určí náklady na kapitál a nakonec se vypočítá současná hodnota očekávaných výnosů. Na to se pak různě aplikují metody ekonomického hodnocení investice. \citepages{17-18}{Podesvova2010thesis}
 
 \section{Open source jako systém}
-Open source systém lze chápat ve dvou rovinách, a to z~pohledu teorie systémů jako systém, který je založen na otevřeném svobodném kódu a slouží pro využívání, zpracování a zprostředkování informací, a také z~pohledu systematičnosti vývoje, kam patří správa verzí, bug trackery, financování, licencování, vytváření balíčků či spolupráce s~komunitou.\citepages{40}{cejpek_2005}
+Open source systém lze chápat ve dvou rovinách, a to z~pohledu teorie systémů jako systém, který je založen na otevřeném svobodném kódu a slouží pro využívání, zpracování a zprostředkování informací, a také z~pohledu systematičnosti vývoje, kam patří správa verzí, bug trackery, financování, licencování, vytváření balíčků či spolupráce s~komunitou. \citepages{40}{cejpek_2005}
 
 \subsection{Open source software}
 
@@ -268,10 +273,9 @@ Pojem „open source software“ bývá častokrát nesprávně zaměňován s~p
 
 \bold{Free software} je software poskytovaný zdarma, což však neznamená, že má uživatel licenci k~přístupu, modifikaci či k~další distribuci tohoto softwaru. Je definován spíše v~kontextu svobody než ceny. 
 
-Opakem free softwaru je software, jehož zdrojový kód může být modifikován pouze jeho autorem či organizací, která ho vydala. Tomu se říká \bold{closed source software} (zákazník nemá k~dispozicí zdrojové kódy) neboli \bold{proprietární software} (od slova „property“, což znamená, že zdrojový kód softwaru je majetkem svých autorů a jenom oni mohou legálně kopírovat či modifikovat tento software). Příkladem takového softwaru je například Microsoft Office.% @TODO add citation
-% McLean, A. (2015). Open-source software. Canadian Journal of Nursing Informatics, 10(3) Retrieved from http://ezproxy.techlib.cz/login?url=http://search.proquest.com/docview/1753599175?accountid=119841
+Opakem free softwaru je software, jehož zdrojový kód může být modifikován pouze jeho autorem či organizací, která ho vydala. Tomu se říká \bold{closed source software} (zákazník nemá k~dispozicí zdrojové kódy) neboli \bold{proprietární software} (od slova „property“, což znamená, že zdrojový kód softwaru je majetkem svých autorů a jenom oni mohou legálně kopírovat či modifikovat tento software). Příkladem takového softwaru je například Microsoft Office. \citesource{mclean}
 
-Všeobecně lze OSS licence rozdělit do tří kategorií a to:\citepages{9-10}{6226510}
+Všeobecně lze OSS licence rozdělit do tří kategorií a to: \citepages{9-10}{6226510}
 \begin{itemize}
 \item restriktivní neboli \bold{copyleft} licence (omezující)
 \item středně restriktivní neboli \bold{copycenter} licence
@@ -284,24 +288,25 @@ Na základě výše řečeného lze tvrdit, že open source software je podmnož
 Financování vývoje open source softwaru probíhá častokrát neformálně z~prostředků firem.
 
 \mezera 
-\citace{Firmy si začaly uvědomovat výhody, které z~open source softwaru plynou, a stále častěji se přímým způsobem podílejí na jeho vývoji.}\citepages{129}{Fogel2012}
+\citace{Firmy si začaly uvědomovat výhody, které z~open source softwaru plynou, a stále častěji se přímým způsobem podílejí na jeho vývoji.} \citepages{129}{Fogel2012}
 \mezera
 
-Karl Fogel (autor bestselleru Tvorba open source softwaru z~osvětové edice CZ.NIC a autor svobodného verzovacího systému Subversion) dodává, že organizace, které mají své softwarové potřeby, \bold{zbytečně duplikují} své snahy, když nakupují software se stejnou funkcionalitou nebo když ho dokonce vytvářejí samy znovu. Kdyby se připojily k~open source vývoji, \bold{náklady} na vývoj by se \bold{rozdělily} mezi všechny další účastníky a \bold{prospěch} by tak \bold{měli všichni}. Tento proces se navíc zdá být prospěšným nejen pro neziskové organizace, ale i pro výdělečné činnosti, kde jako příklady uvádí http://www.openadaptor.org/ a http://koha.org/.\citepages{130-132}{Fogel2012} V~komerční sféře to už ale kvůli licencím možné není. A~ne jen kvůli licencím, ale také samotným sdílením se firma připravuje o~konkurenční výhodu, jelikož sdílený kód začne provozovat řada dalších subjektů. Firma, která sdílí zdrojový kód tak přijde o~data o~chování uživatelů a příjmy z~reklamy. Konkurovat by pak mohla jen lepší produktovou podporou apod. 
+Karl Fogel (autor bestselleru Tvorba open source softwaru z~osvětové edice CZ.NIC a autor svobodného verzovacího systému Subversion) dodává, že organizace, které mají své softwarové potřeby, \bold{zbytečně duplikují} své snahy, když nakupují software se stejnou funkcionalitou nebo když ho dokonce vytvářejí samy znovu. Kdyby se připojily k~open source vývoji, \bold{náklady} na vývoj by se \bold{rozdělily} mezi všechny další účastníky a \bold{prospěch} by tak \bold{měli všichni}. Tento proces se navíc zdá být prospěšným nejen pro neziskové organizace, ale i pro výdělečné činnosti, kde jako příklady uvádí http://www.openadaptor.org/ a http://koha.org/. \citepages{130-132}{Fogel2012} V~komerční sféře to už ale kvůli licencím možné není. A~ne jen kvůli licencím, ale také samotným sdílením se firma připravuje o~konkurenční výhodu, jelikož sdílený kód začne provozovat řada dalších subjektů. Existují dva pohledy na věc: jeden vnímá problematiku jako ztrátu konkurenční výhody a druhý považuje sdílení kódu za cestu ke snížení nákladů na vývoj spojenou se zaměřením se na službu pro koncového uživatele.
+
 
 \subsection{Správa verzí}
-Systém pro správu verzí (version control system) je jistým standardem při vývoji open source softwaru. Verzovací systém je nástroj, který primárně spravuje vydávání nových verzí (release management), odděluje stabilní kód od testovacího, respektive produkční kód od vývojového, pomocí takzvaných větví. Mimo jiné pomáhá při opravách chyb a také komunikaci mezi vývojáři.\citepages{17-21, 59-64}{Chaconc2009} Mezi nejznámější verzovací systémy patří Git, Subversion (SVN) a Mercurial.
+Systém pro správu verzí (version control system) je jistým standardem při vývoji open source softwaru. Verzovací systém je nástroj, který primárně spravuje vydávání nových verzí (release management), odděluje stabilní kód od testovacího, respektive produkční kód od vývojového, pomocí takzvaných větví. Mimo jiné pomáhá při opravách chyb a také komunikaci mezi vývojáři. \citepages{17-21, 59-64}{Chaconc2009} Mezi nejznámější verzovací systémy patří Git, Subversion (SVN) a Mercurial.
 
 \subsection{Systém pro sledování chyb}
-Spolu se systémy na správu verzí bývají propojené (ale mohou fungovat samostatně) i systémy na sledování chyb, neboli bug trackery\footnote{Pojem bug vystihující skrytou chybu vznikl na Harvardské univerzitě, kdy byl v~jednom z~prvních počítačů nalezen hmyz (štěnice).}. Tento software slouží jako nástroj pro zaznamenávání „problémů“, u~kterých lze definovat počáteční a koncový stav. Slouží nejen pro zaznamenávání chyb, ale také pro požadavky na novou funkcionalitu či vylepšení již stávající. Tyto problémy mohou procházet množstvím předdefinovaných stavů jako například „investigating“, „being worked on“, „near completion“ a podobně. Tyto záznamy problému lze různě kategorizovat (například frontend, backend), přidávat jim zadavatele, řešitele, přidávat komentáře a mnoho dalšího. Mezi nejznámější patří Bugzilla, Jira a Buggenie.\citepages{99-104}{Fogel2012}
+Spolu se systémy na správu verzí bývají propojené (ale mohou fungovat samostatně) i systémy na sledování chyb, neboli bug trackery\footnote{Pojem bug vystihující skrytou chybu vznikl na Harvardské univerzitě, kdy byl v~jednom z~prvních počítačů nalezen hmyz (štěnice).}. Tento software slouží jako nástroj pro zaznamenávání „problémů“, u~kterých lze definovat počáteční a koncový stav. Slouží nejen pro zaznamenávání chyb, ale také pro požadavky na novou funkcionalitu či vylepšení již stávající. Tyto problémy mohou procházet množstvím předdefinovaných stavů jako například „investigating“, „being worked on“, „near completion“ a podobně. Tyto záznamy problému lze různě kategorizovat (například frontend, backend), přidávat jim zadavatele, řešitele, přidávat komentáře a mnoho dalšího. Mezi nejznámější patří Bugzilla, Jira a Buggenie. \citepages{99-104}{Fogel2012}
 
 \section{Migrace na nový knihovní systém}
 
 \subsection{Migrace obecně}
 
-Migrací se rozumí proces, při kterém dochází k~přesunu aplikací integrovaného knihovního systému (dále jen ILS - Integrated Library System) z~jednoho ILS na jiný, který lépe vystihuje potřeby knihovny. V~minulosti se při migraci nahlíželo spíše na vývojové požadavky pro cirkulaci, katalogizaci, akvizici a podobně. Dnes se hodně přihlíží také k~službám, praxi a potřebám a očekáváním uživatele.\citepages{151-152}{bilal_2014}
+Migrací se rozumí proces, při kterém dochází k~přesunu aplikací integrovaného knihovního systému (dále jen ILS - Integrated Library System) z~jednoho ILS na jiný, který lépe vystihuje potřeby knihovny. V~minulosti se při migraci nahlíželo spíše na vývojové požadavky pro cirkulaci, katalogizaci, akvizici a podobně. Dnes se hodně přihlíží také k~službám, praxi a potřebám a očekáváním uživatele. \citepages{151-152}{bilal_2014}
 
-Důvody k~migraci mohou být různé:\citepages{152}{bilal_2014} % @TODO doplnit jeste M. Bartošek. Aleph: nový knihovní systém pro MU. Zpravodaj ÚVT MU. ISSN 1212-0901, 2002, roč. XIII, č. 2, s. 6-10., http://ics.muni.cz/bulletin/clanky_tisk/263.pdf
+Důvody k~migraci mohou být různé: \citepages{152}{bilal_2014} \citepages{6-10}{bartosek_2002}
 \mezera
 \begin{itemize}
 \item stávající knihovní systém je tradičního charakteru ve smyslu jeho uživatelského rozhraní a funkcí; knihovna se snaží modernizovat, vylepšit uživatelské rozhraní jak po stránce architektury, tak po stránce přívětivosti, chce nabídnout uživatelům discovery služby, které jsou založené na snadno přizpůsobitelných robustních modulech
@@ -323,11 +328,11 @@ Důvody k~migraci mohou být různé:\citepages{152}{bilal_2014} % @TODO doplnit
 Opakem nedostatečné funkcionality bývá jako další důvod k~migraci také příliš komplikovaný systém či personál, který s~ním reálně neumí zacházet. Hlavním důvodem pro výběr open source systému bývá hlavně cena z~hlediska TCO\footnote{Total Cost of Ownership (TCO) - metoda hodnocení nákladových variant, která vyjadřuje kompletní náklady na investici a její provoz.}. Volba konkrétního open source systému je pak ovlivněna jeho funkcionalitou.
 
 \subsection{Proces migrace}
-Úspěšnost migrace závisí na mnoha faktorech. Na začátku je nutné pochopit celý migrační proces a rozplánovat ho na několik etap, kde se mezi první etapy řadí čištění dat. Je nutné pochopit datová schémata záznamů (a procesy extrakce dat) ve všech modulech stávajícího systému, aby bylo možné určit, jak by mohly být tato schémata převedena do nového ILS. Je potřeba vědět, v~jakých formátech či stavech se extrahovaná data nacházejí, a také mít spolehlivou komunikaci s~poskytovatelem či podporou systému. Při extrakci dat musí být jasné, jak lze data interpretovat, což znamená napsat extrakční skripty tak, aby skutečně odpovídaly nové datové struktuře ILS.\citepages{43-48}{krbiwFHfrnvG2ZXf} Při splnění těchto bodů se přechází k~samotné migraci dat. Tuto migraci je vhodné provádět opakovaně s~různým množstvím dat a importovaná data okamžitě testovat na nějakých tomu určených testovacích stránkách. Po samotném převodu dat je na místě realizace několika testovacích strategií.\cite{32-35, 61-72}{Denar2015thesis} Celkový proces migrace si vyžaduje i svůj „člověkočas“, na který je potřeba být připraven.
+Úspěšnost migrace závisí na mnoha faktorech. Na začátku je nutné pochopit celý migrační proces a rozplánovat ho na několik etap, kde se mezi první etapy řadí čištění dat. Je nutné pochopit datová schémata záznamů (a procesy extrakce dat) ve všech modulech stávajícího systému, aby bylo možné určit, jak by mohly být tato schémata převedena do nového ILS. Je potřeba vědět, v~jakých formátech či stavech se extrahovaná data nacházejí, a také mít spolehlivou komunikaci s~poskytovatelem či podporou systému. Při extrakci dat musí být jasné, jak lze data interpretovat, což znamená napsat extrakční skripty tak, aby skutečně odpovídaly nové datové struktuře ILS. \citepages{43-48}{krbiwFHfrnvG2ZXf} Při splnění těchto bodů se přechází k~samotné migraci dat. Tuto migraci je vhodné provádět opakovaně s~různým množstvím dat a importovaná data okamžitě testovat na nějakých tomu určených testovacích stránkách. Po samotném převodu dat je na místě realizace několika testovacích strategií. \cite{32-35, 61-72}{Denar2015thesis} Celkový proces migrace si vyžaduje i svůj „člověkočas“, na který je potřeba být připraven. Čím větší je knihovna, která bude systém používat, tím víc uzpůsobení bude muset řešit. Nicméně, to stejné by bylo potřeba řešit i v případě proprietárního systému. Naopak menší knihovny mohou spíše než přizpůsobovat systém svým specifickým potřebám, přizpůsobovat knihovní procesy a harmonizovat je tak se systémem.
 
 Celkový proces migrace vyžaduje svůj čas jak na přípravu, tak na realizaci. V~přípravě nesmí chybět seznam problémů, kterými procházely jiné instituce, které podobnou migrací provedly. Také je vhodné mít případnou záložní „roll back“ strategii v~případě neúspěšného pokusu migrace.
 
-\subsection{Obecné požadavky na knihovní systém}
+\subsection{Obecné požadavky na knihovní systém} \label{sec:obecne_pozadavky_na_knihovni_system}
 Z~pohledu správce lze definovat jako požadavky na knihovní systém následující.
 Systém musí v~rámci funkcí poskytovat: \citepages{8-12}{bilal_c2014}
 
@@ -347,8 +352,7 @@ Modul pro MVS je určen na půjčování a vypůjčování jednotek mezi knihovn
 Tento modul může být součástí katalogizačního modulu a jeho hlavní funkcionalitou je tvorba a úprava hesel (jména autorů, titulků, seriálů, předmětů ve smyslu témat) pro bibliografické záznamy. Propojuje autoritní heslo s~autoritním záznamem pomocí standardizovaného seznamu hesel.
 
 \subsubsection{Katalogizační modul}
-Modul je určen pro zkatalogizování dokumentů a uložení metadat s~následným zařazením do knihovního fondu. Momentálně se využívá formát MARC21, kterého zápis byl donedávna definován pravidly AACR2 (angloamerická katalogizační pravidla verze 2).\citepages{26-27}{dilhofova_kratochvilova_lidmila_2013} Tyto pravidla jsou dnes nahrazena novým standardem RDA (Resource Description and Access), který je založen na konceptu FRBR (Functional Requirements for Bibliographic Record). To je taky důvod, proč jsou některé záznamy zapsané jinak. Je potřeba říct, že RDA obecně nereprezentuje ani pravidla, ani formát, ale spíš strukturovanou množinu myšlenek ve smyslu toho, jak by měl vypadat bibliografický záznam k~tomu, aby byly splněny potřeby uživatele.
-% @TODO \citepages{8}{} ocitovat Library Automation,Core Concepts and Practical Systems Analysis
+Modul je určen pro zkatalogizování dokumentů a uložení metadat s~následným zařazením do knihovního fondu. Momentálně se využívá formát MARC21, kterého zápis byl donedávna definován pravidly AACR2 (angloamerická katalogizační pravidla verze 2). \citepages{26-27}{dilhofova_kratochvilova_lidmila_2013} Tyto pravidla jsou dnes nahrazena novým standardem RDA (Resource Description and Access), který je založen na konceptu FRBR (Functional Requirements for Bibliographic Record). To je taky důvod, proč jsou některé záznamy zapsané jinak. Je potřeba říct, že RDA obecně nereprezentuje ani pravidla, ani formát, ale spíš strukturovanou množinu myšlenek ve smyslu toho, jak by měl vypadat bibliografický záznam k~tomu, aby byly splněny potřeby uživatele. \citepages{8}{bilal_c2014}
 RDA se stávají fakticky závaznými pravidly v~ČR až ve chvíli, kdy chce instituce například dotaci z~VISKu\footnote{Dotační program Ministerstva kultury ČR - Veřejné informační služby knihoven (VISK).}, kdy musí přispívat do Souborného katalogu České republiky, protože musí dodržovat standardy a pravidla pro to daná a podobně.
 
 Celý knihovní systém by měl interně podporovat správu digitálních informačních artefaktů, jako  elektronických knih, elektronických periodik a další, a také mít možnost vytvářet nové multimediální materiály (video, DVD, Blu-Ray a podobně).
@@ -359,17 +363,18 @@ Celý knihovní systém by měl interně podporovat správu digitálních inform
 
 \subsection{O~projektu}
 
-Aktuálnost problematiky tkví v~tom, že společnost Ex Libris, která vyvíjí knihovní systém Aleph, přestává tomuto produktu poskytovat podporu a zároveň vyvíjí produkt jiný, jenž však funguje výhradně v~cloudu\footnote{Cloud je jistá metafora pro Internet, která znamená ukládání a zpřístupňování dat a programů na Internet místo na lokálním stroji.}. Jelikož knihovny Masarykovy univerzity používají jako knihovní systém právě Aleph, je potřeba situaci zhodnotit z~různých pohledů.
+Aktuálnost problematiky tkví v tom, že knihovní systém Aleph, který vyvíjí společnosti Ex Libris, se za poslední roky nijak zásadně nevyvíjí a přestává tak stačit uspokojovat požadavky knihoven. Existuje cesta migrace k novému produktu stejné společnosti, ten však funguje výhradně v cloudu\footnote{Cloud je jistá metafora pro Internet, která znamená ukládání a zpřístupňování dat a programů na Internet místo na lokálním stroji.}. Jelikož knihovny Masarykovy univerzity používají jako knihovní systém právě Aleph, je potřeba situaci zhodnotit z~různých pohledů.
 
-Mimo fakt, že data již nebudou ukládána lokálně, tj. data již nebudou uložena na strojích patřících provozovateli\footnote{Možné politické a autorsko-právní problémy.}, ale v~cloudu (navíc pravděpodobně mimo jurisdikci EU)\citepages{16-17}{breeding_2012}, to znamená, že knihovny a další instituce využívající knihovních systémů (televize, archivy) budou mít menší možnosti úprav a rozšíření své instance systému. Tyto problémy by mohla vyřešit právě migrace na open source knihovní systém. Jedním z~kandidátů je open source integrovaný knihovní systém Koha, který tato studie proveditelnosti rozebírá. 
+Mimo fakt, že data již nebudou ukládána lokálně, tj. data již nebudou uložena na strojích patřících provozovateli\footnote{Možné politické a autorsko-právní problémy.}, ale v~cloudu (navíc pravděpodobně mimo jurisdikci EU) \citepages{16-17}{breeding_2012}, to znamená, že knihovny a další instituce využívající knihovních systémů (televize, archivy) budou mít menší možnosti úprav a rozšíření své instance systému. Tyto problémy by mohla vyřešit právě migrace na open source knihovní systém. Jedním z~kandidátů je open source integrovaný knihovní systém Koha, který tato studie proveditelnosti rozebírá. 
 
 Dalším kandidátem, uváží-li se velikost knihoven MU a open source systémy, které prošly několikaletým vývojem, by byl systém Evergreen. Ten je však orientován na anglosaský svět, což může přinášet různé problémy způsobené omezenou podporou pro abecedy s~diakritikou. Jelikož nedisponují balíčky, je problematický i proces aktualizací%\footnote{Installing the Evergreen server - http://evergreen-ils.org/documentation/install/}.
  Systém nebyl vybrán pro studii také pro nedostupnost technické podpory v~ČR a relativně náročnou instalaci %\footnote{Installing the Evergreen server - http://evergreen-ils.org/documentation/install/}
-  systému. Systém kromě toho nepodporuje stahování autoritních záznamů protokolem Z39.50.% @TODO ocitovat Otevřené knihovní systémy v českých knihovnách, http://itlib.cvtisr.sk/buxus/docs/10_Otevrene%20knihovni.pdf
+  systému. Systém kromě toho nepodporuje stahování autoritních záznamů protokolem Z39.50. \citepages{10-14}{denar_2015}
  Navíc má Evergreen desktopového klienta, což činí správu náročnější.\footnote{Evergreen klient - https://evergreen-ils.org/egdownloads/}
+ 
  \mezera
- \citace{Z~přehledů uživatelů obou systémů je vidět, že existuje velká řada konsorcií, které daly přednost systému Koha před Evergreenem, také akademické a speciální knihovny používají systém Koha častěji než Evergreen.}
- \mezera% @TODO pridat citaci na ŽABIČKOVÁ, Petra. Nejrozšířenější open source knihovní systémy a jejich použitelnost. Duha [online]. 2014, roč. 28, č. 1 [cit. 2016-04-17]. Dostupný z WWW: <http://duha.mzk.cz/clanky/nejrozsirenejsi-open-source-knihovni-systemy-jejich-pouzitelnost>. ISSN 1804-4255.
+ \citace{Z~přehledů uživatelů obou systémů je vidět, že existuje velká řada konsorcií, které daly přednost systému Koha před Evergreenem, také akademické a speciální knihovny používají systém Koha častěji než Evergreen.} \citesource{zabickova_2014}
+ \mezera
 
 Další důvod podporující migraci na open source je fakt, že knihovny platí nezanedbatelné částky za podporu stávajícího systému, což je oproti open source systémům markantní rozdíl, který lze investovat do smysluplnějších projektů spojených s~cíli knihoven jakožto vzdělávacími, informačními a kulturními institucemi. Investovat do open source projektů je dnes běžnou praxí i v~komerční sféře, jelikož si firmy začaly uvědomovat benefity, které díky těmto projektům čerpají od komunity zpátky. \citepages{129-132}{Fogel2012}
 
@@ -394,13 +399,13 @@ Celou studii proveditelnosti lze rozdělit na několik etap. Tou první je průz
 \item jak je řešena metodologická podpora při věcné a jmenné katalogizaci
 \end{itemize}
 
-Druhou etapou studie je zjištění, jak lze získané informace aplikovat v~novém systému, což je vlastně výstupem neboli produktem celé studie. Do další etapy patří rozpracování zjištěného do sekcí studie (viz. kapitola 1.2 Studie proveditelnosti), na což navazuje poslední etapa v~této předprojektové fázi, a to evaluace všech sekcí studie ve formě podrobného závěru projektu. % @TODO pridat label na kapitolu
+Druhou etapou studie je zjištění, jak lze získané informace aplikovat v~novém systému, což je vlastně výstupem neboli produktem celé studie. Do další etapy patří rozpracování zjištěného do sekcí studie (viz. kapitola \ref{sec:studie_proveditelnosti} Studie proveditelnosti), na což navazuje poslední etapa v~této předprojektové fázi, a to evaluace všech sekcí studie ve formě podrobného závěru projektu.
 
 \section{Management projektu, řízení lidských zdrojů a harmonogram projektu}
 
 \subsection{Řízení lidských zdrojů}
 
-Zásady dobrého managementu projektu jsou již obecně sepsány v~kapitole 1.1 Projektové řízení jako takové. Při řízení lidských zdrojů na tomto projektu je potřeba brát v~úvahu celkový časový harmonogram a mít detailně rozpracovaný plán realizace projektu. Přejde-li se k~samotné realizaci, je potřeba určit skupiny lidí, kteří budou zodpovědní za určitou část realizace.  % @TODO pridat label na kapitolu
+Zásady dobrého managementu projektu jsou již obecně sepsány v~kapitole \ref{sec:projektove_rizeni_jako_takove} Projektové řízení jako takové. Při řízení lidských zdrojů na tomto projektu je potřeba brát v~úvahu celkový časový harmonogram a mít detailně rozpracovaný plán realizace projektu. Přejde-li se k~samotné realizaci, je potřeba určit skupiny lidí, kteří budou zodpovědní za určitou část realizace.
 
 První skupinu by tvořil personál, který rozumí metadatům a standardům, minimálně MARC21 a RDA, který by za dohledu metodologické podpory ÚVT MU prováděl čištění dat. Je potřeba se soustředit zejména na umístění dat na správná místa, do správných polí a zapisovat data ve vhodném kódování, které podporuje i abecedy jiných jazyků. Při čištění by měly být odstraněny překlepy a nesprávné formáty stringů, viz standardy. Skupina 1 a skupina 2 by měly spolupracovat, protože množství dat k~pročištění je nemalé, a to tak, že kde to půjde, bude skupina 2 vytvářet scripty pro hromadnou úpravu záznamů na základě pravidel daných skupinou 1.
 
@@ -413,10 +418,9 @@ Při řízení lidských zdrojů je také potřeba myslet na vývojový tým, te
 Projektový manager by měl udržovat stálou komunikaci mezi těmito skupinami a zajistit, aby každý chápal, co obnáší proces migrace a proč k~němu vlastně dochází. Musí být vidět, že vedení projektu je přesvědčeno o~přínosu migrace a že si stojí za svým rozhodnutím. 
 
 \subsection{Harmonogram projektu}
-Celková realizace projektu vyžaduje svůj čas a je potřeba na to vyčlenit lidské a materiální zdroje. Lidské zdroje jsou omezeny pracovním časem, jelikož musí řešit i běžnou pracovní agendu, materiální zdroje zase vyžadují přípravu serverů, jak těch testovacích, určených pro nový systém, tak i těch produkčních pro export dat. Je tedy potřeba zajistit dostatečně velké úložiště dat pro nový systém, výkon a zachovat bezpečnost dat (licence, zákony).Celkově lze rozdělit pracovní skupiny dle následujících tabulek.
+Celková realizace projektu vyžaduje svůj čas a je potřeba na to vyčlenit lidské a materiální zdroje. Lidské zdroje jsou omezeny pracovním časem, jelikož musí řešit i běžnou pracovní agendu, materiální zdroje zase vyžadují přípravu serverů, jak těch testovacích, určených pro nový systém, tak i těch produkčních pro export dat. Je tedy potřeba zajistit dostatečně velké úložiště dat pro nový systém, výkon a zachovat bezpečnost dat (licence, zákony). Celkově lze rozdělit pracovní skupiny dle následujících tabulek.
 
-% @TODO Pridat tabulku - Rozdělení pracovních skupin v procesu realizace projektu
-\begin{table}[c]
+\begin{table}[H]
     \centering
     \begin{tabular}{| p{3cm} | p{8.3cm} |}
     \hline
@@ -464,7 +468,7 @@ Celková realizace projektu vyžaduje svůj čas a je potřeba na to vyčlenit l
     \caption{Rozdělení pracovních skupin v~procesu realizace projektu - Přípravná fáze}
 \end{table}
     
-\begin{table}[c]
+\begin{table}[H]
     \centering
     \begin{tabular}{| p{3cm} | p{8.3cm} |}
     \hline
@@ -512,7 +516,7 @@ Celková realizace projektu vyžaduje svůj čas a je potřeba na to vyčlenit l
     \caption{Rozdělení pracovních skupin v~procesu realizace projektu - Předimplementační fáze}
 \end{table}
     
-\begin{table}[c]
+\begin{table}[H]
     \centering
     \begin{tabular}{| p{3cm} | p{8.3cm} |}
     \hline
@@ -560,7 +564,7 @@ Celková realizace projektu vyžaduje svůj čas a je potřeba na to vyčlenit l
     \caption{Rozdělení pracovních skupin v~procesu realizace projektu - Imlementační fáze}
 \end{table}
 
-\begin{table}
+\begin{table}[H]
     \centering
     \begin{tabular}{| p{3cm} | p{8.3cm} |}
     \hline
@@ -608,7 +612,7 @@ Celková realizace projektu vyžaduje svůj čas a je potřeba na to vyčlenit l
     \caption{Rozdělení pracovních skupin v~procesu realizace projektu - Testovací fáze}
 \end{table}
 
-\begin{table}
+\begin{table}[H]
     \centering
     \begin{tabular}{| p{3cm} | p{8.3cm} |}
     \hline
@@ -656,7 +660,7 @@ Celková realizace projektu vyžaduje svůj čas a je potřeba na to vyčlenit l
     \caption{Rozdělení pracovních skupin v~procesu realizace projektu - Post-imlementační fáze}
 \end{table}
 
-\begin{table}
+\begin{table}[H]
     \centering
     \begin{tabular}{| p{3cm} | p{8.3cm} |}
     \hline
@@ -691,9 +695,9 @@ Celková realizace projektu vyžaduje svůj čas a je potřeba na to vyčlenit l
 \end{table}
 
 \section{Analýza trhu}
-Momentálně se Masarykova univerzita skládá z~devíti univerzitních knihoven, které sestávají z~vyše 110 dílčích knihoven. Dohromady spravují cca 2 000 000 knihovních jednotek a obsluhují cca 50 000 uživatelů. MU nemá žádnou ústřední knihovnu.
+Momentálně se Masarykova univerzita skládá z~devíti univerzitních knihoven, které sestávají z více než 110 dílčích knihoven. Dohromady spravují cca 2 000 000 knihovních jednotek a obsluhují cca 50 000 uživatelů. MU nemá žádnou ústřední knihovnu.
 
-Při provádění průzkumu v~knihovnách MU vzešlo několik potřeb a požadavků. Tyto požadavky jsou jak hlavní kritéria, která musí nový systém splňovat, tak i potřeby, které je potřeba splnit v~rámci kvalitního designu služeb pro uživatele. K~těmto požadavkům na systém se řadí i obecné požadavky na knihovní systém, definované v~kapitole 1.4.3 Obecné požadavky na knihovní systém. % @TODO pridat label na kapitolu
+Při provádění průzkumu v~knihovnách MU vzešlo několik potřeb a požadavků. Tyto požadavky jsou jak hlavní kritéria, která musí nový systém splňovat, tak i potřeby, které je potřeba splnit v~rámci kvalitního designu služeb pro uživatele. K~těmto požadavkům na systém se řadí i obecné požadavky na knihovní systém, definované v~kapitole \ref{sec:obecne_pozadavky_na_knihovni_system} Obecné požadavky na knihovní systém.
 
 \subsection{Potřeby a požadavky akvizice}
 
@@ -754,9 +758,16 @@ Při provádění průzkumu v~knihovnách MU vzešlo několik potřeb a požadav
 \item podpora velkého počtu knihovních jednotek, uživatelů, poboček, podpoboček
 \end{itemize}
 
-Momentálně lze definovat vztahy jednotlivých systému takto:
+Definici vztahů jednotlivých systému lze vidět na obrázku \ref{fig:aleph}.
 \mezera
-% @TODO pridat schema Alephu - Schéma propojení jednotlivých částí systému Aleph na MU
+
+\begin{figure}
+    \centering
+	\def\svgwidth{1.4\textwidth}
+    \input{aleph.pdf_tex}
+	\caption{Schéma propojení jednotlivých částí systému Aleph na MU.}
+	\label{fig:aleph}
+\end{figure}
 
 \subsection{Další požadavky}
 
@@ -849,7 +860,7 @@ Veškeré požadavky vycházejí z~šestiměsíčního zkoumání fakultních kn
 Každý okruh knihovních procesů byl mapován samostatně, nejdříve se zkoumaly služby u~referenčních pultů, pak akvizice, katalogizace a automatizace. Následně byly zkoumány zahraniční knihovny a instituce, které migrací prošli formou rešerší a osobní či e-mailové komunikace v~rámci komunitního maillistu\footnote{E-mailový chat komunity.
 .}. 
 
-Tak jako každý knihovní systém, i Koha splňuje základní funkcionalitu jednotlivých modulů definovaných v~kapitole 1.4.3 Obecné požadavky na knihovní systém.% @TODO label na kapitolu
+Tak jako každý knihovní systém, i Koha splňuje základní funkcionalitu jednotlivých modulů definovaných v~kapitole \ref{sec:obecne_pozadavky_na_knihovni_system} Obecné požadavky na knihovní systém.
 
 Při prováděném výzkumu bylo zjištěno několik problémů a menších či větších nedostatků. Tyto nedostatky se snaží tato studie vyřešit open source řešeními. Studie počítá se systémem Koha ze stejných důvodů jako jiné knihovny (s~různými komerčními knihovními systémy), které už migrací prošly. Mezi hlavní důvody lze zařadit: 
 
@@ -878,10 +889,11 @@ Potřeby a požadavky MU zpracované v~této kapitole je možné rozpracovat det
 
 Modul cirkulací je v~Koha velmi přívětivý a flexibilní. Uživatele nebo výpůjčku lze dohledat načtením čárového kódu nebo zadáním názvu či kódu jednotky, v~případě uživatele zadáním jména. Výstupem této akce jsou nejdůležitější údaje o~hledaném, například datum vypůjčení dané jednotky, datum pro vrácení jednotky, možnost prodloužit jednu nebo více výpůjček, místo půjčení, typ jednotky a podobně. U~vracení stačí načíst čárové kódy, promíjet upomínky nebo vracet knihy z~biblioboxů.
 
-\begin{figure}[H]
+\begin{figure}
     \centering
-    \includegraphics[width=1.0\textwidth]{resources/vypujcky}
-    \caption{Výpůjčky čtenáře v~systému Koha}
+    \includegraphics[width=0.5\textwidth]{resources/vypujcky_left}
+    \caption{Výpůjčky čtenáře v systému Koha}
+    \label{vypujcky}
 \end{figure}
 
 Koha umí uživatele předem notifikovat pomocí emailu nebo SMS, kde správa šablon různých zpráv je samozřejmostí. Těmto notifikacím lze různě nastavovat například periodicitu a další vlastnosti.
@@ -899,26 +911,23 @@ Tato funkcionalita vyžaduje hlubší šetření. Momentálně se databáze uži
 Meziknihovní výpůjční služba funguje v~Koha jako běžná výpůjčka, ale pro speciální typ uživatele - knihovnu. Knihovny jsou speciální kategorie čtenářů s~odpovídajícími parametry, jako cena za nula a pravidly pro výpůjčky. Takže se provede klasická výpůjčka, která se následně odešle poštou. Lze vygenerovat report, který přehledně zobrazí, jaká knihovna od kdy má daný dokument. Příchozí MVS je řešena specifickým typem dokumentu, který má nastaven kratší dobu výpůjčky, navěšeno hlášení při návratu a specifickou katalogizační šablonu. Takže dokument je přijat, rychle zkatalogizován, do jednoho pole je zapsáno, od koho je, a půjčen čtenáři. Opět je k~dispozici report, který vypisuje, jaké dokumenty v~rámci příchozích MVS jsou k~dispozici, kdo je má, atd. Toto fungování nemusí zcela vyhovovat MU a celou agentu bude pravděpodobně potřeba upravit nebo použít MVS modul\footnote{ILL modul Koha - https://github.com/PTFS-Europe/koha/tree/ill\_master}.
 
 \subsection{Potřeby a požadavky uživatelů}
-Celý problém lze rozdělit na dvě části, vnitřní a vnější. Tou vnitřní částí je rozhraní systému, se kterým měli potíže zaměstnanci. Tento problém lze v~systému Koha vyřešit velmi elegantně a prakticky bez bariér. Jelikož je rozhraní systému webové, lze ho upravovat pomocí technologií HTML5 a CSS3 spolu s~JavaScriptovou knihovnou jQuery, která dodá celému rozhraní uživatelskou přívětivost (efekty místo statického loadingu, asynchronní načítání obsahu, hezké zobrazování notifikací, slideUp efekty místo klasického smazání části obsahu a mnoho dalšího). Právě JavaScript je jednoduché řešení, po kterém knihovny sahají, potřebují-li si přizpůsobit nějaké řešení svým potřebám.\citepages{80-82}{Denar2015thesis} Do každé stránky rozhraní lze vkládat libovolný javascript, takže upravit lze prakticky všechno. Díky jQuery lze tedy definovat  vlastní události a přiřazovat k~nim nové či pozměněné akce nebo měnit či přidávat efekty.\citepages{3-9}{IYiYMQHMhgWYsu4q}
+Celý problém lze rozdělit na dvě části, vnitřní a vnější. Tou vnitřní částí je rozhraní systému, se kterým měli potíže zaměstnanci. Tento problém lze v~systému Koha vyřešit velmi elegantně a prakticky bez bariér. Jelikož je rozhraní systému webové, lze ho upravovat pomocí technologií HTML5 a CSS3 spolu s~JavaScriptovou knihovnou jQuery, která dodá celému rozhraní uživatelskou přívětivost (efekty místo statického loadingu, asynchronní načítání obsahu, hezké zobrazování notifikací, slideUp efekty místo klasického smazání části obsahu a mnoho dalšího). Právě JavaScript je jednoduché řešení, po kterém knihovny sahají, potřebují-li si přizpůsobit nějaké řešení svým potřebám. \citepages{80-82}{Denar2015thesis} Do každé stránky rozhraní lze vkládat libovolný javascript, takže upravit lze prakticky všechno. Díky jQuery lze tedy definovat  vlastní události a přiřazovat k~nim nové či pozměněné akce nebo měnit či přidávat efekty. \citepages{3-9}{IYiYMQHMhgWYsu4q}
 
 Vnější část problému je uživatelské rozhraní, tedy OPAC\footnote{Online Public Access Catalog
 }, se kterým uživatelé neumí pořádně pracovat. Při provádění výzkumu měl autor studie možnost vyzkoušet si práci referenčního knihovníka na Filozofické fakultě Masarykovy univerzity, z~čehož vyplynulo, že uživatelé OPACu opakovaně nebyli schopni dohledat informace, které potřebovali, a žádali o~pomoc referenční knihovníky. Většinou to byly problémy jako nedohledatelná kniha na regálu, nemožnost inteligentně dohledat knihu na nějaké téma v~ruském jazyce a podobně.
 
 Problém s~jazyky byl ten, že OPAC nabízel například 3 jazyky z~určitého MARC pole, zatímco se reálně prohledávalo pole jiné. V~době psaní této práce existovala někde v~rozhraní tabulka se zkratkami jazyka, které bylo možné použít pro prohledávání. Uživatelé, kteří o~tabulce nevěděli, byli nuceni zvolit jeden z~jazyků, spustit vyhledávání a v~URL změnit zkratku jazyku za jinou, kterou si tipli, že je správná pro daný jazyk.
 
-Tyto problémy lze v~systému Koha vyřešit zaprvé správným zaindexováním dat a zadruhé uživatelsky přívětivým OPACem, kterým se osvědčil být VuFind vyvíjený jako open source na Villanova University.\citepages{12}{Coufalova2009} Tento OPAC používá drtivá většina knihoven v~České republice provozující systém Koha (zbytek knihoven je maximálně nenáročných a zůstali na interním Koha OPACu). VuFind umožňuje uživatelům vyhledávat v~celém fondu knihovny a nabízí i doplňkové služby a to celé přehledně a jednoduše. VuFind je modulární, o~čemž svědčí i fakt, že je na něm postaven český Centrální portál knihoven\footnote{Centrální portál Knihoven (CPK) - https://knihovny.cz/}, který poskytuje přístup k~fondům a službám všech zapojených knihovních i neknihovních institucí v~rámci republiky. Centrální portál knihoven je vyvíjen jako open source a jeho moduly jsou dostupné v~repozitáři na Githubu\footnote{CPK repozitář https://github.com/moravianlibrary/VuFind-2.x
-}. Lze se tak inspirovat řešením, které prošlo uživatelským testováním a je založeno na uživatelsky přívětivém moderním designu. % @TODO pridat 2 citace, Aktivity českého knihovnictví  http://koncepce.knihovna.cz/aktivity/ a Smlouva o dílo, https://www.mlp.cz/cz/o-knihovne/zverejnene-smlouvy/?knihovna=&knihovna=0, Prosinec 2015
+Tyto problémy lze v~systému Koha vyřešit zaprvé správným zaindexováním dat a zadruhé uživatelsky přívětivým OPACem, kterým se osvědčil být VuFind vyvíjený jako open source na Villanova University. \citepages{12}{Coufalova2009} Tento OPAC používá drtivá většina knihoven v~České republice provozující systém Koha (zbytek knihoven je maximálně nenáročných a zůstali na interním Koha OPACu). VuFind umožňuje uživatelům vyhledávat v~celém fondu knihovny a nabízí i doplňkové služby a to celé přehledně a jednoduše. VuFind je modulární, o~čemž svědčí i fakt, že je na něm postaven český Centrální portál knihoven\footnote{Centrální portál Knihoven (CPK) - https://knihovny.cz/}, který poskytuje přístup k~fondům a službám všech zapojených knihovních i neknihovních institucí v~rámci republiky. Centrální portál knihoven je vyvíjen jako open source a jeho moduly jsou dostupné v~repozitáři na Githubu\footnote{CPK repozitář https://github.com/moravianlibrary/VuFind-2.x
+}. Lze se tak inspirovat řešením, které prošlo uživatelským testováním a je založeno na uživatelsky přívětivém moderním designu. \citesource{aktivity_2016}  \citesource{smlouva_o_dilo_2015}
 
-VuFind je navíc discovery systém, který lze v~rámci Masarykovy univerzity využít k~zapojení externích elektronických informačních zdrojů, což OPAC Kohy neumožňuje. VuFind je také stavěný na práci se Solrem, což je databázový systém vhodný pro práci s~Big Data\footnote{Víc informací o~BigData k~nalezení v~- BigData, VIktorMayer citace
-}. Podle Alfreda Serafiniho\footnote{Freelance software konzultant, autor publikace Apache Solr Beginner's Guide (ISBN 978-1-78216-252-0).} je to vhodný nástroj pro prohledávání velkého množství read-only metadat, kde jako příklady využití uvádí právě VuFind a Internet Archive\footnote{Internet Archive - http://www.archive.org/}. % @TODO pridat citaci na Serafini, A 2013, Apache Solr Beginner's Guide, Birmingham: Packt Publishing, eBook Collection (EBSCOhost), EBSCOhost, viewed 31 March 2016. s.20, http://search.ebscohost.com/login.aspx?direct=true&db=nlebk&AN=680715&lang=cs&site=ehost-live&ebv=EB&ppid=pp_20
+VuFind je navíc discovery systém, který lze v~rámci Masarykovy univerzity využít k~zapojení externích elektronických informačních zdrojů, což OPAC Kohy neumožňuje. VuFind je také stavěný na práci se Solrem, což je databázový systém vhodný pro práci s~Big Data. Podle Alfreda Serafiniho\footnote{Freelance software konzultant, autor publikace Apache Solr Beginner's Guide (ISBN 978-1-78216-252-0).} je to vhodný nástroj pro prohledávání velkého množství read-only metadat, kde jako příklady využití uvádí právě VuFind a Internet Archive\footnote{Internet Archive - http://www.archive.org/}. \citepages{20}{68071520130101}
 
-% @TODO nahore opravit footnote pro BigData
-
-Idea rozhraní VuFind je založena na teorii, že uživatele nezajímá cesta, jakou se k~dokumentu dostane, ale v~jaké formě je k~dispozici a jak je možné ho získat v~rámci instituce.\citepages{20}{Coufalova2009} Lze tedy tvrdit, že katalog, který slouží knihovníkům, nemůže být stejný jako OPAC\citepages{5}{Schmidt2012}, jelikož ten má být designován pro uživatele, kteří s~ním interagují. OPAC je veřejnou částí knihovního systému, tedy vstupní bránou uživatele, která musí být uživatelsky přívětivá, musí tedy splnit potřeby uživatele, které lze vydefinovat pomoci Maslowovy pyramidy webdesignu\citepages{156-179}{rezac_2014}, kam patří důvěryhodnost, radost z~používání, vytvoření vazby, přesvědčivost, použitelnost, přístupnost, dostupnost, nalezitelnost a smysluplnost. 
+Idea rozhraní VuFind je založena na teorii, že uživatele nezajímá cesta, jakou se k~dokumentu dostane, ale v~jaké formě je k~dispozici a jak je možné ho získat v~rámci instituce. \citepages{20}{Coufalova2009} Lze tedy tvrdit, že katalog, který slouží knihovníkům, nemůže být stejný jako OPAC \citepages{5}{Schmidt2012}, jelikož ten má být designován pro uživatele, kteří s~ním interagují. OPAC je veřejnou částí knihovního systému, tedy vstupní bránou uživatele, která musí být uživatelsky přívětivá, musí tedy splnit potřeby uživatele, které lze vydefinovat pomoci Maslowovy pyramidy webdesignu \citepages{156-179}{rezac_2014}, kam patří důvěryhodnost, radost z~používání, vytvoření vazby, přesvědčivost, použitelnost, přístupnost, dostupnost, nalezitelnost a smysluplnost. 
 
 Tak jako Koha, i VuFind je postaven na webových technologiích, což dává designerům a softwarovým architektům obrovské možnosti v~rámci přizpůsobení veřejného rozhraní. Pomocí HTML5 lze rozhraní zpřístupnit i zrakově či jinak handicapovaným uživatelům, kterým se tak OPAC zpřístupní pro jejich speciální čtecí zařízení. \citepages{19-27}{Hogan2011}
 
-Zajímavostí je také budoucnost těchto technologíí, která vnáší do oboru knihovnictví sémantičnost v~rámci webového rozhraní. Díky HTML5 a sémantickým technologiím, jako je například mikroformát RDF (a také samotná podstata sémantiky v~HTML5), je možné dávat jednotlivým částem webu význam, což z~něho dělá lépe prohledávatelný web na Internetu, na což vzápětí navazuje i chytré vyhledávání na webu za využití umělé inteligence.\citepages{70-77}{fay_sauers_2012} Takto lze OPAC připravit na budoucnost webu 3.0, respektive webu 4.0.
+Zajímavostí je také budoucnost těchto technologíí, která vnáší do oboru knihovnictví sémantičnost v~rámci webového rozhraní. Díky HTML5 a sémantickým technologiím, jako je například mikroformát RDF (a také samotná podstata sémantiky v~HTML5), je možné dávat jednotlivým částem webu význam, což z~něho dělá lépe prohledávatelný web na Internetu, na což vzápětí navazuje i chytré vyhledávání na webu za využití umělé inteligence. \citepages{70-77}{fay_sauers_2012} Takto lze OPAC připravit na budoucnost webu 3.0, respektive webu 4.0.
 
 VuFind je navíc založen na myšlence responsivního designu a využívá webového frameworku  Bootstrap 3, je tedy responzivní ve smyslu přístupnosti na zařízeních s~různou uhlopříčkou a rozlíšením, takže je stejně použitelný jak na desktopech, tak i na tabletech či smartphonech.
 
@@ -932,18 +941,18 @@ Nejen obálky knih, ale i naskenované obsahy a indexy lze zpřístupnit ve VuFi
 \subsubsection{Automatická oprava překlepů a nabídka alternativ při neúspěšném hledání}
 Tuto funkcionalitu lze zapnout vyhledávací komponentou \code{spellcheck}.
 
-\subsection{Systémové požadavky}
+\subsection{Systémové požadavky} \label{sec:systemove_pozadavky}
 Následující část rozebírá hlavní systémové požadavky na knihovní systém Masarykovy univerzity.
 
 \subsubsection{Velký počet knihovních jednotek, uživatelů, poboček, podpoboček}
 V~této chvíli je potřeba, aby nový systém zvládl cca 2 miliony knihovních jednotek, cca 50 000 aktuálně registrovaných  uživatelů.
 
-Toto kritérium by nemělo být problémem, jelikož např. síť 900 aktivních knihoven v~Turecku (z~celkového počtu 1 126) obsluhuje 13 700 000 knihovních jednotek a 1 220 000 aktivních uživatelů v~jedné instalaci systému Koha.% @TODO add citation on Mail http://comments.gmane.org/gmane.comp.misc.koha/40306
+Toto kritérium by nemělo být problémem, jelikož např. síť 900 aktivních knihoven v~Turecku (z~celkového počtu 1 126) obsluhuje 13 700 000 knihovních jednotek a 1 220 000 aktivních uživatelů v~jedné instalaci systému Koha. \citesource{koha_komunita_2016}
  Používají na to 14 produkčních serverů, 4 testovací, MariaDB a Galera Cluster se čtyrmi nody, 8 Apache serverů a jeden Zebra server. 
 
-Koha je navíc škálovatelná\footnote{Schopnost systému pružně reagovat na vzrůstající nebo klesající nároky uživatelů na výkon systému.}, lze tedy tvrdit, že počet obsloužených jednotek a uživatelů je záležitost technická. Toto škálování (horizontální i vertikální)\citepages{1-4}{6847479} je možné provádět například pomocí open source produktů OpenStack a OpenShift společnosti RedHat. 
+Koha je navíc škálovatelná\footnote{Schopnost systému pružně reagovat na vzrůstající nebo klesající nároky uživatelů na výkon systému.}, lze tedy tvrdit, že počet obsloužených jednotek a uživatelů je záležitost technická. Toto škálování (horizontální i vertikální) \citepages{1-4}{6847479} je možné provádět například pomocí open source produktů OpenStack a OpenShift společnosti RedHat. 
 
-OpenStack řeší infrastrukturu (infrastructure as a service - IaaS), to znamená poskytování bootovatelného virtuálního stroje, networkingu, datového úložiště a dalších.\citepages{14-16}{breeding_2012} OpenShift jako platforma (platform as a service - PaaS) zase řeší rychlý deploy LAMP\footnote{Linux, Apache, MySQL/MariaDb, PHP/Perl/Python.} aplikací.
+OpenStack řeší infrastrukturu (infrastructure as a service - IaaS), to znamená poskytování bootovatelného virtuálního stroje, networkingu, datového úložiště a dalších. \citepages{14-16}{breeding_2012} OpenShift jako platforma (platform as a service - PaaS) zase řeší rychlý deploy LAMP\footnote{Linux, Apache, MySQL/MariaDb, PHP/Perl/Python.} aplikací.
 
 \subsubsection{Flexibilita}
 Jedním ze základních požadavků na knihovní systém v~knihovnách Masarykovy univerzity je vysoká potřeba vše členit do složitějších hierarchických struktur (uživatelé, katalogy, pobočky). Velké univerzity nemají typicky jednu knihovnu, ale celou síť navzájem propojených knihoven, kterou musí být systém schopny obsluhovat jednotně a současně podporovat jejich odlišnosti. Masarykova univerzita má 10 fakultních knihoven, které momentálně operují nad společným systémem/katalogem, fungují však do značné míry samostatně. Mají odlišné zejména otevírací doby, statusy knih, výpůjční doby a pokuty, akvizice a fakturace jednotek. Společnou však mají centrální bázi uživatelů s~možností lokální registrace na pobočkách. 
@@ -963,34 +972,37 @@ Z~pohledu systémové vrstvy existují při instalaci systému Koha tři možnos
 \end{itemize}
 
 Samostatná instalace je nezávislá ve všech směrech.
-Instalace pro jednotlivé knihovny mohou zjednodušit správu, protože vše běží na jednom serveru. To znamená, že aktualizace a správa systému se dělá jen jednou. Navíc je využita jedna databáze, takže existuje teoretická možnost automatizované synchronizace subdatabází jednotlivých instancí.\citepages{19-21}{breeding_2012}
+Instalace pro jednotlivé knihovny mohou zjednodušit správu, protože vše běží na jednom serveru. To znamená, že aktualizace a správa systému se dělá jen jednou. Navíc je využita jedna databáze, takže existuje teoretická možnost automatizované synchronizace subdatabází jednotlivých instancí. \citepages{19-21}{breeding_2012}
 
-Jednou z~možností, které by nejvíce vyhovovaly stávající architektuře systému Aleph a systémům, které je potřeba zapojit, se jeví schéma na obrázku 3. Finální návrh struktur instalace však vyjde až z~kompletních informací ohledně rozdělení jednotlivých knihoven a poboček a požadavků na jejich samostatnost a začlenění do skupin a hierarchie.
+Jednou z~možností, které by nejvíce vyhovovaly stávající architektuře systému Aleph a systémům, které je potřeba zapojit, se jeví schéma na obrázku \ref{fig:koha}. Finální návrh struktur instalace však vyjde až z~kompletních informací ohledně rozdělení jednotlivých knihoven a poboček a požadavků na jejich samostatnost a začlenění do skupin a hierarchie.
 
-% @TODO add image Možná akrchitektura systémů MU při využití open source řešení Koha
+\begin{figure}
+    \centering
+	\def\svgwidth{1.27\textwidth}
+    \input{koha.pdf_tex}
+	\caption{Možná akrchitektura systémů MU při využití open source řešení Koha.}
+	\label{fig:koha}
+\end{figure}
 
 \subsubsection{Robustnost a vysoká provozní spolehlivost systému}
 Tak robustní systém jako ILS pro MU může být náchylný k~výpadkům, spravuje-li velké množství dat a dotazů. Tomu je potřeba zabránit nebo to alespoň omezit na minimum. V~případě výpadku sítě či napájení je nutné systém obnovit ze zálohy, aniž by došlo k~poruše konzistence či integrity dat.
 
-Systém musí fungovat non-stop. Při problémech způsobených nějakou vstupní chybou nesmí tyto chyby způsobit výpadek systému nebo porušit integritu dat% @TODO add comment na  http://knihovnice.civ.cvut.cz/akp/index.htm, s. 2.
- a tyto chyby/výjimky musí být korektně odchytávány a ošetřovány. S~provozní spolehlivostí také souvisí výkon. Důležitým aspektem je jak rychlá odezva, tak rychlé zpracování velkého množství dat. O~škálování systému se již psalo v~kapitole 2.2.1 Velký počet knihovních jednotek, uživatelů, poboček, podpoboček, avšak je potřeba myslet i na to, že neustále zvyšování nároků na výpočetní výkon také zvyšuje nároky na koncové stanice uživatelů% @TODO add citation na  http://knihovnice.civ.cvut.cz/akp/index.htm, s. 2-3.
-. 
-% @TODO add label na kapitolu
+Systém musí fungovat non-stop. Při problémech způsobených nějakou vstupní chybou nesmí tyto chyby způsobit výpadek systému nebo porušit integritu dat \citepages{2}{bartosek_2001_systemovy_pohled} a tyto chyby/výjimky musí být korektně odchytávány a ošetřovány. S~provozní spolehlivostí také souvisí výkon. Důležitým aspektem je jak rychlá odezva, tak rychlé zpracování velkého množství dat. O~škálování systému se již psalo v~kapitole \ref{sec:systemove_pozadavky} Systémové požadavky, avšak je potřeba myslet i na to, že neustále zvyšování nároků na výpočetní výkon také zvyšuje nároky na koncové stanice uživatelů \citepages{2-3}{bartosek_2001_systemovy_pohled}.
 
-Koha také plně podporuje technologii PSGI/Plack, která slibuje zrychlení většiny každodenních úkonů.% @TODO add citation  na ARAZI, Tomas Cohen. Koha 3.22 released. Official Website of Koha Library Software: News [online]. 2015 [cit. 2015-12-06]. Dostupné z: https://koha-community.org/news/
- PSGI je rozhraní mezi perlovskou aplikací a serverem, zatímco samotný Plack je perlovským modulem a nástrojem, který obsahuje PSGI middleware, helpery a adaptery pro web server. % @TODO citace na PSGI/Plack - http://plackperl.org/
+Koha také plně podporuje technologii PSGI/Plack, která slibuje zrychlení většiny každodenních úkonů. \citesource{koha_3.22_released_2016}
+ PSGI je rozhraní mezi perlovskou aplikací a serverem, zatímco samotný Plack je perlovským modulem a nástrojem, který obsahuje PSGI middleware, helpery a adaptery pro web server.  \citesource{psgi/plack_2016}
 
 \subsubsection{Otevřenost systému}
 Systém musí být technicky připraven na to, aby mohl být napojen na další systémy využívané v~rámci Masarykovy univerzity, tj. personální, ekonomický, studijní.
 
 Celkově fakt, že Koha je open source systém, dává případnému napojování na další systémy velké možnosti, jelikož je možné do kódu zasahovat a přizpůsobovat si tak knihovní systém svým potřebám, aniž by knihovna musela žádat výrobce o~novou funkcionalitu.
 
-V~případě, že jiná knihovna již tento krok podstoupila, je možné v~rámci komunity tento kód  implementovat i do forku (derivátu repozitáře)\citepages{29}{Chaconc2009} té dané knihovny, tudíž není potřeba znovu vyvíjet software s~ekvivalentní funkcionalitou nebo nesmyslně platit za již zaplacenou věc. Knihovna samozřejmě nemusí mít vlastní fork a může přispívat do upstreamu (zdrojový repozitář), odkud si Kohu vzala, tudíž sdílí novou funkcionalitu s~komunitou.
+V~případě, že jiná knihovna již tento krok podstoupila, je možné v~rámci komunity tento kód  implementovat i do forku (derivátu repozitáře) \citepages{29}{Chaconc2009} té dané knihovny, tudíž není potřeba znovu vyvíjet software s~ekvivalentní funkcionalitou nebo nesmyslně platit za již zaplacenou věc. Knihovna samozřejmě nemusí mít vlastní fork a může přispívat do upstreamu (zdrojový repozitář), odkud si Kohu vzala, tudíž sdílí novou funkcionalitu s~komunitou.
 
 V~případě, že organizace má vlastní vývojáře, je rychlost vývoje OSS rychlá a relativně bezproblémová a navíc projde kód kontrolou nejen formální (kód samotný), ale i věcnou (zakomponování do zbytku systému). OSS reaguje na požadavky uživatelů, kdežto proprietární software nabízí funkcionality na základě své strategie nebo obchodního modelu. Některé funkce tak díky vysokým nákladům nemusí být nikdy implementovány, výrobcům se zkrátka nevyplatí. Pokud se mu tyto části funkcionality mají vyplatit vyvíjet, nasadí podle toho i jejich cenu. Výsledkem jsou služby, které si některé knihovny nemohou dovolit, což má vliv na jejich začlenění do kooperativních projektů nebo na kvalitu a rozsah poskytovaných služeb.
 
 \subsubsection{Bezpečnost systému}
-Bezpečnost systému lze uvažovat nejméně ze tří úhlů pohledu. První úroveň uvažuje bezpečnost v~rámci přístupu do systému a jeho částí (autentizace). Druhá úroveň uvažuje bezpečnost týkající se pravomocí jednotlivých skupin uživatelů (autorizace). U~těchto úrovní se dá mluvit jako o~prevenci zneužití či poškození dat, ať už úmyslného nebo ne. Třetí úroveň lze uvažovat jako logovací, neboli zaznamenávající chování v~systému. Veškerá bezpečnost se týká aplikační vrstvy ISO/OSI\citepages{80-82}{kurose_ross_2014} modelu počítačové sítě.
+Bezpečnost systému lze uvažovat nejméně ze tří úhlů pohledu. První úroveň uvažuje bezpečnost v~rámci přístupu do systému a jeho částí (autentizace). Druhá úroveň uvažuje bezpečnost týkající se pravomocí jednotlivých skupin uživatelů (autorizace). U~těchto úrovní se dá mluvit jako o~prevenci zneužití či poškození dat, ať už úmyslného nebo ne. Třetí úroveň lze uvažovat jako logovací, neboli zaznamenávající chování v~systému. Veškerá bezpečnost se týká aplikační vrstvy ISO/OSI \citepages{80-82}{kurose_ross_2014} modelu počítačové sítě.
 
 V~Koha se připravuje balíčková podpora LetsEncrypt, takže bude poměrně snadné přejít na HTTPS. Pravidelně se řeší bezpečnostní aktualizace (minimálně 1x/měsíc). Hesla jsou šifrována pomocí Bcryptu.
 
@@ -1029,14 +1041,25 @@ Je možné vytvářet vlastní MARC šablony pro různé typy dokumentů. Polož
 Národní autority se v~Koha dotahují přes Z39.50 (v~knihovnách MU pomocí FTP\footnote{File Transfer Protocol - protokol pro transport dat.
 .}). OAI harvester je pro Kohu ve fázi implementace.
 
-Editor lze rozdělit do záložek 0-9, které definují rozsah polí, viz. obrázek x.y. Tyto záložky lze slovně pojmenovat nebo rozhraní zobrazovat jako celý záznam. % @TODO add image label
+Editor lze rozdělit do záložek 0-9, které definují rozsah polí, viz. obrázek \ref{fig:editor}. Tyto záložky lze slovně pojmenovat nebo rozhraní zobrazovat jako celý záznam.
 
-% @TODO add image Katalogizační editor systému Koha a ocitovat label na http://www.knihovni-system-koha.cz/index.php/projekty/podpora-rda
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{resources/katalogizacni_editor}
+    \caption{ }{Katalogizační editor systému Koha\protect\footnotemark}
+    \label{fig:editor}
+\end{figure}
+\footnotetext{Katalogizační editor systému Koha - http://www.knihovni-system-koha.cz/index.php/projekty/podpora-rda}
 
 \subsubsection{Hromadné úpravy}
-Záznamy lze editovat také hromadně pomocí nástroje „Hromadné úpravy jednotek“, kde se nadefinují modifikační šablony, viz obrázek x.x.% @TODO add image label
+Záznamy lze editovat také hromadně pomocí nástroje „Hromadné úpravy jednotek“, kde se nadefinují modifikační šablony, viz obrázek \ref{fig:hromadne_upravy}.
 
-% @TODO add image Hromadné úpravy záznamů v systému Koha
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{resources/hromadne_upravy}
+    \caption{Hromadné úpravy záznamů v systému Koha}
+    \label{fig:hromadne_upravy}
+\end{figure}
 
 Co se katalogizace elektronických zdrojů týče, elektronické zdroje se katalogizují jako knihy, jen se použije jiná šablona. Rozdíl v~záznamu je primárně v~kódovaných údajích.
 
@@ -1053,23 +1076,31 @@ Koha umí pracovat s~čímkoliv, co má povahu autority (korporace, věcné tém
 V~Koha lze udělovat práva pro to, který personál má mít přístup k~editaci jednotek a který k~editaci záznamů. To znamená že někteří zaměstnanci nemohou editovat záznam, ale mohou jenom změnit například čárový kód, a podobně. Slouží k~tomu komponenty \code{SubfieldsToAllowForRestrictedEditing} a \code{SubfieldsToUseWhenPrefill}.
 
 \subsubsection{Autoritní hesla}
-Výběr autoritních hesel je pro Kohu samozřejmostí. Možnost dohledat autoritu zobrazuje obrázek x.g.
-% @TODO add image label
+Výběr autoritních hesel je pro Kohu samozřejmostí. Možnost dohledat autoritu zobrazuje obrázek \ref{fig:vysledky_vyhledavani_autorit}.
 
-% @TODO add image Výsledky vyhledávání autorit v Koha
+\begin{figure}
+    \centering
+    \includegraphics[width=1.0\textwidth]{resources/vysledky_vyhledavani_autorit}
+    \caption{Výsledky vyhledávání autorit v Koha}
+    \label{fig:vysledky_vyhledavani_autorit}
+\end{figure}
 
 \subsection{Potřeby a požadavky akvizice}
 Modul akvizice disponuje běžnými funkcemi, které jsou pro procesy akvizice v~knihovnách potřeba, to znamená, že Koha dokáže vytvářet dodavatele, aplikovat slevy, rozlišovat ceny s~DPH a bez DPH a podobně. Tyto údaje tedy pomáhají při příjmu objednávky, kdy lze jednoduše zkontrolovat fakturu. Objednávku lze vyvářet jednoduše, a to vytvořením jednoho nebo více košíků, kde se pro každého dodavatele navolí jednotlivé položky objednávky. Záznamy těchto položek lze doplnit buď z~vlastní databáze, nebo dotáhnout přes Z39.50 například z~České národní bibliografie nebo Souborného katalogu.
 
 Jedním z~požadavků bylo, aby nový systém uměl evidovat adresy dodavatelů, IČ a DIČ, což pro Kohu není problém.
 
-V~systému Koha je také možné dohledat, kolik knih bylo koupeno a z~jakých zakázek. Ke každému dodavateli jsou přiřazené objednávky. Když se uzavřou, je možné je exportovat do tabulkového formátu nebo PDF. Ve vygenerované tabulce lze označovat, které položky objednávky v~balíku dorazily, a tedy vidět, které položky nebyly pokryty. Takto se vytvoří seznam dokladů, ke kterým se přiloží naskenovaná faktura. Částky se odepíšou z~rozpočtů, které mohou mít různé složky a fondy. Koha sama sleduje vykrytí, má jednoduché predikce plnění a upozotňuje, když se přibližuje k~vyčerpání částky nebo procentuální části. Příklad objednávky lze vidět na obrázku x.x.x.
-% @TODO add image label
+V~systému Koha je také možné dohledat, kolik knih bylo koupeno a z~jakých zakázek. Ke každému dodavateli jsou přiřazené objednávky. Když se uzavřou, je možné je exportovat do tabulkového formátu nebo PDF. Ve vygenerované tabulce lze označovat, které položky objednávky v~balíku dorazily, a tedy vidět, které položky nebyly pokryty. Takto se vytvoří seznam dokladů, ke kterým se přiloží naskenovaná faktura. Částky se odepíšou z~rozpočtů, které mohou mít různé složky a fondy. Koha sama sleduje vykrytí, má jednoduché predikce plnění a upozotňuje, když se přibližuje k~vyčerpání částky nebo procentuální části. Příklad objednávky lze vidět na obrázku \ref{fig:objednavka}.
 
-% @TODO add image Příklad objednávky v systému Koha
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{resources/objednavka_left}
+    \caption{Příklad objednávky v systému Koha}
+    \label{fig:objednavka}
+\end{figure}
 
 \section{Dopad projektu na životní prostředí}
-Systém Koha je napsán v~perlu, neupovídaném stručném skriptovacím jazyce\citepages{v-ix}{Wall1997}, což má za následek také menší celkovou velikost zdrojového kódu. To vede k~menší náročnosti na zpracování na straně serverů a menší energetickou zátěž, tudíž lze tvrdit, že více šetří životní prostředí. Jak tvrdí motto jQuery, který využívá Koha i VuFind: \citace{Write less, do more}. % @TODO ocitovat web https://jquery.com/
+Systém Koha je napsán v~perlu, neupovídaném stručném skriptovacím jazyce \citepages{v-ix}{Wall1997}, což má za následek také menší celkovou velikost zdrojového kódu. To vede k~menší náročnosti na zpracování na straně serverů a menší energetickou zátěž, tudíž lze tvrdit, že více šetří životní prostředí. Jak tvrdí motto jQuery, který využívá Koha i VuFind: \citace{Write less, do more}. \citesource{jquery_2016}
 
 \section{Finanční plán a ekonomická analýza projektu}
 Při řešení finanční otázky projektu je potřeba myslet zejména na to, že finance ušetřené na koupi nebo podporu systému bude nutné vložit do mezd personálu, který bude migraci provádět. Tento projekt bude realizován několik měsíců a v~každé etapě bude potřeba jiné skupiny lidí. Tyto lidské zdroje však budou v~plném nasazení potřeba jen ze začátku, kdy se bude migrovat a pak systém kustomizovat. Poté náklady na pracovní skupiny klesnou na potřebnou systémovou podporu, která se bude starat o~chod a správu systému.
@@ -1131,18 +1162,16 @@ Může nastat situace, kdy se změní směřování ústavu a open source již n
 
 Další riziko představuje fakt, že problémy, které MU měla při stávajícím systému, přetrvají i po migraci na Kohu. V~tom případě problém nebyl knihovní systém, ale špatná komunikace, nastavení nebo procesy.
 
-Rizikem může být i to, že nový systém přinese mnoho změn, které se v~tak konzervativním prostředí, jako je knihovnictví, těžko uplatňují. V~tomto případě je dobré věnovat náležitou pozornost plánu přechodu a školení. To by se nemělo týkat jen nového systému jako takového, ale i procesům v~knihovně.
-
-Může nastat situace, kdy se prodlouží podpora Alephu. Tím se ale nevyřeší problémy, které stávající systém má. Zruší-li se podpora Alephu, MU na něm stále může fungovat, avšak je potřeba myslet i na Aleph klienta, který již nebude optimalizován na nové verze operačních systémů, tudíž se stane nepoužitelným.
+Rizikem může být i to, že nový systém přinese mnoho změn, které se v~tak konzervativním prostředí, jako je knihovnictví, těžko uplatňují. V tomto případě je dobré věnovat náležitou pozornost plánu přechodu a školení. To by se nemělo týkat jen nového systému jako takového, ale i procesům v knihovně.
 
 Finanční riziko zase představuje neušetření financí (alespoň na začátku) při migraci na open source. Důvodem může být využití ušetřených prostředků na mzdách pracovníků, kteří budou nový systém upravovat a nastavovat. 
 
-Riziko může také nastat v~době, kdy budou knihovníci muset vývojářům a systémovým knihovníkům definovat, jak má která služba fungovat nebo jak se mají data interpretovat. Může se stát, že to ve skutečnosti nebudou vědět. Je proto potřeba pečlivě vybrat pracovní skupinu s~co nejvyšší možnou odborností a praktickou zkušeností.
+Riziko může také nastat v~době, kdy budou knihovníci muset vývojářům a systémovým knihovníkům definovat, jak má která služba fungovat nebo jak se mají data interpretovat. Může se stát, že to ve skutečnosti nebudou vědět. Je proto potřeba pečlivě vybrat pracovní skupinu s co nejvyšší možnou odborností a praktickou zkušeností.
 
 Další riziko je zhroucení projektu ve formě nevedených zaměstnanců. Nebudou-li zaměstnanci řízení, celý projekt se může časově i finančně protáhnout nebo se dokonce zhroutit.
 
 \chapter*{Závěr}
-Knihovní systém by měl být systémem, který pomáhá knihovníkům v~poskytování kvalitních služeb svým uživatelům - čtenářům. Ten je však kvůli neustále se měnícím potřebám uživatele potřeba upravovat. Jednou z~možností jak toho dosáhnout je pomocí využití open source přístupu. Migrace na open source knihovní systém s~sebou přináší velké změny. V~první řadě jsou to politické a právní otázky určující směr a možnosti, na které navazuje financování. Situace, kdy je správce knihovního systému bezmocně odkázán na podporu poskytovatele (vendor lock-in), se náhle změní, je-li možné přelévat investiční a mzdové náklady instituce. Jak píše RNDr. Miroslav Bartošek, CSc.: \citace{Knihovní systém nesmí mít podobu ‚černé skřínky‘, do které správce ‚nevidí‘ dostatečně hluboko a je s~každým nestandardním zásahem a požadavkem odkázán na milost či nemilost dodavatele systému.}% @TODO ocitovat http://knihovnice.civ.cvut.cz/akp/index.htm, s. 3.
+Knihovní systém by měl být systémem, který pomáhá knihovníkům v~poskytování kvalitních služeb svým uživatelům - čtenářům. Ten je však kvůli neustále se měnícím potřebám uživatele potřeba upravovat. Jednou z~možností jak toho dosáhnout je pomocí využití open source přístupu. Migrace na open source knihovní systém s~sebou přináší velké změny. V~první řadě jsou to politické a právní otázky určující směr a možnosti, na které navazuje financování. Situace, kdy je správce knihovního systému bezmocně odkázán na podporu poskytovatele (vendor lock-in), se náhle změní, je-li možné přelévat investiční a mzdové náklady instituce. Jak píše RNDr. Miroslav Bartošek, CSc.: \citace{Knihovní systém nesmí mít podobu ‚černé skřínky‘, do které správce ‚nevidí‘ dostatečně hluboko a je s~každým nestandardním zásahem a požadavkem odkázán na milost či nemilost dodavatele systému.} \citepages{3}{bartosek_2001_systemovy_pohled}
  Jsem přesvědčen, že migrace na open source knihovní systém Koha nejen v~tomto pomůže. Je potřeba si ale uvědomit, že ne všechny problémy lze řešit knihovním systémem, ale že je potřeba upravovat samotné procesy, v~kterých k~problémům dochází. Nakonec je to vždy lidský faktor, který je na vstupu i na výstupu každého systému. Samotný proces migrace s~sebou nese nejen výhody, ale také rizika, které je potřeba řídit a minimalizovat tak hrozby, které z~něj vyplývají. Projekt je svým rozsahem a složitostí nutné rozdělit na menší, jednodušší části (etapy). V~těchto etapách musí projektový manager řídit jak lidské, tak i materiální zdroje tak, aby byly co nejefektivněji využity. Je potřeba myslet na to, že projektový manager nebo leader je osoba, která bude spojovat jednotlivé pracovní skupiny projektu. Musí být také komunikačním centrem, kterému lze při realizaci projektu poskytovat zpětnou vazbu.  Problémy byly, jsou a budou, avšak s~přátelskou pomocí komunity a odhodlaným projektovým managerem je lze zvládnout. Jak práce dokazuje na příkladech zahraničních knihoven a univerzit, které již migraci podstoupili, přechod z~komerčního systému Aleph na Kohu možný je, avšak je nutné sestavit podrobnější harmonogram realizace a detailně rozpracovat (hlavně sdílení uživatelů a MVS modul), jak se budou řešit jednotlivé kroky migrace, což je svým rozsahem možné rozpracovat v~další diplomové práci. Výstupem teoretické části by pak mohl být harmonogram realizace projektu, zatímco praktická část by nabízela konkrétní, nejen softwarová řešení všech problémů, které je nutné vyřešit pro úspěšnou migraci knihoven MU na open source systém Koha.
 
 \chapter*{Appendix}
@@ -1152,7 +1181,6 @@ Sledovat dění v~české Koha komunitě lze také na facebookových stránkách
 } komunity a na wiki stránkách Githubu\footnote{Wiki stránky Koha -  https://github.com/open-source-knihovna/KohaCZ/wiki
 }. Otázky k~problematice je možné klást do českého chatu\footnote{Koha e-mail Chat - https://gitter.im/open-source-knihovna/KohaCZ} na Gitteru nebo se zeptat kterékoli knihovny\footnote{Seznam knihoven, které v~ČR používají systém Koha v~běžném provozu - https://github.com/open-source-knihovna/KohaCZ/wiki/Seznam-knihoven,-kter\%C3\%A9-v-\%C4\%8CR-pou\%C5\%BE\%C3\%ADvaj\%C3\%AD-syst\%C3\%A9m-Koha-v-b\%C4\%9B\%C5\%BEn\%C3\%A9m-provozu
 }, která migraci podstoupila. Vhodné médum ke komunikaci problémů anebo jiných informací je také mailing list Koha.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% TABLE OF CONTENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

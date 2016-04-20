@@ -1,0 +1,122 @@
+###################### FONTY ######################
+
+\textit{italic} 
+
+\texttt{teletype font - source code} 
+
+\textbf{bold}, 
+
+\textsf{sans-serif, specific types of information} 
+
+###################### AKTUALIZOVAT INDEX ######################
+
+After typesetting the document, it is necessary to generate the
+index by running
+
+texindy -I latex -C utf8 -L czech ./bakalarka.idx
+
+
+###################### CITACE ######################
+
+\cite{empiricalAnalysis}
+\footfullcite{inbook-full}
+
+vzdy po pridani citace do .tex nebo bibliography.bib je potreba spustit:
+
+biber bakalarka.bcf
+
+###################### NADPISY ######################
+
+\chapter{These are}
+\section{the available}
+\subsection{sectioning commands.}
+\paragraph{Paragraphs and}
+\subparagraph{SubParagraphs}
+
+###################### SEZNAMY ######################
+
+itemize, enumerate, compactitem
+
+\begin{itemize}
+  \item such as
+  \item this one
+  \begin{itemize}
+    \item     and they can be nested as well.
+    \item[>>] You can even turn the bullets into something fancier,
+    \item[\S] if you so desire.
+  \end{itemize}
+\end{itemize}
+
+\begin{enumerate}
+  \item very
+  \begin{enumerate}
+    \item similar
+  numerate}
+\end{enumerate}
+
+###################### REFERENCE, TABULKY, OBRAZKY ######################
+
+\chapter{Floats and references}
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=40mm]{fithesis/logo/mu/fithesis-base.pdf}
+  \end{center}
+  \caption{The logo of the Masaryk University at 40\,mm}
+  \label{fig:mulogo1}
+\end{figure}
+
+\begin{table}
+  \begin{tabularx}{\textwidth}{lllX}
+    \toprule
+    Day & Min Temp & Max Temp & Summary \\
+    \midrule
+    Monday & $13^{\circ}\mathrm{C}$ & $21^\circ\mathrm{C}$ & A
+    clear day with low wind and no adverse current advisories. \\
+    Tuesday & $11^{\circ}\mathrm{C}$ & $17^\circ\mathrm{C}$ & A
+    trough of low pressure will come from the northwest. \\
+    Wednesday & $10^{\circ}\mathrm{C}$ &
+    $21^\circ\mathrm{C}$ & Rain will spread to all parts during the
+    morning. \\
+    \bottomrule
+  \end{tabularx}
+  \caption{A weather forecast}
+  \label{tab:weather}
+\end{table}
+
+The logo of the Masaryk University is shown in Figure
+\ref{fig:mulogo1} and Figure \ref{fig:mulogo2} at pages
+\pageref{fig:mulogo1} and \pageref{fig:mulogo2}. The weather
+forecast is shown in Table \ref{tab:weather} at page
+\pageref{tab:weather}. The following chapter is Chapter
+\ref{chap:matheq} and starts at page \pageref{chap:matheq}.
+Items \ref{item:star1}, \ref{item:star2}, and
+\ref{item:star3} are starred in the following list:
+\begin{compactenum}
+  \item some text
+  \item some other text
+  \item $\star$ \label{item:star1}
+  \begin{compactenum}
+    \item some text
+    \item $\star$ \label{item:star2}
+    \item some other text
+    \begin{compactenum}
+      \item some text
+      \item some other text
+      \item yet another piece of text
+      \item $\star$ \label{item:star3}
+    \end{compactenum}
+    \item yet another piece of text
+  \end{compactenum}
+  \item yet another piece of text
+\end{compactenum}
+If your reference points to a place that has not yet been typeset,
+the \verb"\ref" command will expand to \textbf{??} during the first
+run of
+\texttt{pdflatex \jobname.tex}
+and a second run is going to be needed for the references to
+resolve. With online services -- such as Overleaf -- this is
+performed automatically.
+
+###################### SEZNAMY ######################
+
+
