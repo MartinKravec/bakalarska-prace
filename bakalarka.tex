@@ -28,6 +28,8 @@
 \usepackage{float}
 \usepackage{pdfpages}
 \usepackage{textcomp}
+\usepackage[pdftex]{hyperref}
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref} % split url correctly
 %\usepackage{newunicodechar}
 %\DeclareUnicodeCharacter{00A0}{~}
 %\newunicodechar{00A0}{~}
@@ -910,7 +912,7 @@ Systémové nástroje:
 \item \bold{Kontrola řady čárových kódů} – při zpracování knih se občas ztratí čárový kód, je potřeba ho dohledat a obsadit (jeho číslo je zároveň přírůstkové číslo)
 \item \bold{Žebříčky/rezervace} - přehled počtu rezervovaných/vypůjčených dokumentů v~daném roce podle sbírky jednotky, fakultní příslušnosti čtenáře
 \item \bold{Přehled fondů pro potřeby akreditací} - vygenerování přehledu počtu svazků knih/časopisů podle majetku fakulty a kolik z~toho je ve volných výběrech
-\item \bold{Výpůjční statistiky} - generování přehledu počtu vypůjčených/vrácených dokumentů po hodinách v~jednotlivých dnech + počet čtenářů, kteří v~daný den si něco půjčili/vrátili
+\item \bold{Výpůjční statistiky} - generování přehledu počtu vypůjčených či vrácených dokumentů po hodinách v~jednotlivých dnech + počet čtenářů, kteří v~daný den si něco půjčili/vrátili
 \item \bold{Přehled knih pro zahraniční studenty}
 \end{itemize}
 
@@ -1075,7 +1077,7 @@ Jedním z~požadavků byla dostupná plná dokumentace systému. Pro systém Koh
 
 \begin{itemize}
 \item dokumentace systému\footnote{Dokumentace Koha - https://koha-community.org/documentation/}
-\item dokumentace k~veškerým API a podporovaným protokolům\footnote{API a protokoly Koha - https://wiki.koha-community.org/wiki/APIs\_and\_protocols\_supported\_by\_Koha}
+\item dokumentace k~veškerým API a podporovaným protokolům\footnote{API a protokoly Koha - \url{https://wiki.koha-community.org/wiki/APIs\_and\_protocols\_supported\_by\_Koha}}
 \item český manuál \footnote{Český manuál Koha - http://www.knihovni-system-koha.cz/index.php/navody-a-vzdelavani/cesky-manual-systemu-koha}
 \end{itemize}
 
@@ -1134,7 +1136,7 @@ Koha podporuje protokol Z39.50 jako klient i jako server, to znamená, že doká
 Koha umí pracovat s~čímkoliv, co má povahu autority (korporace, věcné téma, místo, žánr) a také umí vytvořit řízený slovník čehokoli, co má pak povahu oveřených hodnot, které lze provázat s~katalogizační šablonou.
 
 \subsubsection{Omezení práv}
-V~Koha lze udělovat práva pro to, který personál má mít přístup k~editaci jednotek a který k~editaci záznamů. To znamená že někteří zaměstnanci nemohou editovat záznam, ale mohou jenom změnit například čárový kód, a podobně. Slouží k~tomu komponenty \code{SubfieldsToAllowForRestrictedEditing} a \code{SubfieldsToUseWhenPrefill}.
+V~Koha lze udělovat práva pro to, který personál má mít přístup k~editaci jednotek a který k~editaci záznamů. To znamená že někteří zaměstnanci nemohou editovat záznam, ale mohou jenom změnit například čárový kód, a podobně. Slouží k~tomu komponenty \code{SubfieldsToUseWhenPrefill} a \code{SubfieldsToAllowForRestrictedEditing}.
 
 \subsubsection{Autoritní hesla}
 Výběr autoritních hesel je pro Kohu samozřejmostí. Možnost dohledat autoritu zobrazuje obrázek \ref{fig:vysledky_vyhledavani_autorit}.
