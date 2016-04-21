@@ -10,6 +10,7 @@ pdf: $(SRC).tex
 #	$(CC) $(SRC)
 #	$(CC) $(SRC)
 	vlna -l -m -n $(SRC).tex
+#	/home/kravec/texmf/tex/generic/vlnka.sh $(SRC).tex 1>&- 2>&- &
 	pdflatex $(SRC)
 	biber $(SRC).bcf
 	pdflatex $(SRC)
