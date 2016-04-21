@@ -4,8 +4,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[
-	11pt, oneside, printed, final, 
-	%microtype,
+	11pt, oneside, printed, final, palatino, monochrome
+	microtype,
 	table,   %% Causes the coloring of tables. Replace with `notable` to restore plain tables.
 	lof,     %% Prints the List of Figures. Replace with `nolof` to hide the List of Figures.
 	lot     %% Prints the List of Tables. Replace with `nolot` to hide the List of Tables.
@@ -15,11 +15,10 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% DEPENDENCIES %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage[czech]{babel}
+\usepackage[english,czech]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 %\usepackage[utf8x]{inputenc}
-\usepackage[plainpages=false,pdfpagelabels,unicode]{hyperref}
 \usepackage{bold-extra}
 \usepackage{setspace}
 \usepackage{lastpage}
@@ -28,6 +27,10 @@
 \usepackage{graphics}
 \usepackage{float}
 \usepackage{pdfpages}
+\usepackage{textcomp}
+%\usepackage{newunicodechar}
+%\DeclareUnicodeCharacter{00A0}{~}
+%\newunicodechar{00A0}{~}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% THESIS SETUP %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -51,6 +54,13 @@
     TeXtitleEn    = Studie proveditelnosti implementace open source integrovaného knihovního systému Koha v~knihovnách Masarykovy univerzity
 }
 
+%\newunicodechar{^^a0}{~}
+%\newunicodechar{00A0}{~}
+
+%\DeclareUnicodeCharacter{00A0}{ }
+
+%\newunicodechar{^^a0}{ }
+%\newunicodechar{00A0}{~}
 
 %\hyphenpenalty=50
 %\exhyphenpenalty=50
@@ -86,6 +96,7 @@
 \addbibresource{bibliography.bib}
 %% `style`s and `citestyles`, see:
 %% <http://mirrors.ctan.org/macros/latex/contrib/biblatex/doc/biblatex.pdf>.
+%% https://github.com/michal-h21/biblatex-iso690
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% NEW CITATION COMMANDS %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -135,11 +146,27 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% SEZNAM ZDROJU %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\makeatletter\thesis@load
-%  \makeatletter\def\thesis@blocks@lobibliography{%
-%    \printbibliography[title={Seznam literatury},heading=bibintoc]
-%  }
-%\makeatother
+\makeatletter\thesis@load
+  \makeatletter\def\thesis@blocks@lobibliography{%
+    %\inputencoding{latin1}
+    %\printbibliography[title={Seznam literatury},heading=bibintoc]
+    %\inputencoding{utf8}
+  }
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% PRILOHY %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter\thesis@load
+  \makeatletter\def\thesis@blocks@seznampriloh{%
+    \chapter*{Seznam příloh}
+    Příloha 1: Projekt bakalářské diplomové práce
+  }
+\makeatother
+
+\makeatletter\thesis@load
+  \makeatletter\def\thesis@blocks@prilohy{%
+    \includepdf[scale=1.05,pages={-}]{projekt.pdf}
+  }
+\makeatother
 
 %%%%%%%%%%%%%%%%%%%%% DOCUMENT STRUCTURE %%%%%%%%%%%%%%%%%%%%
 
@@ -166,13 +193,17 @@
   \thesis@blocks@clear
 	\tableofcontents}
   \def\thesis@blocks@postamble{
-%    \thesis@blocks@lobibliography
+    \thesis@blocks@lobibliography
     \thesis@blocks@lot
-    \thesis@blocks@lof}
+    \thesis@blocks@lof
+    \thesis@blocks@seznampriloh
+    \thesis@blocks@prilohy}
 \makeatother
   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}{%\fontsize{11}{24}
+
+\inputencoding{utf8}
 
 \chapter*{Úvod}
 Tato bakalářská diplomová práce se bude zabývat studií proveditelnosti implementace open source integrovaného knihovního systému Koha v~knihovnách Masarykovy univerzity. V~práci bude probíráno několik úhlů pohledu na celkovou problematiku, a to v~kontextu studie proveditelnosti.  V~práci tedy rozebereme nejdřív teoretickou část knihovních systémů, co by měly umět a jaký je jejich cíl jako produktu softwarových firem, to znamená, že probereme technické zastřešení projektu a vysvětlíme veškeré pojmy s~tím spojené. Teoretická část dále vysvětlí oblast projektového managmentu a přiblíží problematiku migrací na nový knihovní systém. Celý projekt bude řešen jako harmonogram realizace spolu s~finanční a ekonomickou analýzou. V~rámci studie byl prováděn několikaměsíční průzkum v~knihovnách Masarykovy univerzity a průzkum v~síti 900 knihoven v~Turecku. Při průzkumu byla realizována také SWOT analýza, na které je pak založeno celé hodnocení efektivity a udržitelnosti projektu, ve kterém nebude chybět analýza a řízení případných rizik, které s~sebou projekt migrace nese.
@@ -1211,32 +1242,6 @@ Sledovat dění v~české Koha komunitě lze také na facebookových stránkách
 } komunity a na wiki stránkách Githubu\footnote{Wiki stránky Koha -  https://github.com/open-source-knihovna/KohaCZ/wiki
 }. Otázky k~problematice je možné klást do českého chatu\footnote{Koha e-mail Chat - https://gitter.im/open-source-knihovna/KohaCZ} na Gitteru nebo se zeptat kterékoli knihovny\footnote{Seznam knihoven, které v~ČR používají systém Koha v~běžném provozu - https://github.com/open-source-knihovna/KohaCZ/wiki/Seznam-knihoven,-kter\%C3\%A9-v-\%C4\%8CR-pou\%C5\%BE\%C3\%ADvaj\%C3\%AD-syst\%C3\%A9m-Koha-v-b\%C4\%9B\%C5\%BEn\%C3\%A9m-provozu
 }, která migraci podstoupila. Vhodné médum ke komunikaci problémů anebo jiných informací je také mailing list Koha.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TABLE OF CONTENTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\makeatletter\thesis@blocks@clear\makeatother
-\phantomsection %% Print the index and insert it into the
-\addcontentsline{toc}{chapter}{\indexname} %% table of contents.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% APPENDIX HYPERREFS %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\makeatletter\thesis@blocks@clear\makeatother
-%% Patch the appendix hyperrefs (see:
-%% <http://tex.stackexchange.com/q/174887/70941>)
-\renewcommand{\theHchapter}{A\arabic{chapter}
-\appendix %% and start the appendices.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\printbibliography[title={Seznam literatury},heading=bibintoc]
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PROJEKT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\appendix
-
-\includepdf[pages={-}]{projekt.pdf}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% END OP CONTENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 }
 \end{document}
