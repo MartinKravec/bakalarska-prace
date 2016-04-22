@@ -43,8 +43,8 @@
     gender        = m,
     advisor       = Mgr. Michal Denár,
     date			  = 2016/03/12,
-    keywords	  	  = {open source, Koha, Aleph, knihovní system, migrace},
-	TeXkeywords	  = {open source, Koha, Aleph, knihovní system, migrace},
+    keywords	  	  = {open source, Koha, Aleph, knihovní systém, migrace},
+	TeXkeywords	  = {open source, Koha, Aleph, knihovní systém, migrace},
 	%keywordsEn    = {open source, Koha, Aleph, library system, migration}, % throws error
 	TeXkeywordsEn = {open source, Koha, Aleph, library system, migration},
     title         = Studie proveditelnosti implementace open source integrovaného knihovního systému Koha v~knihovnách Masarykovy univerzity,
@@ -65,7 +65,7 @@
 }
 
 \thesislong{abstract}{ % ANNOTATION!
-    Cílem této práce je zejména provést studii proveditelnosti, která určí, zda je možná migrace z~knihovního systému Aleph na open source integrovaný knihovní systém Koha v~knihovnách Masarykovy univerzity. Celá studie je založena na šestiměsíčním průzkumu týkajícího se mapování knihovních procesů ve vybraných knihovnách univerzity, a to formou rozhovorů a stínování. Průzkum byl také prováděn i v~síti 900 knihoven v~Turecku. Studie v~úvodu rozebírá analýzu trhu, na kterou pak navazuje finanční analýza propojená s~řízením a minimalizací rizik. Součástí studie proveditelnosti je také evaluace efektivity a udržitelnosti projektu založena na SWOT analýze. Práce také pojednává o~projektovém managementu a řízení lidských zdrojů a podrobněji rozebírá technické a technologické řešení projektu, přičemž objasňuje aspekty vývoje open source softwaru. 
+    Cílem této práce je zejména provést studii proveditelnosti, která určí, zda je možná migrace z~knihovního systému Aleph na open source integrovaný knihovní systém Koha v~knihovnách Masarykovy univerzity. Celá studie je založena na šestiměsíčním průzkumu týkajícího se mapování knihovních procesů ve vybraných knihovnách univerzity, a to formou rozhovorů a stínování. Průzkum byl také prováděn v~síti 900 knihoven v~Turecku. Studie v~úvodu rozebírá analýzu trhu, na kterou pak navazuje finanční analýza propojená s~řízením a minimalizací rizik. Součástí studie proveditelnosti je také evaluace efektivity a udržitelnosti projektu založena na SWOT analýze. Práce také pojednává o~projektovém managementu a řízení lidských zdrojů a podrobněji rozebírá technické a technologické řešení projektu, přičemž objasňuje aspekty vývoje open source softwaru. 
 }
 
 \thesislong{abstractEn}{ % EN ANNOTATION!
@@ -112,7 +112,7 @@
 \makeatletter\thesis@load
   \makeatletter\def\thesis@czech@declaration{%
   ~\\%
-  \vskip 5.1in%
+  \vskip 4.7in%
   \noindent {\Large \bold{Prohlášení}}\\%
   ~\\%
   Prohlašuji, že jsem předkládanou práci zpracoval%
@@ -176,10 +176,11 @@
 	  \newline\newline
       {\Large{Anotace}}\newline\newline
         \thesis@abstract\newline\newline
-      {\Large{Klíčová slova}}\newline\newline
-        \thesis@keywords\newline\newline
       {\Large{Annotation}}\newline\newline
         \thesis@abstractEn\newline\newline
+      \\%
+      {\Large{Klíčová slova}}\newline\newline
+        \thesis@keywords\newline\newline
       {\Large{Keywords}}\newline\newline
         \thesis@TeXkeywordsEn\newline\newline
   \thesis@blocks@declaration
@@ -421,7 +422,8 @@ Aktuálnost problematiky tkví v~tom, že knihovní systém Aleph, který vyvíj
 
 Mimo fakt, že data již nebudou ukládána lokálně, tj. data již nebudou uložena na strojích patřících provozovateli\footnote{Možné politické a~autorsko-právní problémy.}, ale v~cloudu (navíc pravděpodobně mimo jurisdikci EU) \citepages{16-17}{breeding_2012}, to znamená, že knihovny a~další instituce využívající knihovních systémů (televize, archivy) budou mít menší možnosti úprav a~rozšíření své instance systému. Tyto problémy by mohla vyřešit právě migrace na open source knihovní systém. Jedním z~kandidátů je open source integrovaný knihovní systém Koha, který tato studie proveditelnosti rozebírá. 
 
-Dalším kandidátem, uváží-li se velikost knihoven MU a~open source systémy, které prošly několikaletým vývojem, by byl systém Evergreen. Ten je však orientován na anglosaský svět, což může přinášet různé problémy způsobené omezenou podporou pro abecedy s~diakritikou. Jelikož nedisponují balíčky, je problematický i proces aktualizací%\footnote{Installing the Evergreen server - http://evergreen-ils.org/documentation/install/}.
+Dalším kandidátem, uváží-li se velikost knihoven MU a~open source systémy, které prošly několikaletým vývojem, by byl systém Evergreen. Ten je však orientován na anglosaský svět, což může přinášet různé problémy způsobené omezenou podporou pro abecedy s~diakritikou. Jelikož nedisponují balíčky, je problematický i proces aktualizací. 
+%\footnote{Installing the Evergreen server - http://evergreen-ils.org/documentation/install/}.
  Systém nebyl vybrán pro studii také pro nedostupnost technické podpory v~ČR a~relativně náročnou instalaci %\footnote{Installing the Evergreen server - http://evergreen-ils.org/documentation/install/}
   systému. Systém kromě toho nepodporuje stahování autoritních záznamů protokolem Z39.50. \citepages{10-14}{denar_2015}
  Navíc má Evergreen desktopového klienta, což činí správu náročnější.\footnote{Evergreen klient - https://evergreen-ils.org/egdownloads/}
