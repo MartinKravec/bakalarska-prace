@@ -45,7 +45,7 @@
     date			  = 2016/03/12,
     keywords	  	  = {open source, Koha, Aleph, knihovní system, migrace},
 	TeXkeywords	  = {open source, Koha, Aleph, knihovní system, migrace},
-	%keywords	En    = {open source, Koha, Aleph, library system, migration}, % throws error
+	%keywordsEn    = {open source, Koha, Aleph, library system, migration}, % throws error
 	TeXkeywordsEn = {open source, Koha, Aleph, library system, migration},
     title         = Studie proveditelnosti implementace open source integrovaného knihovního systému Koha v~knihovnách Masarykovy univerzity,
     titleEn		  = Feasibility study for the implementation of open source integrated library system Koha in libraries of Masaryk University,
@@ -61,7 +61,7 @@
 \setlength{\emergencystretch}{4pt} % remove text line overflow, partly
 
 \thesislong{thanks}{ % THANKS
-    Chtěl bych poděkovat vedoucímu práce Mgr. Michalovi Denárovi za to, že mi ukázal, jak krásně by mohlo fungovat české knihovnictví, a také Mgr. Petře Žabičkové v~roli konzultantky za to, že mi ukázala, jak je na tom české knihovnictví ve skutečnosti. Dále bych rád poděkoval RNDr. Michalovi Růžičkovi, který se chopil role konzultanta a poskytl nedocenitelné informace. A~v~neposlední řadě si zaslouží můj vděk také zaměstnanci univerzitních knihoven MU, kteří jako respondenti ochotně spolupracovali při provádění rozhovorů a stínování v~rámci mého průzkumu mapování knihovních procesů v~knihovnách Masarykovy univerzity.
+    Chtěl bych poděkovat vedoucímu práce Mgr. Michalu Denárovi za to, že mi ukázal, jak krásně by mohlo fungovat české knihovnictví, a také Mgr. Petře Žabičkové v~roli konzultantky za to, že mi ukázala, jak je na tom české knihovnictví ve skutečnosti. Dále bych rád poděkoval RNDr.~Michalu~Růžičkovi, který se chopil role konzultanta a poskytl nedocenitelné informace. A~v~neposlední řadě si zaslouží můj vděk také zaměstnanci univerzitních knihoven MU, kteří jako respondenti ochotně spolupracovali při provádění rozhovorů a stínování v~rámci mého průzkumu mapování knihovních procesů v~knihovnách Masarykovy univerzity.
 }
 
 \thesislong{abstract}{ % ANNOTATION!
@@ -79,8 +79,8 @@
 	backend 		= biber,
   	sortlocale	= cs_CZ,
   	style		= iso-authoryear,
-  	%style		= iso-numeric,
-  	%citestyle=numeric-comp
+  	%style		 = iso-numeric,
+  	%citestyle   = numeric,
   	bibencoding = UTF8,
   	babel		= other	% to support multiple languages in bibliography
 ]{biblatex}
@@ -111,12 +111,17 @@
 
 \makeatletter\thesis@load
   \makeatletter\def\thesis@czech@declaration{%
+  ~\\%
+  \vskip 5.1in%
+  \noindent {\Large \bold{Prohlášení}}\\%
+  ~\\%
   Prohlašuji, že jsem předkládanou práci zpracoval%
   \thesis@czech@gender@koncovka\ samostatně~a použil%
   \thesis@czech@gender@koncovka\ jen uvedené prameny~a
   literaturu. Současně dávám svolení k~tomu, aby
   elektronická verze této práce byla zpřístupněna přes
-  informační systém Masarykovy univerzity.}
+  informační systém Masarykovy univerzity.
+  }
 \makeatother
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% UVODNI LIST %%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -139,9 +144,7 @@
 
 \makeatletter\thesis@load
   \makeatletter\def\thesis@blocks@lobibliography{%
-    %\inputencoding{latin1}
     \printbibliography[title={Seznam literatury},heading=bibintoc]
-    %\inputencoding{utf8}
   }
 \makeatother
 
@@ -168,7 +171,7 @@
     \thesis@blocks@cover
     \thesis@blocks@titlePage
     \thesis@blocks@frontMatter
-      {\Large{Bibliografický záznam}}\newline\newline
+      \noindent{\Large{Bibliografický záznam}}\newline\newline
         KRAVEC, Martin. \italic{\thesis@title}. Brno: Masarykova univerzita, Filozofická fakulta, 2016. \pageref{LastPage} s. Vedoucí diplomové práce Mgr. Michal Denár.
 	  \newline\newline
       {\Large{Anotace}}\newline\newline
@@ -230,6 +233,7 @@ Tomuto rozdělení se také říká trojimperativ \citepages{5}{rosenau_2000}. O
 Projekt může být charakterizován jako hmotný či nehmotný projekt v~závislosti na konečném produktu. V~případě hmotného projektu by šlo například o~hardware, u~nehmotného o~software. Produkt je tedy konečným výstupem každého projektu.
 V~případě, kdy je zákazník mimo organizaci, která projekt realizuje, jsou projekty realizovány na základě uzavřených smluv, výsledný produkt je tedy posuzován na základě požadavků zákazníka. Je-li zákazníkem stejná organizace, není potřeba uzavírat smlouvy. V~tom případě je ale výstup projektu posuzován podle času dokončení a návratnosti investice \citepages{10-12}{rosenau_2000}.  V~projektovém řízení se zákazník jako objednatel projektu označuje jako zadavatel projektu. Způsob provedení projektu také závisí na konkurenci. Situace, kdy je produkt na trhu jediný svého druhu, je úplně jiná, než u~produktu, kterých je v~oboru mnoho. \citepages{12}{rosenau_2000}
 Projektovému řízení se také říká „řízení projektů“ nebo „řízení programu“ v~závislosti na velikosti projektu. Obecně platí, že programy jsou větší než projekty a projekty větší než úkoly. \citepages{12}{rosenau_2000}
+
 Úspěšnost projektu je závislá na kompetencích managera (nebo leadera) projektu \citepages{437–448}{Muller2010437}
 , které lze rozdělit na: 
 \mezera
@@ -269,7 +273,7 @@ Projektovému řízení se také říká „řízení projektů“ nebo „říz
 \item Ukončení - finalizace ve smyslu kontroly, zda produkt odpovídá definicím zadavatele, dokončení prací (například dokumentace)
 \end{itemize}
 
-Vzájemné závislosti v~procesu řízení projektu znázorňuje obrázek \ref{fig:proces_rizeni_projektu}
+Vzájemné závislosti v~procesu řízení projektu znázorňuje obrázek \ref{fig:proces_rizeni_projektu}.
 Celému cyklu však předchází tzv. předprojektová fáze, do které patří zejména studie proveditelnosti, o~které pojednává další kapitola.
 
 \begin{figure}
