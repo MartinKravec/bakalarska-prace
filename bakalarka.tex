@@ -30,9 +30,6 @@
 \usepackage{textcomp}
 \usepackage[pdftex]{hyperref}
 \PassOptionsToPackage{hyphens}{url}\usepackage{hyperref} % split url correctly
-%\usepackage{newunicodechar}
-%\DeclareUnicodeCharacter{00A0}{~}
-%\newunicodechar{00A0}{~}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% THESIS SETUP %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -55,14 +52,6 @@
     TeXtitle      = Studie proveditelnosti implementace open source integrovaného knihovního systému Koha v~knihovnách Masarykovy univerzity,
     TeXtitleEn    = Studie proveditelnosti implementace open source integrovaného knihovního systému Koha v~knihovnách Masarykovy univerzity
 }
-
-%\newunicodechar{^^a0}{~}
-%\newunicodechar{00A0}{~}
-
-%\DeclareUnicodeCharacter{00A0}{ }
-
-%\newunicodechar{^^a0}{ }
-%\newunicodechar{00A0}{~}
 
 %\hyphenpenalty=50
 %\exhyphenpenalty=50
@@ -150,8 +139,9 @@
 
 \makeatletter\thesis@load
   \makeatletter\def\thesis@blocks@lobibliography{%
-    \sloppy
+    %\inputencoding{latin1}
     \printbibliography[title={Seznam literatury},heading=bibintoc]
+    %\inputencoding{utf8}
   }
 \makeatother
 
@@ -203,8 +193,6 @@
   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}{%\fontsize{11}{24}
-
-\inputencoding{utf8}
 
 \chapter*{Úvod}
 Tato bakalářská diplomová práce se bude zabývat studií proveditelnosti implementace open source integrovaného knihovního systému Koha v~knihovnách Masarykovy univerzity. V~práci bude probíráno několik úhlů pohledu na celkovou problematiku, a to v~kontextu studie proveditelnosti.  V~práci tedy rozebereme nejdřív teoretickou část knihovních systémů, co by měly umět a jaký je jejich cíl jako produktu softwarových firem, to znamená, že probereme technické zastřešení projektu a vysvětlíme veškeré pojmy s~tím spojené. Teoretická část dále vysvětlí oblast projektového managmentu a přiblíží problematiku migrací na nový knihovní systém. Celý projekt bude řešen jako harmonogram realizace spolu s~finanční a ekonomickou analýzou. V~rámci studie byl prováděn několikaměsíční průzkum v~knihovnách Masarykovy univerzity a průzkum v~síti 900 knihoven v~Turecku. Při průzkumu byla realizována také SWOT analýza, na které je pak založeno celé hodnocení efektivity a udržitelnosti projektu, ve kterém nebude chybět analýza a řízení případných rizik, které s~sebou projekt migrace nese.
@@ -1234,7 +1222,11 @@ Další riziko je zhroucení projektu ve formě nevedených zaměstnanců. Nebud
 
 \chapter*{Závěr}
 Knihovní systém by měl být systémem, který pomáhá knihovníkům v~poskytování kvalitních služeb svým uživatelům - čtenářům. Ten je však kvůli neustále se měnícím potřebám uživatele potřeba upravovat. Jednou z~možností jak toho dosáhnout je pomocí využití open source přístupu. Migrace na open source knihovní systém s~sebou přináší velké změny. V~první řadě jsou to politické a právní otázky určující směr a možnosti, na které navazuje financování. Situace, kdy je správce knihovního systému bezmocně odkázán na podporu poskytovatele (vendor lock-in), se náhle změní, je-li možné přelévat investiční a mzdové náklady instituce. Jak píše RNDr. Miroslav Bartošek, CSc.: \citace{Knihovní systém nesmí mít podobu ‚černé skřínky‘, do které správce ‚nevidí‘ dostatečně hluboko a je s~každým nestandardním zásahem a požadavkem odkázán na milost či nemilost dodavatele systému.} \citepages{3}{bartosek_2001_systemovy_pohled}
- Jsem přesvědčen, že migrace na open source knihovní systém Koha nejen v~tomto pomůže. Je potřeba si ale uvědomit, že ne všechny problémy lze řešit knihovním systémem, ale že je potřeba upravovat samotné procesy, v~kterých k~problémům dochází. Nakonec je to vždy lidský faktor, který je na vstupu i na výstupu každého systému. Samotný proces migrace s~sebou nese nejen výhody, ale také rizika, které je potřeba řídit a minimalizovat tak hrozby, které z~něj vyplývají. Projekt je svým rozsahem a složitostí nutné rozdělit na menší, jednodušší části (etapy). V~těchto etapách musí projektový manager řídit jak lidské, tak i materiální zdroje tak, aby byly co nejefektivněji využity. Je potřeba myslet na to, že projektový manager nebo leader je osoba, která bude spojovat jednotlivé pracovní skupiny projektu. Musí být také komunikačním centrem, kterému lze při realizaci projektu poskytovat zpětnou vazbu.  Problémy byly, jsou a budou, avšak s~přátelskou pomocí komunity a odhodlaným projektovým managerem je lze zvládnout. Jak práce dokazuje na příkladech zahraničních knihoven a univerzit, které již migraci podstoupili, přechod z~komerčního systému Aleph na Kohu možný je, avšak je nutné sestavit podrobnější harmonogram realizace a detailně rozpracovat (hlavně sdílení uživatelů a MVS modul), jak se budou řešit jednotlivé kroky migrace, což je svým rozsahem možné rozpracovat v~další diplomové práci. Výstupem teoretické části by pak mohl být harmonogram realizace projektu, zatímco praktická část by nabízela konkrétní, nejen softwarová řešení všech problémů, které je nutné vyřešit pro úspěšnou migraci knihoven MU na open source systém Koha.
+ Jsem přesvědčen, že migrace na open source knihovní systém Koha nejen v~tomto pomůže. Je potřeba si ale uvědomit, že ne všechny problémy lze řešit knihovním systémem, ale že je potřeba upravovat samotné procesy, v~kterých k~problémům dochází. Nakonec je to vždy lidský faktor, který je na vstupu i na výstupu každého systému. 
+ 
+ Samotný proces migrace s~sebou nese nejen výhody, ale také rizika, které je potřeba řídit a minimalizovat tak hrozby, které z~něj vyplývají. Projekt je svým rozsahem a složitostí nutné rozdělit na menší, jednodušší části (etapy). V~těchto etapách musí projektový manager řídit jak lidské, tak i materiální zdroje tak, aby byly co nejefektivněji využity. Je potřeba myslet na to, že projektový manager nebo leader je osoba, která bude spojovat jednotlivé pracovní skupiny projektu. Musí být také komunikačním centrem, kterému lze při realizaci projektu poskytovat zpětnou vazbu. 
+ 
+  Problémy byly, jsou a budou, avšak s~přátelskou pomocí komunity a odhodlaným projektovým managerem je lze zvládnout. Jak práce dokazuje na příkladech zahraničních knihoven a univerzit, které již migraci podstoupili, přechod z~komerčního systému Aleph na Kohu možný je, avšak je nutné sestavit podrobnější harmonogram realizace a detailně rozpracovat (hlavně sdílení uživatelů a MVS modul), jak se budou řešit jednotlivé kroky migrace, což je svým rozsahem možné rozpracovat v~další diplomové práci. Výstupem teoretické části by pak mohl být harmonogram realizace projektu, zatímco praktická část by nabízela konkrétní, nejen softwarová řešení všech problémů, které je nutné vyřešit pro úspěšnou migraci knihoven MU na open source systém Koha.
 
 \chapter*{Appendix}
 V~případě zájmu o~migraci na systém Koha je možné využít pomoci komunity, ať už české\footnote{Česká Koha komunita - http://www.koha.cz/} nebo mezinárodní\footnote{Mezinárodní Koha komunita - https://koha-community.org/
