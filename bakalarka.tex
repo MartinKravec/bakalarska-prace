@@ -140,18 +140,11 @@
   }
 \makeatother
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% SEZNAM ZDROJU %%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\makeatletter\thesis@load
-  \makeatletter\def\thesis@blocks@lobibliography{%
-    \printbibliography[title={Seznam literatury},heading=bibintoc]
-  }
-\makeatother
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% PRILOHY %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \makeatletter\thesis@load
   \makeatletter\def\thesis@blocks@seznampriloh{%
     \chapter*{Seznam příloh}
+    \addcontentsline{toc}{chapter}{Seznam příloh} 
     Příloha 1: Projekt bakalářské diplomové práce
   }
 \makeatother
@@ -172,7 +165,7 @@
     \thesis@blocks@titlePage
     \thesis@blocks@frontMatter
       \noindent{\Large{Bibliografický záznam}}\newline\newline
-        KRAVEC, Martin. \italic{\thesis@title}. Brno: Masarykova univerzita, Filozofická fakulta, 2016. \pageref{LastPage} s. Vedoucí diplomové práce Mgr. Michal Denár.
+        KRAVEC, Martin. \italic{\thesis@title}. Brno: Masarykova univerzita, Filozofická fakulta, 2016. 57 s. Vedoucí diplomové práce Mgr. Michal Denár.
 	  \newline\newline
       {\Large{Anotace}}\newline\newline
         \thesis@abstract\newline\newline
@@ -188,8 +181,9 @@
   \thesis@blocks@clear
 	\tableofcontents}
   \def\thesis@blocks@postamble{
-    \thesis@blocks@lobibliography
+    \addcontentsline{toc}{chapter}{\listtablename}
     \thesis@blocks@lot
+    \addcontentsline{toc}{chapter}{\listfigurename}
     \thesis@blocks@lof
     \thesis@blocks@seznampriloh
     \thesis@blocks@prilohy}
@@ -199,6 +193,7 @@
 \begin{document}{%\fontsize{11}{24}
 
 \chapter*{Úvod}
+\addcontentsline{toc}{chapter}{Úvod} 
 Tato bakalářská diplomová práce se bude zabývat studií proveditelnosti implementace open source integrovaného knihovního systému Koha v~knihovnách Masarykovy univerzity. V~práci bude probíráno několik úhlů pohledu na celkovou problematiku, a~to v~kontextu studie proveditelnosti.  V~práci tedy rozebereme nejdřív teoretickou část knihovních systémů, co by měly umět a~jaký je jejich cíl jako produktu softwarových firem, to znamená, že probereme technické zastřešení projektu a~vysvětlíme veškeré pojmy s~tím spojené. Teoretická část dále vysvětlí oblast projektového managmentu a~přiblíží problematiku migrací na nový knihovní systém. Celý projekt bude řešen jako harmonogram realizace spolu s~finanční a~ekonomickou analýzou. V~rámci studie byl prováděn několikaměsíční průzkum v~knihovnách Masarykovy univerzity a~průzkum v~síti 900 knihoven v~Turecku. Při průzkumu byla realizována také SWOT analýza, na které je pak založeno celé hodnocení efektivity a~udržitelnosti projektu, ve kterém nebude chybět analýza a~řízení případných rizik, které s~sebou projekt migrace nese.
 
 \chapter{Teoretická část}
@@ -1227,6 +1222,7 @@ Riziko může také nastat v~době, kdy budou knihovníci muset vývojářům a~
 Další riziko je zhroucení projektu ve formě nevedených zaměstnanců. Nebudou-li zaměstnanci řízení, celý projekt se může časově i finančně protáhnout nebo se dokonce zhroutit.
 
 \chapter*{Závěr}
+\addcontentsline{toc}{chapter}{Závěr} 
 Knihovní systém by měl být systémem, který pomáhá knihovníkům v~poskytování kvalitních služeb svým uživatelům - čtenářům. Ten je však kvůli neustále se měnícím potřebám uživatele potřeba upravovat. Jednou z~možností jak toho dosáhnout je pomocí využití open source přístupu. Migrace na open source knihovní systém s~sebou přináší velké změny. V~první řadě jsou to politické a~právní otázky určující směr a~možnosti, na které navazuje financování. Situace, kdy je správce knihovního systému bezmocně odkázán na podporu poskytovatele (vendor lock-in), se náhle změní, je-li možné přelévat investiční a~mzdové náklady instituce. Jak píše RNDr. Miroslav Bartošek, CSc.: \citace{Knihovní systém nesmí mít podobu ‚černé skřínky‘, do které správce ‚nevidí‘ dostatečně hluboko a~je s~každým nestandardním zásahem a~požadavkem odkázán na milost či nemilost dodavatele systému.} \citepages{3}{bartosek_2001_systemovy_pohled}
  Jsem přesvědčen, že migrace na open source knihovní systém Koha nejen v~tomto pomůže. Je potřeba si ale uvědomit, že ne všechny problémy lze řešit knihovním systémem, ale že je potřeba upravovat samotné procesy, v~kterých k~problémům dochází. Nakonec je to vždy lidský faktor, který je na vstupu i na výstupu každého systému. 
  
@@ -1235,12 +1231,88 @@ Knihovní systém by měl být systémem, který pomáhá knihovníkům v~poskyt
   Problémy byly, jsou a~budou, avšak s~přátelskou pomocí komunity a~odhodlaným projektovým managerem je lze zvládnout. Jak práce dokazuje na příkladech zahraničních knihoven a~univerzit, které již migraci podstoupili, přechod z~komerčního systému Aleph na Kohu možný je, avšak je nutné sestavit podrobnější harmonogram realizace a~detailně rozpracovat (hlavně sdílení uživatelů a~MVS modul), jak se budou řešit jednotlivé kroky migrace, což je svým rozsahem možné rozpracovat v~další diplomové práci. Výstupem teoretické části by pak mohl být harmonogram realizace projektu, zatímco praktická část by nabízela konkrétní, nejen softwarová řešení všech problémů, které je nutné vyřešit pro úspěšnou migraci knihoven MU na open source systém Koha.
 
 \chapter*{Appendix}
+\addcontentsline{toc}{chapter}{Appendix} 
 V~případě zájmu o~migraci na systém Koha je možné využít pomoci komunity, ať už české\footnote{Česká Koha komunita - http://www.koha.cz/} nebo mezinárodní\footnote{Mezinárodní Koha komunita - https://koha-community.org/
 }, nebo také komerční podpory\footnote{Komerční podpora Koha - http://www.koha-v-knihovne.cz/}.
 Sledovat dění v~české Koha komunitě lze také na facebookových stránkách\footnote{Facebook Koha - https://www.facebook.com/kohaCZ/
 } komunity a~na wiki stránkách Githubu\footnote{Wiki stránky Koha -  https://github.com/open-source-knihovna/KohaCZ/wiki
 }. Otázky k~problematice je možné klást do českého chatu\footnote{Koha e-mail Chat - https://gitter.im/open-source-knihovna/KohaCZ} na Gitteru nebo se zeptat kterékoli knihovny\footnote{Seznam knihoven, které v~ČR používají systém Koha v~běžném provozu - https://github.com/open-source-knihovna/KohaCZ/wiki/Seznam-knihoven,-kter\%C3\%A9-v-\%C4\%8CR-pou\%C5\%BE\%C3\%ADvaj\%C3\%AD-syst\%C3\%A9m-Koha-v-b\%C4\%9B\%C5\%BEn\%C3\%A9m-provozu
 }, která migraci podstoupila. Vhodné médum ke komunikaci problémů anebo jiných informací je také mailing list Koha.
+
+\chapter*{Seznam literatury}
+\addcontentsline{toc}{chapter}{Seznam literatury} 
+
+[1] Aktivity. \textit{Koncepce.knihovna.cz: Trendy českého knihovnictví online} [online]. 2016 [cit. 2016-04-19]. Dostupné z: http://koncepce.knihovna.cz/aktivity/
+~\\ ~\\ \noindent
+[2] BARTOŠEK, Miroslav. Aleph: nový knihovní systém pro MU. \textit{Zpravodaj ÚVT MU} [online]. 2002, 	extbf{XIII}(2), 6-10 [cit. 2016-04-19]. ISSN 1212-0901. Dostupné z: http://ics.muni.cz/bulletin/clanky\_tisk/263.pdf
+~\\ ~\\ \noindent
+[3] BARTOŠEK, Miroslav. Systémový pohled na výběr knihovního systému nové generace a „finský model“. In: \textit{Automatizace knihovních procesů, 8. ročník} [online]. Liberec, 2001, s.~1-8 [cit. 2016-04-22]. Dostupné z: http://knihovnice.civ.cvut.cz/akp/clanky/04.pdf
+~\\ ~\\ \noindent
+[4] BILAL, Dania. \textit{Library automation: core concepts and practical systems analysis}. 3rd ed. Santa Barbara: Libraries Unlimited, c2014. ISBN 9781591589228.
+~\\ ~\\ \noindent
+[5] BREEDING, Marshall. \textit{Cloud computing for libraries}. 1st pub. London: Facet Publishing, 2012. Tech set. ISBN 9781856048477.
+~\\ ~\\ \noindent
+[6] CEJPEK, Jiří. \textit{Informace, komunikace a myšlení: úvod do informační vědy}. 2. přeprac. vyd. Praha: Karolinum, 2005. ISBN 80-246-1037-5.
+~\\ ~\\ \noindent
+[7] COHEN ARAZI, Tomas. Koha 3.22 released. In: \textit{KOHA} [online]. 2015 [cit. 2016-04-22]. Dostupné z: https://koha-community.org/koha-3-22-released/
+~\\ ~\\ \noindent
+[8] COUFALOVÁ, Jindřiška, Karolína KOŠŤÁLOVÁ a Hana NEMEŠKALOVÁ. \textit{Katalogy nové generace: analýza vybraných systémů z~pohledu uživatele}. 1.~vyd. Praha: Národní knihovna České republiky, 2009. ISBN 9788070505793.
+~\\ ~\\ \noindent
+[9] DENÁR, Michal. Otevřené knihovní systémy v~českých knihovnách. \textit{ITlib. Informačné technológie a knižnice}. 2015, 	extbf{2015}(3), 10-14. ISSN 1335-793X. Dostupné také z: http://itlib.cvtisr.sk/buxus/docs/10\_Otevrene\%20knihovni.pdf
+~\\ ~\\ \noindent
+[10] DENÁR, Michal. \textit{Implementace otevřeného knihovního systému Koha v~teorii a praxi} [online]. Brno, 2015 [cit. 2016-04-22]. Dostupné z: http://theses.cz/id/b2ee6n/. Diplomová práce. Masarykova univerzita, Filosofická fakulta, Ústav české literatury a knihovnictví. Vedoucí práce PhDr. Martin Krčál, DiS.
+~\\ ~\\ \noindent
+[11] DILHOFOVÁ, Adéla, Monika KRATOCHVÍLOVÁ a Jan LIDMILA. \textit{Příručka pro knihovníky veřejných knihoven}. Vyd.~1. Brno: Moravská zemská knihovna v~Brně, 2013. ISBN 9788070511992.
+~\\ ~\\ \noindent
+[12] FAY, Robin M a Michael P SAUERS. \textit{Semantic web technologies and social searching for librarians}. 1st pub. London: Facet Publishing, 2012. Tech set. ISBN 9781856048422.
+~\\ ~\\ \noindent
+[13] FOGEL, Karl. \textit{Tvorba open source softwaru: jak řídit úspěšný projekt svobodného softwaru}. Praha: CZ.NIC, 2012. CZ.NIC. ISBN 9788090424852.
+~\\ ~\\ \noindent
+[14] FOTR, Jiří. \textit{Podnikatelský plán a investiční rozhodování}. Vyd.~1. Praha: Grada, 1995. ISBN 808562320X.
+~\\ ~\\ \noindent
+[15] GAFF, B. M. a G. J. PLOUSSIOS. Open Source Software. \textit{Computer} [online]. 2012, 	extbf{45}(6), 9-11 [cit. 2016-04-22]. ISSN 0018-9162. Dostupné z: http://dx.doi.org/10.1109/MC.2012.213
+~\\ ~\\ \noindent
+[16] HOGAN, Brian P. \textit{HTML5 a CSS3: výukový kurz webového vývojáře}. Vyd.~1. Brno: Computer Press, 2011. ISBN 9788025135761.
+~\\ ~\\ \noindent
+[17] CHACON, Scott. \textit{Pro Git}. Praha: CZ.NIC, c2009. CZ.NIC. ISBN 9788090424814.
+~\\ ~\\ \noindent
+[18] \textit{JQuery} [online]. 2016 [cit. 2016-04-19]. Dostupné z: https://jquery.com/
+~\\ ~\\ \noindent
+[19] \textit{JQuery: kuchařka programátora}. Vyd.~1. Brno: Computer Press, 2010. ISBN 9788025131527.
+~\\ ~\\ \noindent
+[20] KOHA KOMUNITA. \textit{Mailing list for discussion of the Koha library system}. 2016. Dostupné také z: http://comments.gmane.org/gmane.comp.misc.koha/40306
+~\\ ~\\ \noindent
+[21] KUROSE, James F a Keith W ROSS. \textit{Počítačové sítě}. 1.~vyd. Brno: Computer Press, 2014. ISBN 9788025138250.
+~\\ ~\\ \noindent
+[22] LIU, C. Y., K. C. LAI, Y. F. LEE, Y. C. LIN a M. R. SHIE. Vertical/Horizontal Resource Scaling Mechanism for Federated Clouds. In: \textit{2014 International Conference on Information Science and Applications (ICISA)} [online]. 2014, s.~1-4 [cit. 2016-04-22]. ISSN 2162-9048. Dostupné z: http://dx.doi.org/10.1109/ICISA.2014.6847479
+~\\ ~\\ \noindent
+[23] MCLEAN, Allen. Open-Source Software. \textit{Canadian Journal of Nursing Informatics} [online]. Vancouver: Canadian Journal of Nursing Informatics, Editor in Chief June Kaminski, 2015, extbf{2015}(3) [cit. 2016-04-19]. ISSN 1718-9438. Dostupné ze: \url{http://ezproxy.techlib.cz/login?url=http://search.proquest.com.ezproxy.techlib.cz/docview/1753599175?accountid=119841}
+~\\ ~\\ \noindent
+[24] MĚSTSKÁ KNIHOVNA V~PRAZE. \textit{Smlouva o~dílo}. 2015. Dostupné také z: \url{https://www.mlp.cz/cz/dokumenty/?act=get&check=9b18decd2472b8a72ebb2eec7adab1e0&id=1659&noinc=1}
+~\\ ~\\ \noindent
+[25] MÜLLER, Ralf a Rodney TURNER. Leadership competency profiles of successful project managers. \textit{International Journal of Project Management} [online]. 2010, 	extbf{28}(5), 437-448 [cit. 2016-04-22]. ISSN 0263-7863. Dostupné z: http://www.sciencedirect.com/science/article/pii/S0263786309000970
+~\\ ~\\ \noindent
+[26] PODEŠVOVÁ, Veronika. \textit{Studie proveditelnosti} [online]. Brno, 2010 [cit. 2016-04-22]. Dostupné z: http://is.muni.cz/th/253862/esf\_\b\_a2/. Bakalářská práce. Masarykova univerzita, Ekonomicko-správní fakulta. Vedoucí práce Doc. Ing. Petr Pirožek, Ph.D.
+~\\ ~\\ \noindent
+[27] PSGI/Plack. \textit{PSGI/Plack - Perl Superglue for Web Frameworks and Web Servers} [online]. 2016 [cit. 2016-04-19]. Dostupné z: http://plackperl.org/
+~\\ ~\\ \noindent
+[28] ROSENAU, Milton D. \textit{Řízení projektů}. Vyd.~1. Praha: Computer Press, 2000. Business books (Computer Press). ISBN 8072262181.
+~\\ ~\\ \noindent
+[29] ŘEHÁČEK, Petr. \textit{Projektové řízení podle PMI}. 1.~vyd. Praha: Ekopress, 2013. ISBN 9788086929903.
+~\\ ~\\ \noindent
+[30] ŘEZÁČ, Jan. \textit{Web ostrý jako břitva: návrh fungujícího webu pro webdesignery a zadavatele projektů}. Vyd.~1. Jihlava: Baroque Partners, 2014. ISBN 9788087923016.
+~\\ ~\\ \noindent
+[31] SERAFINI, Alfredo. \textit{Apache Solr Beginner’s Guide} [online]. Birmingham: Packt Publishing, 2013 [cit. 2016-04-22]. ISBN 9781782162520. Dostupné z: \url{http://search.ebscohost.com/login.aspx?direct=true&db=nlebk&AN=680715&lang=cs&site=ehost-live}
+~\\ ~\\ \noindent
+[32] SCHMIDT, Aaron a Amanda ETCHES. \textit{User experience (UX) design for libraries}. 1st pub. London: Facet Publishing, 2012. Tech set. ISBN 9781856048439.
+~\\ ~\\ \noindent
+[33] SIEBER, Patrik. MINISTERSTVO PRO MÍSTNÍ ROZVOJ. \textit{Studie proveditelnosti (Feasibility Study): metodická příručka}. 1.4. 2004. Dostupné také z: http://www.strukturalni-fondy.cz/getmedia/c4772855-8ffc-4036-97fc-2d7caa1ad86e/1136372156-zpracov-n-studie-proveditelnosti
+~\\ ~\\ \noindent
+[34] SINGH, Vandana. Experiences of Migrating to an OpenSource Integrated Library System. \textit{Information Technology \& Libraries} [online]. 1. 2013, 	extbf{32}(1), 36-53 [cit. 2015-11-08]. ISSN 0730-9295. Dostupné z: \url{http://ezproxy.muni.cz/login?url=http://search.ebscohost.com/login.aspx?direct=true&AuthType=ip,cookie,uid&db=lls&AN=89093583&lang=cs&site=eds-live&scope=site}
+~\\ ~\\ \noindent
+[35] WALL, Larry, Tom CHRISTIANSEN a Randal L SCHWARTZ. \textit{Programování v~jazyce Perl}. Vyd.~1. Praha: Computer Press, 1997. ISBN 8085896958.
+~\\ ~\\ \noindent
+[36] ŽABIČKOVÁ, Petra. Nejrozšířenější open source knihovní systémy a jejich použitelnost. \textit{Duha} [online]. 2014, 	extbf{28}(1) [cit. 2016-04-19]. ISSN 1804-4255. Dostupné z: http://duha.mzk.cz/clanky/nejrozsirenejsi-open-source-knihovni-systemy-jejich-pouzitelnost
 
 }
 \end{document}
