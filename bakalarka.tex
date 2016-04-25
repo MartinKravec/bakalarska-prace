@@ -4,7 +4,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[
-	11pt, oneside, printed, final, palatino, monochrome
+	11pt, oneside, printed, final, palatino
 	microtype,
 	table,   %% Causes the coloring of tables. Replace with `notable` to restore plain tables.
 	lof,     %% Prints the List of Figures. Replace with `nolof` to hide the List of Figures.
@@ -388,22 +388,22 @@ Celkový proces migrace vyžaduje svůj čas jak na přípravu, tak na realizaci
 Z~pohledu správce lze definovat jako požadavky na knihovní systém následující.
 Systém musí v~rámci funkcí poskytovat: \citepages{8–12}{bilal_2014}
 
-\subsubsection{Modul pro cirkulace}
+\subsubsection{{\large Modul pro cirkulace}}
 Tento modul by měl minimálně nabízet funkcionalitu pro kontrolování a~vypůjčování knihovního fondu, podporovat pokuty a~poplatky, notifikace, rezervace a~objednávky, správu čtenářského účtu, správu statistik.
 
-\subsubsection{Akviziční modul}
+\subsubsection{{\large Akviziční modul}}
 Tento modul by měl spravovat objednávání jednotek do knihovního fondu. To zahrnuje objednávání, příjem, fakturace, reklamace, alokování fondu či sledování prodejců. 
 
-\subsubsection{Modul pro seriály}
+\subsubsection{{\large Modul pro seriály}}
 Modul slouží pro správu ročníků, periodik a~novin. Může zahrnovat zrušení předplatného, přiřazování opožděných čísel časopisů, alokování fondu, sledování prodejců nebo přečíslování seriálů. V~modulu lze prohledávat fond podle různých parametrů (například podle ISSN\footnote{International Standard Serial Number.} nebo podle názvu).
 
-\subsubsection{Modul pro meziknihovní výpůjční službu (MVS)}
+\subsubsection{{\large Modul pro meziknihovní výpůjční službu (MVS)}}
 Modul pro MVS je určen na půjčování a~vypůjčování jednotek mezi knihovnami. Není-li titul dostupný v~rámci knihovny, může knihovna na žádost uživatele zažádat o~meziknihovní výpůjčku. Tyto výpůjčky jsou založeny na smlouvách, které mezi sebou knihovny uzavírají. Ne všechen fond je možné vypůjčit.
 
-\subsubsection{Autoritní modul}
+\subsubsection{{\large Autoritní modul}}
 Tento modul může být součástí katalogizačního modulu a~jeho hlavní funkcionalitou je tvorba a~úprava hesel (jména autorů, titulků, seriálů, předmětů ve smyslu témat) pro bibliografické záznamy. Propojuje autoritní heslo s~autoritním záznamem pomocí standardizovaného seznamu hesel.
 
-\subsubsection{Katalogizační modul}
+\subsubsection{{\large Katalogizační modul}}
 Modul je určen pro zkatalogizování dokumentů a~uložení metadat s~následným zařazením do knihovního fondu. Momentálně se využívá formát MARC21, jehož zápis byl donedávna definován pravidly AACR2 (angloamerická katalogizační pravidla verze 2). \citepages{26–27}{dilhofova_kratochvilova_lidmila_2013} Tato pravidla jsou dnes nahrazena novým standardem RDA (Resource Description and Access), který je založen na konceptu FRBR (Functional Requirements for Bibliographic Record). To je také důvod, proč jsou některé záznamy zapsané jinak. Je potřeba říct, že RDA obecně nereprezentuje ani pravidla, ani formát, ale spíš strukturovanou množinu myšlenek ve smyslu toho, jak by měl vypadat bibliografický záznam k~tomu, aby byly splněny potřeby uživatele. \citepages{8}{bilal_2014}
 RDA se stávají fakticky závaznými pravidly v~ČR až ve chvíli, kdy chce instituce například dotaci z~VISKu\footnote{Dotační program Ministerstva kultury ČR – Veřejné informační služby knihoven (VISK).}, kdy musí přispívat do Souborného katalogu České republiky, protože musí dodržovat standardy a~pravidla k~tomu daná a~podobně.
 
@@ -851,7 +851,7 @@ Při provádění průzkumu bylo zjištěno několik nedostatků neboli problém
 
 Následující výčet reprezentuje vlastní aplikace, které jsou založeny na API Alephu nebo využívají SQL dotazy na databáze Alephu. Tyto aplikace vznikly buď chybějící funkčností v~Alephu, nadbytečným množstvím informací poskytnutých systémem (informační přetížení, redundantní informace) nebo nepřesnou interpretací, kterou si knihovny musely ke svým účelům upravit.
 
-\subsubsection{Aplikace KIC}
+\subsubsection{{\large Aplikace KIC}}
 Aplikace knihovnicko-informačního centra ústavu výpočetní techniky Masarykovy univerzity, které jsou k~dispozici všem knihovnám MU.
 ~\\~\\~\\~\\%
 Aplikace pro knihovníky:
@@ -886,20 +886,20 @@ Nástroje pro konvertování záznamů:
 \item aplikace pro kontrolu bibliografických záznamů před odesláním do Souborného katalogu v~Národní knihovně
 \end{itemize}
 
-Systémové nástroje:
+\noindent Systémové nástroje:
 
 \begin{itemize}
 \item náhled dat z~databáze
 \item odkazy na stažení instalačních souborů knihovního klienta (aby je měl správce k~dispozici v~aktuální verzi, když se v~knihovně reinstaluje nějaký počítač) a~TeamView klienta, když je někomu potřeba vzdáleně pomoci přímo na jeho počítači
 \end{itemize}
 
-\subsubsection{Aplikace Fakulty sociálních studií}
+\subsubsection{{\large Aplikace Fakulty sociálních studií}}
 
 \begin{itemize}
 \item aplikace pro soutěž akvizicí
 \end{itemize}
 
-\subsubsection{Aplikace KUK (knihovny univerzitního kampusu)}
+\subsubsection{{\large Aplikace KUK (knihovny univerzitního kampusu)}}
 \begin{itemize}
 \item \bold{MVS} – správa požadavků
 \item \bold{Dlouhodobé výpůjčky} – v~OPACu může uživatel požádat o~dočasnou výpůjčku knihy, kterou má aktuálně půjčenou vyučující dlouhodobě
@@ -963,16 +963,16 @@ Modul cirkulací je v~Koha velmi přívětivý a~flexibilní. Uživatele nebo v�
 
 Koha umí uživatele předem notifikovat pomocí emailu nebo SMS, kde správa šablon různých zpráv je samozřejmostí. Těmto notifikacím lze různě nastavovat například periodicitu a~další vlastnosti.
 
-\subsubsection{Napojení na selfchecky}
+\subsubsection{{\large Napojení na selfchecky}}
 Koha podporuje protokol SIP2, díky kterému je možné napojit systémy selfchecků, RFID technologie, kopírky/tiskárny či Zebra tiskárny pro tisk štítků.% #TODO add citation Choosing free library software: Experiences of the Faculty of Humanities and Social Studies in Zagreb, s. 651
 
-\subsubsection{Podpora více výpůjčních protokolů}
+\subsubsection{{\large Podpora více výpůjčních protokolů}}
 Jelikož má Koha možnost vytvářet pobočky, má i podporu více výpůjčních protokolů. V~systému Koha je možné nastavovat vazby mezi jednotlivými knihovnami/pobočkami, tudíž je možné nastavit, kdo má na co práva a~kam „vidí“. Je tedy možné pobočky propojit nebo naopak rozdělit.
 
-\subsubsection{Lokální a~globální karty Alephu}
+\subsubsection{{\large Lokální a~globální karty Alephu}}
 Tato funkcionalita vyžaduje hlubší šetření. Momentálně se databáze uživatelů sdílí mezi všemi v~rámci instance a~jde blokovat jen globálně, a~to buď na základě poplatků nebo nevrácení. V~případě, že by v~rámci instance neměla knihovna vidět do uživatelské databáze jiné knihovny, je zapotřebí chování systému upravit. Bylo by tedy potřeba vytvořit testovací instanci, která by představovala novou strukturu systému a~na ní odladit potřebné požadavky.
 
-\subsubsection{MVS (Meziknihovní výpůjční služba)}
+\subsubsection{{\large MVS (Meziknihovní výpůjční služba)}}
 Meziknihovní výpůjční služba funguje v~Koha jako běžná výpůjčka, ale pro speciální typ uživatele – knihovnu. Knihovny jsou speciální kategorie čtenářů s~odpovídajícími parametry, jako cena za nula, a~pravidly pro výpůjčky. Takže se provede klasická výpůjčka, která se následně odešle poštou. Lze vygenerovat report, který přehledně zobrazí, jaká knihovna od kdy má daný dokument. Příchozí MVS je řešena specifickým typem dokumentu, který má nastaven kratší dobu výpůjčky, navěšeno hlášení při návratu a~specifickou katalogizační šablonu. Dokument je přijat, rychle zkatalogizován, do jednoho pole je zapsáno, od koho je, a~je půjčen čtenáři. Opět je k~dispozici report, který vypisuje, jaké dokumenty v~rámci příchozích MVS jsou k~dispozici, kdo je má, atd. Toto fungování nemusí zcela vyhovovat MU a~celou agendu bude pravděpodobně třeba upravit nebo použít MVS modul\footnote{ILL modul Koha – https://github.com/PTFS-Europe/koha/tree/ill\_master}.
 
 \subsection{Potřeby a~požadavky uživatelů}
@@ -995,20 +995,20 @@ Zajímavostí je také budoucnost těchto technologíí, která vnáší do obor
 
 VuFind je navíc založen na myšlence responsivního designu a~využívá webového frameworku  Bootstrap 3, je tedy responzivní ve smyslu přístupnosti na zařízeních s~různou uhlopříčkou a~rozlíšením, takže je stejně použitelný jak na desktopech, tak i na tabletech či smartphonech.
 
-\subsubsection{Služba Copy on Demand (COD)}
+\subsubsection{{\large Služba Copy on Demand (COD)}}
 Tato služba přímo v~Koha ani ve VuFindu neexistuje, avšak je natolik triviální, že její napsání nezabere víc jak pár hodin. Tuto funkci lze také řešit externí službou, která vygeneruje odkaz (tlačítko), který stačí jednoduše vložit do šablony OPACu.
 
 
-\subsubsection{Obálky knih}
+\subsubsection{{\large Obálky knih}}
 Nejen obálky knih, ale i naskenované obsahy a~indexy lze zpřístupnit ve VuFindu pomocí API ObálekKnih\footnote{API ObálkyKnih.cz – https://obalkyknih.cz/doc/Dokumentace\_API\_OKCZ\_3.1.pdf.} ve verzi 3. Příklad implementace ve VuFindu lze vidět na Centrálním portálu knihoven, respektive v~repozitáři\footnote{Implementace ObálekKnih v~CPK https://github.com/moravianlibrary/VuFind-2.x/tree/master/themes/obalkyknih-api-v3-bootstrap3} na Githubu.
 
-\subsubsection{Automatická oprava překlepů a~nabídka alternativ při neúspěšném hledání}
+\subsubsection{{\large Automatická oprava překlepů a~nabídka alternativ při neúspěšném hledání}}
 Tuto funkcionalitu lze zapnout vyhledávací komponentou \code{spellcheck}.
 
 \subsection{Systémové požadavky} \label{sec:systemove_pozadavky}
 Následující část rozebírá hlavní systémové požadavky na knihovní systém Masarykovy univerzity.
 
-\subsubsection{Velký počet knihovních jednotek, uživatelů, poboček, podpoboček}
+\subsubsection{{\large Velký počet knihovních jednotek, uživatelů, poboček, podpoboček}}
 V~této chvíli je potřeba, aby nový systém zvládl cca 2 miliony knihovních jednotek, cca 50 000 aktuálně registrovaných  uživatelů.
 
 Toto kritérium by nemělo být problémem, jelikož např. síť 900 aktivních knihoven v~Turecku (z~celkového počtu 1 126) obsluhuje 13 700 000 knihovních jednotek a~1 220 000 aktivních uživatelů v~jedné instalaci systému Koha. \citesource{koha_komunita_2016}
@@ -1018,7 +1018,7 @@ Koha je navíc škálovatelná\footnote{Schopnost systému pružně reagovat na 
 
 OpenStack řeší infrastrukturu (infrastructure as a~service - IaaS), to znamená poskytování bootovatelného virtuálního stroje, networkingu, datového úložiště a~dalších. \citepages{14–16}{breeding_2012} OpenShift jako platforma (platform as a~service – PaaS) zase řeší rychlý deploy LAMP\footnote{Linux, Apache, MySQL/MariaDb, PHP/Perl/Python.} aplikací.
 
-\subsubsection{Flexibilita}
+\subsubsection{{\large Flexibilita}}
 Jedním ze základních požadavků na knihovní systém v~knihovnách Masarykovy univerzity je vysoká potřeba vše členit do složitějších hierarchických struktur (uživatelé, katalogy, pobočky). Velké univerzity nemají typicky jednu knihovnu, ale celou síť navzájem propojených knihoven, kterou musí být systém schopny obsluhovat jednotně a~současně podporovat jejich odlišnosti. Masarykova univerzita má 10 fakultních knihoven, které momentálně operují nad společným systémem/katalogem, fungují však do značné míry samostatně. Mají odlišné zejména otevírací doby, statusy knih, výpůjční doby a~pokuty, akvizice a~fakturace jednotek. Společnou však mají centrální bázi uživatelů s~možností lokální registrace na pobočkách. 
 
 Důležitá je také podpora konsorcií. Celá Masarykova univerzita se chová svým způsobem jako konsorcium. Kromě toho ale může nastat případ, kdy instalovaný systém bude potřeba provozovat skutečně pro více různých nezávislých institucí – konsorcium.
@@ -1048,7 +1048,7 @@ Jednou z~možností, které by nejvíce vyhovovaly stávající architektuře sy
 	\label{fig:koha}
 \end{figure}
 
-\subsubsection{Robustnost a~vysoká provozní spolehlivost systému}
+\subsubsection{{\large Robustnost a~vysoká provozní spolehlivost systému}}
 Tak robustní systém jako ILS pro MU může být náchylný k~výpadkům, spravuje-li velké množství dat a~dotazů. Tomu je potřeba zabránit nebo to alespoň omezit na minimum. V~případě výpadku sítě či napájení je nutné systém obnovit ze zálohy, aniž by došlo k~poruše konzistence či integrity dat.
 
 Systém musí fungovat non-stop. Při problémech způsobených nějakou vstupní chybou nesmí tyto chyby způsobit výpadek systému nebo porušit integritu dat \citepages{2}{bartosek_2001_systemovy_pohled} a~tyto chyby/výjimky musí být korektně odchytávány a~ošetřovány. S~provozní spolehlivostí také souvisí výkon. Důležitým aspektem je jak rychlá odezva, tak rychlé zpracování velkého množství dat. O~škálování systému se již psalo v~kapitole \ref{sec:systemove_pozadavky} Systémové požadavky, avšak je potřeba myslet i na to, že neustále zvyšování nároků na výpočetní výkon také zvyšuje nároky na koncové stanice uživatelů \citepages{2–3}{bartosek_2001_systemovy_pohled}.
@@ -1056,7 +1056,7 @@ Systém musí fungovat non-stop. Při problémech způsobených nějakou vstupn�
 Koha také plně podporuje technologii PSGI/Plack, která slibuje zrychlení většiny každodenních úkonů. \citesource{koha_3.22_released_2016}
  PSGI je rozhraní mezi perlovskou aplikací a~serverem, zatímco samotný Plack je perlovským modulem a~nástrojem, který obsahuje PSGI middleware, helpery a~adaptery pro web server.  \citesource{psgi/plack_2016}
 
-\subsubsection{Otevřenost systému}
+\subsubsection{{\large Otevřenost systému}}
 Systém musí být technicky připraven na to, aby mohl být napojen na další systémy využívané v~rámci Masarykovy univerzity, tj. personální, ekonomický, studijní.
 
 Celkově fakt, že Koha je open source systém, dává případnému napojování na další systémy velké možnosti, jelikož je možné do kódu zasahovat a~přizpůsobovat si tak knihovní systém svým potřebám, aniž by knihovna musela žádat výrobce o~novou funkcionalitu.
@@ -1065,15 +1065,15 @@ V~případě, že jiná knihovna již tento krok podstoupila, je možné v~rámc
 
 V~případě, že organizace má vlastní vývojáře, je rychlost vývoje OSS rychlá a~relativně bezproblémová a~navíc projde kód kontrolou nejen formální (kód samotný), ale i věcnou (zakomponování do zbytku systému). OSS reaguje na požadavky uživatelů, kdežto proprietární software nabízí funkcionality na základě své strategie nebo obchodního modelu. Některé funkce tak díky vysokým nákladům nemusí být nikdy implementovány, výrobcům se zkrátka nevyplatí. Pokud se mu tyto části funkcionality mají vyplatit vyvíjet, nasadí podle toho i jejich cenu. Výsledkem jsou služby, které si některé knihovny nemohou dovolit, což má vliv na jejich začlenění do kooperativních projektů nebo na kvalitu a~rozsah poskytovaných služeb.
 
-\subsubsection{Bezpečnost systému}
+\subsubsection{{\large Bezpečnost systému}}
 Bezpečnost systému lze uvažovat nejméně ze tří úhlů pohledu. První úroveň uvažuje bezpečnost v~rámci přístupu do systému a~jeho částí (autentizace). Druhá úroveň uvažuje bezpečnost týkající se pravomocí jednotlivých skupin uživatelů (autorizace). U~těchto úrovní se dá mluvit jako o~prevenci zneužití či poškození dat, ať už úmyslného nebo ne. Třetí úroveň lze uvažovat jako logovací neboli zaznamenávající chování v~systému. Veškerá bezpečnost se týká aplikační vrstvy ISO/OSI \citepages{80–82}{kurose_ross_2014} modelu počítačové sítě.
 
 V~Koha se připravuje balíčková podpora LetsEncrypt, takže bude poměrně snadné přejít na HTTPS. Pravidelně se řeší bezpečnostní aktualizace (minimálně 1x/měsíc). Hesla jsou šifrována pomocí Bcryptu.
 
-\subsubsection{Shibboleth}
+\subsubsection{{\large Shibboleth}}
 Napojení na open source federativní systém pro propojování identit Shibboleth je také možné a~konfigurace je dostupná na wiki stránkách\footnote{Konfigurace Shibbolethu pro Koha – https://wiki.koha-community.org/wiki/Shibboleth\_Configuration} mezinárodní komunity.
 
-\subsubsection{Dokumentace}
+\subsubsection{{\large Dokumentace}}
 Jedním z~požadavků byla dostupná plná dokumentace systému. Pro systém Koha je k~dispozici:
 
 \begin{itemize}
@@ -1082,7 +1082,7 @@ Jedním z~požadavků byla dostupná plná dokumentace systému. Pro systém Koh
 \item český manuál \footnote{Český manuál Koha – http://www.knihovni-system-koha.cz/index.php/navody-a-vzdelavani/cesky-manual-systemu-koha}
 \end{itemize}
 
-\subsubsection{Externí aplikace knihoven}
+\subsubsection{{\large Externí aplikace knihoven}}
 Následující externí aplikace knihoven lze řešit přímo knihovním systémem.
 
 \begin{itemize}
@@ -1114,7 +1114,7 @@ Editor lze rozdělit do ~ záložek 0–9, ~ které ~ definují ~ rozsah ~ polí
 \end{figure}
 \footnotetext{Katalogizační editor systému Koha – http://www.knihovni-system-koha.cz/index.php/projekty/podpora-rda}
 
-\subsubsection{Hromadné úpravy}
+\subsubsection{{\large Hromadné úpravy}}
 Záznamy lze editovat také hromadně pomocí nástroje „Hromadné úpravy jednotek“, kde se nadefinují modifikační šablony, viz obrázek \ref{fig:hromadne_upravy}.
 
 \begin{figure}
@@ -1126,19 +1126,19 @@ Záznamy lze editovat také hromadně pomocí nástroje „Hromadné úpravy jed
 
 Co se katalogizace elektronických zdrojů týče, elektronické zdroje se katalogizují jako knihy, jen se použije jiná šablona. Rozdíl v~záznamu je primárně v~kódovaných údajích.
 
-\subsubsection{Podpora RDA}
+\subsubsection{{\large Podpora RDA}}
 Hezkým příkladem, jak lze upravovat frontend za využítí Javascriptu, je úprava bibliografických a~autoritních šablon pro podporu RDA, kde jsou jednoduše vložena chybějící pole a~možnost zobrazovat hodnoty, které lze do polí vložit.
 
-\subsubsection{Stahování bibliografických záznamů přes Z39.50}
+\subsubsection{{Stahování bibliografických záznamů přes Z39.50}}
 Koha podporuje protokol Z39.50 jako klient i jako server, to znamená, že dokáže stahovat záznamy například z~Národní knihovny, Jednotné informační brány, Souborného katalogu, Moravské zemské knihovny a~podobně, ale také povoluje jiným knihovnám stahovat své záznamy (například v~rámci konsorcia).
 
-\subsubsection{Rejstříky}
+\subsubsection{{\large Rejstříky}}
 Koha umí pracovat s~čímkoliv, co má povahu autority (korporace, věcné téma, místo, žánr) a~také umí vytvořit řízený slovník čehokoli, co má pak povahu oveřených hodnot, které lze provázat s~katalogizační šablonou.
 
-\subsubsection{Omezení práv}
+\subsubsection{{\large Omezení práv}}
 V~Koha lze udělovat práva pro to, který personál má mít přístup k~editaci jednotek a~který k~editaci záznamů. To znamená, že někteří zaměstnanci nemohou editovat záznam, ale mohou jenom změnit například čárový kód a~podobně. Slouží k~tomu komponenty \code{SubfieldsToUseWhenPrefill} a~\code{SubfieldsToAllowForRestrictedEditing}.
 
-\subsubsection{Autoritní hesla}
+\subsubsection{{\large Autoritní hesla}}
 Výběr autoritních hesel je pro Kohu samozřejmostí. Možnost dohledat autoritu zobrazuje obrázek \ref{fig:vysledky_vyhledavani_autorit}.
 
 \begin{figure}
@@ -1256,7 +1256,7 @@ Sledovat dění v~české Koha komunitě lze také na facebookových stránkách
 
 \chapter*{Seznam literatury}
 \addcontentsline{toc}{chapter}{Seznam literatury} 
-
+\noindent 
 [1] Aktivity. \textit{Koncepce.knihovna.cz: Trendy českého knihovnictví online} [online]. 2016 [cit. 2016-04-19]. Dostupné z: http://koncepce.knihovna.cz/aktivity/
 ~\\ ~\\ \noindent
 [2] BARTOŠEK, Miroslav. Aleph: nový knihovní systém pro MU. \textit{Zpravodaj ÚVT MU} [online]. 2002, 	\textbf{XIII}(2), 6-10 [cit. 2016-04-19]. ISSN 1212-0901. Dostupné z: http://ics.muni.cz/bulletin/clanky\_tisk/263.pdf
@@ -1317,7 +1317,7 @@ Sledovat dění v~české Koha komunitě lze také na facebookových stránkách
 ~\\ ~\\ \noindent
 [30] ŘEZÁČ, Jan. \textit{Web ostrý jako břitva: návrh fungujícího webu pro webdesignery a~zadavatele projektů}. Vyd.~1. Jihlava: Baroque Partners, 2014. ISBN 9788087923016.
 ~\\ ~\\ \noindent
-[31] SERAFINI, Alfredo. \textit{Apache Solr Beginner’s Guide} [online]. Birmingham: Packt Publishing, 2013 [cit. 2016-04-22]. ISBN 9781782162520. Dostupné z: \url{http://search.ebscohost.com/login.aspx?direct=true&db=nlebk&AN=680715&lang=cs&site=ehost-live}
+[31] SERAFINI, Alfredo. \textit{Apache Solr Beginner’s Guide} [online]. Birmingham: Packt Publishing, 2013 [cit. 2016-04-22]. ISBN 9781782162520. Dostupné z: http://search.ebscohost.com/login.aspx?direct=true\&db=nlebk\&AN=\\680715\&lang=cs\&site=ehost-live
 ~\\ ~\\ \noindent
 [32] SCHMIDT, Aaron a~Amanda ETCHES. \textit{User experience (UX) design for libraries}. 1st pub. London: Facet Publishing, 2012. Tech set. ISBN 9781856048439.
 ~\\ ~\\ \noindent
